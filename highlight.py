@@ -96,17 +96,13 @@ hwndFocusList = [0, 0, 0, 0]
 
 def onFocusChangedEvent(sender):
 	global focusRect
-	if isinstance(sender, IAccessible) and hasattr(sender, 'location'):
-		log.info(str(sender.location)) # pxLeft, pyTop, pcxWidth, pcyHeight
-		newRect = RECT()
-		newRect.left = sender.location[0]
-		newRect.top = sender.location[1]
-		newRect.right = newRect.left + sender.location[2]
-		newRect.bottom = newRect.top + sender.location[3]
-	# elif hasattr(sender, 'CurrentBoundingRectangle'):
-	#	newRect = sender.CurrentBoundingRectangle
-	else:
+	if not (isinstance(sender, IAccessible) and hasattr(sender, 'location')):
 		return
+	newRect = RECT()
+	newRect.left = sender.location[0]
+	newRect.top = sender.location[1]
+	newRect.right = newRect.left + sender.location[2]
+	newRect.bottom = newRect.top + sender.location[3]
 	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
 		highlightRectList[0].top    = newRect.top - THICKNESS
 		highlightRectList[0].bottom = newRect.top
