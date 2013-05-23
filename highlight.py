@@ -231,7 +231,7 @@ class Highlighter(object):
 		HighlightWin()
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-	global Highlighter
+	global highlighter
 	highlighter = Highlighter()
 	highlighter.run()
 
