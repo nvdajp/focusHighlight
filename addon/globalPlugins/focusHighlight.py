@@ -14,6 +14,7 @@ import sys
 from ctypes import WINFUNCTYPE, Structure, windll
 from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer
 from ctypes.wintypes import COLORREF
+import api
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -96,8 +97,10 @@ hwndFocusList = [0, 0, 0, 0]
 
 def onFocusChangedEvent(sender):
 	global focusRect
-	if not (isinstance(sender, IAccessible) and hasattr(sender, 'location')):
-		return
+	if isinstance(sender, IAccessible) and hasattr(sender, 'location'):
+		location = sender.location
+	else:
+		location = api.getFocusObject().location
 	newRect = RECT()
 	newRect.left = sender.location[0]
 	newRect.top = sender.location[1]
