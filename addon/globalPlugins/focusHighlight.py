@@ -161,7 +161,7 @@ def HighlightWin():
 		hwnd = CreateWindowEx(0,
 							  wndclass.lpszClassName,
 							  "HighlightWin" + str(i+1),
-							  win32con.WS_POPUP|win32con.WS_VISIBLE,
+							  win32con.WS_POPUP|win32con.WS_VISIBLE|win32con.WS_DISABLED,
 							  win32con.CW_USEDEFAULT,
 							  win32con.CW_USEDEFAULT,
 							  win32con.CW_USEDEFAULT,
