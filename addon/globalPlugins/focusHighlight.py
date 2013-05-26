@@ -95,18 +95,27 @@ THICKNESS = 4
 alpha = 192
 hwndFocusList = [0, 0, 0, 0]
 
+def location2rect(location):
+	rect = RECT()
+	rect.left = location[0]
+	rect.top = location[1]
+	rect.right = rect.left + location[2]
+	rect.bottom = rect.top + location[3]
+	return rect
+
 def onFocusChangedEvent(sender):
 	global focusRect
-	if isinstance(sender, IAccessible) and hasattr(sender, 'location'):
-		location = sender.location
+	if hasattr(sender, 'location'):
+		newRect = location2rect(sender.location)
 	else:
-		location = api.getFocusObject().location
-	newRect = RECT()
-	newRect.left = sender.location[0]
-	newRect.top = sender.location[1]
-	newRect.right = newRect.left + sender.location[2]
-	newRect.bottom = newRect.top + sender.location[3]
+		newRect = location2rect(api.getFocusObject().location)
+	l, t, w, h = api.getDesktopObject().location
+	newRect.top = max(0, newRect.top)
+	newRect.left = max(0, newRect.left)
+	newRect.right = max(0, min(l+w, newRect.right))
+	newRect.bottom = max(0, min(t+h, newRect.bottom))
 	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
+		focusRect = newRect
 		highlightRectList[0].top    = newRect.top - THICKNESS
 		highlightRectList[0].bottom = newRect.top
 		highlightRectList[0].left   = newRect.left
