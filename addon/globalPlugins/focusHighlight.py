@@ -90,10 +90,10 @@ highlight_color.value = RGB(0xff, 0x00, 0x00)
 highlight_brush = windll.gdi32.CreateSolidBrush(highlight_color)
 
 focusRect = RECT()
-highlightRectList = [RECT(), RECT(), RECT(), RECT()]
-THICKNESS = 4
-alpha = 192
-hwndFocusList = [0, 0, 0, 0]
+focusMarkRectList = [RECT(), RECT(), RECT(), RECT()]
+FOCUS_THICKNESS = 4
+FOCUS_ALPHA = 192
+focusHwndList = [0, 0, 0, 0]
 
 def location2rect(location):
 	rect = RECT()
@@ -134,14 +134,14 @@ def onFocusChangedEvent(sender):
 	newRect.bottom = max(0, min(t+h, newRect.bottom))
 	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
 		focusRect = newRect
-		setMarkerPositions(highlightRectList, focusRect, THICKNESS)
+		setMarkerPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS)
 		for i in xrange(4):
-			hwnd = hwndFocusList[i]
+			hwnd = focusHwndList[i]
 			if hwnd:
-				left = highlightRectList[i].left
-				top = highlightRectList[i].top
-				width = highlightRectList[i].right - left
-				height = highlightRectList[i].bottom - top
+				left = focusMarkRectList[i].left
+				top = focusMarkRectList[i].top
+				width = focusMarkRectList[i].right - left
+				height = focusMarkRectList[i].bottom - top
 				windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
 				windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
 				windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
@@ -185,17 +185,17 @@ def HighlightWin():
 							  win32con.NULL,
 							  wndclass.hInstance,
 							  win32con.NULL)
-		left = highlightRectList[i].left
-		top = highlightRectList[i].top
-		width = highlightRectList[i].right - left
-		height = highlightRectList[i].bottom - top
+		left = focusMarkRectList[i].left
+		top = focusMarkRectList[i].top
+		width = focusMarkRectList[i].right - left
+		height = focusMarkRectList[i].bottom - top
 		windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
 		style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
 		style &= ~WS_EX_APPWINDOW
 		style = style | WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
 		windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, style)
-		windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(TRANS_COLORREF), alpha, (LWA_ALPHA | LWA_COLORKEY))
-		hwndFocusList[i] = hwnd
+		windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(TRANS_COLORREF), FOCUS_ALPHA, (LWA_ALPHA | LWA_COLORKEY))
+		focusHwndList[i] = hwnd
 
 	msg = MSG()
 	pMsg = pointer(msg)
@@ -206,7 +206,7 @@ def HighlightWin():
 		windll.user32.DispatchMessageA(pMsg)
 
 	for i in xrange(4):
-		windll.user32.DestroyWindow(hwndFocusList[i])
+		windll.user32.DestroyWindow(focusHwndList[i])
 	windll.user32.DestroyWindow(hwndHide)
 	windll.user32.UnregisterClassA(byref(wndclass), wndclass.hInstance)
 	return msg.wParam
@@ -231,7 +231,7 @@ def WndProc(hwnd, message, wParam, lParam):
 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == win32con.WM_TIMER:
-		for hwnd in hwndFocusList:
+		for hwnd in focusHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
 		return 0
