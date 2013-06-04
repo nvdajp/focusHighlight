@@ -81,19 +81,31 @@ CreateWindowEx.argtypes = [c_int, c_char_p, c_char_p, c_int, c_int, c_int, c_int
 CreateWindowEx.restype = ErrorIfZero
 
 # Transparent color key
-TRANS_COLORREF = COLORREF()
-TRANS_COLORREF.value = RGB(0xff, 0xff, 0xff)
-trans_brush = windll.gdi32.CreateSolidBrush(TRANS_COLORREF)
+transColor = COLORREF()
+transColor.value = RGB(0xff, 0xff, 0xff)
+transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
-highlight_color = COLORREF()
-highlight_color.value = RGB(0xff, 0x00, 0x00)
-highlight_brush = windll.gdi32.CreateSolidBrush(highlight_color)
+focusMarkColor = COLORREF()
+focusMarkColor.value = RGB(0xff, 0x00, 0x00)
+focusMarkBrush = windll.gdi32.CreateSolidBrush(focusMarkColor)
 
 focusRect = RECT()
 focusMarkRectList = [RECT(), RECT(), RECT(), RECT()]
 FOCUS_THICKNESS = 4
+FOCUS_PADDING = 0
 FOCUS_ALPHA = 192
 focusHwndList = [0, 0, 0, 0]
+
+navigatorMarkColor = COLORREF()
+navigatorMarkColor.value = RGB(0x00, 0xff, 0x00)
+navigatorMarkBrush = windll.gdi32.CreateSolidBrush(navigatorMarkColor)
+
+navigatorRect = RECT()
+navigatorMarkRectList = [RECT(), RECT(), RECT(), RECT()]
+NAVIGATOR_THICKNESS = 3
+NAVIGATOR_PADDING = 5
+NAVIGATOR_ALPHA = 192
+navigatorHwndList = [0, 0, 0, 0]
 
 def location2rect(location):
 	rect = RECT()
@@ -103,23 +115,48 @@ def location2rect(location):
 	rect.bottom = rect.top + location[3]
 	return rect
 
-def setMarkerPositions(markers, region, thickness):
-	markers[0].top    = region.top - thickness
-	markers[0].bottom = region.top
-	markers[0].left   = region.left
-	markers[0].right  = region.right
-	markers[1].top    = region.bottom
-	markers[1].bottom = region.bottom + thickness
-	markers[1].left   = region.left
-	markers[1].right  = region.right
-	markers[2].top    = region.top - thickness
-	markers[2].bottom = region.bottom + thickness
-	markers[2].left   = region.left - thickness
-	markers[2].right  = region.left
-	markers[3].top    = region.top - thickness
-	markers[3].bottom = region.bottom + thickness
-	markers[3].left   = region.right
-	markers[3].right  = region.right + thickness
+
+def setMarkPositions(marks, region, thickness, padding=0):
+	marks[0].top    = region.top - thickness - padding
+	marks[0].bottom = region.top - padding
+	marks[0].left   = region.left - padding
+	marks[0].right  = region.right + padding
+
+	marks[1].top    = region.bottom + padding
+	marks[1].bottom = region.bottom + thickness + padding
+	marks[1].left   = region.left - padding
+	marks[1].right  = region.right + padding
+
+	marks[2].top    = region.top - thickness - padding
+	marks[2].bottom = region.bottom + thickness + padding
+	marks[2].left   = region.left - thickness - padding
+	marks[2].right  = region.left - padding
+
+	marks[3].top    = region.top - thickness - padding
+	marks[3].bottom = region.bottom + thickness + padding
+	marks[3].left   = region.right + padding
+	marks[3].right  = region.right + thickness + padding
+
+
+def moveAndShowWindow(hwnd, rect):
+	if not hwnd: return
+	left = rect.left
+	top = rect.top
+	width = rect.right - left
+	height = rect.bottom - top
+	windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
+	windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
+	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
+
+
+def limitRectInDesktop(newRect):
+	l, t, w, h = api.getDesktopObject().location
+	newRect.top = max(0, newRect.top)
+	newRect.left = max(0, newRect.left)
+	newRect.right = max(0, min(l+w, newRect.right))
+	newRect.bottom = max(0, min(t+h, newRect.bottom))
+	return newRect
+
 
 def onFocusChangedEvent(sender):
 	global focusRect
@@ -127,27 +164,54 @@ def onFocusChangedEvent(sender):
 		newRect = location2rect(sender.location)
 	else:
 		newRect = location2rect(api.getFocusObject().location)
-	l, t, w, h = api.getDesktopObject().location
-	newRect.top = max(0, newRect.top)
-	newRect.left = max(0, newRect.left)
-	newRect.right = max(0, min(l+w, newRect.right))
-	newRect.bottom = max(0, min(t+h, newRect.bottom))
+	newRect = limitRectInDesktop(newRect)
 	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
 		focusRect = newRect
-		setMarkerPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS)
+		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
-			hwnd = focusHwndList[i]
-			if hwnd:
-				left = focusMarkRectList[i].left
-				top = focusMarkRectList[i].top
-				width = focusMarkRectList[i].right - left
-				height = focusMarkRectList[i].bottom - top
-				windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
-				windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
-				windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
+			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
 	
+
+def updateNavigatorLocation():
+	global navigatorRect
+	nav = api.getNavigatorObject()
+	if nav and hasattr(nav, 'location'):
+		newRect = location2rect(nav.location)
+		newRect = limitRectInDesktop(newRect)
+		if newRect.top != navigatorRect.top or newRect.bottom != navigatorRect.bottom or newRect.left != navigatorRect.left or newRect.right != navigatorRect.right:
+			navigatorRect = newRect
+			setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
+			for i in xrange(4):
+				moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
+
+
+def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
+	hwnd = CreateWindowEx(0,
+						  wndclass.lpszClassName,
+						  name,
+						  win32con.WS_POPUP|win32con.WS_VISIBLE|win32con.WS_DISABLED,
+						  win32con.CW_USEDEFAULT,
+						  win32con.CW_USEDEFAULT,
+						  win32con.CW_USEDEFAULT,
+						  win32con.CW_USEDEFAULT,
+						  hwndHide,
+						  win32con.NULL,
+						  wndclass.hInstance,
+						  win32con.NULL)
+	left = rect.left
+	top = rect.top
+	width = rect.right - left
+	height = rect.bottom - top
+	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
+	style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
+	style &= ~WS_EX_APPWINDOW
+	style = style | WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
+	windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, style)
+	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(transColor), alpha, (LWA_ALPHA | LWA_COLORKEY))
+	return hwnd
+
+
 def HighlightWin():
-	global hwndFocusFocusList
 	wndclass = WNDCLASS()
 	wndclass.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(WndProc)
@@ -155,7 +219,7 @@ def HighlightWin():
 	wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(win32con.NULL))
 	wndclass.hIcon = c_int(win32con.NULL)
 	wndclass.hCursor = windll.user32.LoadCursorA(c_int(win32con.NULL), c_int(win32con.IDC_ARROW))
-	wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(trans_brush))
+	wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(transBrush))
 	wndclass.lpszMenuName = None
 	wndclass.lpszClassName = "HighlightWin"
 	if not windll.user32.RegisterClassA(byref(wndclass)):
@@ -173,29 +237,10 @@ def HighlightWin():
 							  wndclass.hInstance,
 							  win32con.NULL)
 	for i in xrange(4):
-		hwnd = CreateWindowEx(0,
-							  wndclass.lpszClassName,
-							  "HighlightWin" + str(i+1),
-							  win32con.WS_POPUP|win32con.WS_VISIBLE|win32con.WS_DISABLED,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
-							  hwndHide,
-							  win32con.NULL,
-							  wndclass.hInstance,
-							  win32con.NULL)
-		left = focusMarkRectList[i].left
-		top = focusMarkRectList[i].top
-		width = focusMarkRectList[i].right - left
-		height = focusMarkRectList[i].bottom - top
-		windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
-		style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
-		style &= ~WS_EX_APPWINDOW
-		style = style | WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
-		windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, style)
-		windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(TRANS_COLORREF), FOCUS_ALPHA, (LWA_ALPHA | LWA_COLORKEY))
-		focusHwndList[i] = hwnd
+		focusHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+1), hwndHide, focusMarkRectList[i], FOCUS_ALPHA)
+
+	for i in xrange(4):
+		navigatorHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+5), hwndHide, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
 
 	msg = MSG()
 	pMsg = pointer(msg)
@@ -214,16 +259,23 @@ def HighlightWin():
 ID_TIMER = 100
 UPDATE_PERIOD = 300
 
+def doPaint(hwnd, color, brush):
+	ps = PAINTSTRUCT()
+	rect = RECT()
+	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
+	windll.gdi32.SetDCBrushColor(c_int(hdc), color)
+	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
+	windll.user32.FillRect(hdc, byref(rect), brush)
+	windll.user32.EndPaint(c_int(hwnd), byref(ps))
+	return 0
+
+
 def WndProc(hwnd, message, wParam, lParam):
 	if message == win32con.WM_PAINT:
-		ps = PAINTSTRUCT()
-		rect = RECT()
-		hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
-		windll.gdi32.SetDCBrushColor(c_int(hdc), highlight_color)
-		windll.user32.GetClientRect(c_int(hwnd), byref(rect))
-		windll.user32.FillRect(hdc, byref(rect), highlight_brush)
-		windll.user32.EndPaint(c_int(hwnd), byref(ps))
-		return 0
+		if hwnd in focusHwndList:
+			return doPaint(hwnd, focusMarkColor, focusMarkBrush)
+		elif hwnd in navigatorHwndList:
+			return doPaint(hwnd, navigatorMarkColor, navigatorMarkBrush)
 	elif message == win32con.WM_DESTROY:
 		windll.user32.PostQuitMessage(0)
 		return 0
@@ -234,9 +286,14 @@ def WndProc(hwnd, message, wParam, lParam):
 		for hwnd in focusHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
+		updateNavigatorLocation()
+		for hwnd in navigatorHwndListHwndList:
+			if hwnd:
+				windll.user32.InvalidateRect(c_int(hwnd), None, True)
 		return 0
 
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
+
 
 class Highlighter(object):
 	def run(self):
@@ -253,4 +310,5 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def event_gainFocus(self, obj, nextHandler):
 		onFocusChangedEvent(obj)
+		updateNavigatorLocation()
 		nextHandler()
