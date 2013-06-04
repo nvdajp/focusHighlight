@@ -103,6 +103,24 @@ def location2rect(location):
 	rect.bottom = rect.top + location[3]
 	return rect
 
+def setMarkerPositions(markers, region, thickness):
+	markers[0].top    = region.top - thickness
+	markers[0].bottom = region.top
+	markers[0].left   = region.left
+	markers[0].right  = region.right
+	markers[1].top    = region.bottom
+	markers[1].bottom = region.bottom + thickness
+	markers[1].left   = region.left
+	markers[1].right  = region.right
+	markers[2].top    = region.top - thickness
+	markers[2].bottom = region.bottom + thickness
+	markers[2].left   = region.left - thickness
+	markers[2].right  = region.left
+	markers[3].top    = region.top - thickness
+	markers[3].bottom = region.bottom + thickness
+	markers[3].left   = region.right
+	markers[3].right  = region.right + thickness
+
 def onFocusChangedEvent(sender):
 	global focusRect
 	if hasattr(sender, 'location'):
@@ -116,22 +134,7 @@ def onFocusChangedEvent(sender):
 	newRect.bottom = max(0, min(t+h, newRect.bottom))
 	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
 		focusRect = newRect
-		highlightRectList[0].top    = newRect.top - THICKNESS
-		highlightRectList[0].bottom = newRect.top
-		highlightRectList[0].left   = newRect.left
-		highlightRectList[0].right  = newRect.right
-		highlightRectList[1].top    = newRect.bottom
-		highlightRectList[1].bottom = newRect.bottom + THICKNESS
-		highlightRectList[1].left   = newRect.left
-		highlightRectList[1].right  = newRect.right
-		highlightRectList[2].top    = newRect.top - THICKNESS
-		highlightRectList[2].bottom = newRect.bottom + THICKNESS
-		highlightRectList[2].left   = newRect.left - THICKNESS
-		highlightRectList[2].right  = newRect.left
-		highlightRectList[3].top    = newRect.top - THICKNESS
-		highlightRectList[3].bottom = newRect.bottom + THICKNESS
-		highlightRectList[3].left   = newRect.right
-		highlightRectList[3].right  = newRect.right + THICKNESS
+		setMarkerPositions(highlightRectList, focusRect, THICKNESS)
 		for i in xrange(4):
 			hwnd = hwndFocusList[i]
 			if hwnd:
@@ -209,6 +212,7 @@ def HighlightWin():
 	return msg.wParam
 
 ID_TIMER = 100
+UPDATE_PERIOD = 300
 
 def WndProc(hwnd, message, wParam, lParam):
 	if message == win32con.WM_PAINT:
@@ -224,7 +228,7 @@ def WndProc(hwnd, message, wParam, lParam):
 		windll.user32.PostQuitMessage(0)
 		return 0
 	elif message == win32con.WM_SHOWWINDOW:
-		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, 300, None)
+		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == win32con.WM_TIMER:
 		for hwnd in hwndFocusList:
