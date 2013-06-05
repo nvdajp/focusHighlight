@@ -102,10 +102,13 @@ navigatorMarkBrush = windll.gdi32.CreateSolidBrush(navigatorMarkColor)
 
 navigatorRect = RECT()
 navigatorMarkRectList = [RECT(), RECT(), RECT(), RECT()]
-NAVIGATOR_THICKNESS = 3
-NAVIGATOR_PADDING = 5
+NAVIGATOR_THICKNESS = 4
+NAVIGATOR_PADDING = 4
 NAVIGATOR_ALPHA = 192
 navigatorHwndList = [0, 0, 0, 0]
+
+def rectEquals(r1, r2):
+	return True if r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right else False
 
 def location2rect(location):
 	rect = RECT()
@@ -165,7 +168,7 @@ def onFocusChangedEvent(sender):
 	else:
 		newRect = location2rect(api.getFocusObject().location)
 	newRect = limitRectInDesktop(newRect)
-	if newRect.top != focusRect.top or newRect.bottom != focusRect.bottom or newRect.left != focusRect.left or newRect.right != focusRect.right:
+	if not rectEquals(newRect, focusRect):
 		focusRect = newRect
 		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
@@ -178,7 +181,7 @@ def updateNavigatorLocation():
 	if nav and hasattr(nav, 'location'):
 		newRect = location2rect(nav.location)
 		newRect = limitRectInDesktop(newRect)
-		if newRect.top != navigatorRect.top or newRect.bottom != navigatorRect.bottom or newRect.left != navigatorRect.left or newRect.right != navigatorRect.right:
+		if not rectEquals(newRect, navigatorRect):
 			navigatorRect = newRect
 			setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
 			for i in xrange(4):
@@ -272,7 +275,7 @@ def doPaint(hwnd, color, brush):
 
 def WndProc(hwnd, message, wParam, lParam):
 	if message == win32con.WM_PAINT:
-		if hwnd in focusHwndList:
+		if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
 			return doPaint(hwnd, focusMarkColor, focusMarkBrush)
 		elif hwnd in navigatorHwndList:
 			return doPaint(hwnd, navigatorMarkColor, navigatorMarkBrush)
