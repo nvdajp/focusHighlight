@@ -293,7 +293,7 @@ def WndProc(hwnd, message, wParam, lParam):
 		for hwnd in focusHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
-		for hwnd in navigatorHwndListHwndList:
+		for hwnd in navigatorHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
 		return 0
