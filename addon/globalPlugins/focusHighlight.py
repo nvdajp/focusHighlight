@@ -161,9 +161,9 @@ def limitRectInDesktop(newRect):
 	return newRect
 
 
-def onFocusChangedEvent(sender):
+def updateFocusLocation(sender=None):
 	global focusRect
-	if hasattr(sender, 'location'):
+	if sender and hasattr(sender, 'location'):
 		newRect = location2rect(sender.location)
 	else:
 		newRect = location2rect(api.getFocusObject().location)
@@ -180,12 +180,14 @@ def updateNavigatorLocation():
 	nav = api.getNavigatorObject()
 	if nav and hasattr(nav, 'location'):
 		newRect = location2rect(nav.location)
-		newRect = limitRectInDesktop(newRect)
-		if not rectEquals(newRect, navigatorRect):
-			navigatorRect = newRect
-			setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
-			for i in xrange(4):
-				moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
+	else:
+		navigatorRect = location2rect(api.getFocusObject().location)
+	newRect = limitRectInDesktop(newRect)
+	if not rectEquals(newRect, navigatorRect):
+		navigatorRect = newRect
+		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
+		for i in xrange(4):
+			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
 
 
 def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
@@ -286,10 +288,11 @@ def WndProc(hwnd, message, wParam, lParam):
 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == win32con.WM_TIMER:
+		updateFocusLocation()
+		updateNavigatorLocation()
 		for hwnd in focusHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
-		updateNavigatorLocation()
 		for hwnd in navigatorHwndListHwndList:
 			if hwnd:
 				windll.user32.InvalidateRect(c_int(hwnd), None, True)
@@ -312,6 +315,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	highlighter.run()
 
 	def event_gainFocus(self, obj, nextHandler):
-		onFocusChangedEvent(obj)
+		updateFocusLocation(obj)
 		updateNavigatorLocation()
 		nextHandler()
