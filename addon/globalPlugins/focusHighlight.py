@@ -1,4 +1,4 @@
-# highlight.py
+# focus highlight
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -108,7 +108,7 @@ NAVIGATOR_ALPHA = 192
 navigatorHwndList = [0, 0, 0, 0]
 
 def rectEquals(r1, r2):
-	return True if r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right else False
+	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
 
 def location2rect(location):
 	rect = RECT()
@@ -264,7 +264,13 @@ def HighlightWin():
 ID_TIMER = 100
 UPDATE_PERIOD = 300
 
-def doPaint(hwnd, color, brush):
+def doPaint(hwnd):
+	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
+		color, brush = focusMarkColor, focusMarkBrush
+	elif hwnd in navigatorHwndList:
+		color, brush = navigatorMarkColor, navigatorMarkBrush
+	else:
+		return
 	ps = PAINTSTRUCT()
 	rect = RECT()
 	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
@@ -272,15 +278,18 @@ def doPaint(hwnd, color, brush):
 	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
 	windll.user32.FillRect(hdc, byref(rect), brush)
 	windll.user32.EndPaint(c_int(hwnd), byref(ps))
-	return 0
+
+
+def invalidateRects():
+	for hwnd in focusHwndList + navigatorHwndList:
+		if hwnd:
+			windll.user32.InvalidateRect(c_int(hwnd), None, True)
 
 
 def WndProc(hwnd, message, wParam, lParam):
 	if message == win32con.WM_PAINT:
-		if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-			return doPaint(hwnd, focusMarkColor, focusMarkBrush)
-		elif hwnd in navigatorHwndList:
-			return doPaint(hwnd, navigatorMarkColor, navigatorMarkBrush)
+		doPaint(hwnd)
+		return 0
 	elif message == win32con.WM_DESTROY:
 		windll.user32.PostQuitMessage(0)
 		return 0
@@ -290,14 +299,8 @@ def WndProc(hwnd, message, wParam, lParam):
 	elif message == win32con.WM_TIMER:
 		updateFocusLocation()
 		updateNavigatorLocation()
-		for hwnd in focusHwndList:
-			if hwnd:
-				windll.user32.InvalidateRect(c_int(hwnd), None, True)
-		for hwnd in navigatorHwndList:
-			if hwnd:
-				windll.user32.InvalidateRect(c_int(hwnd), None, True)
+		invalidateRects()
 		return 0
-
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
 
