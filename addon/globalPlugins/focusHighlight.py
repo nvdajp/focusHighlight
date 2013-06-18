@@ -160,13 +160,17 @@ def limitRectInDesktop(newRect):
 	newRect.bottom = max(0, min(t+h, newRect.bottom))
 	return newRect
 
+def locationAvailable(obj):
+	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
 
 def updateFocusLocation(sender=None):
 	global focusRect
-	if sender and hasattr(sender, 'location'):
+	if locationAvailable(sender):
 		newRect = location2rect(sender.location)
-	else:
+	elif locationAvailable(api.getFocusObject()):
 		newRect = location2rect(api.getFocusObject().location)
+	else:
+		return
 	newRect = limitRectInDesktop(newRect)
 	if not rectEquals(newRect, focusRect):
 		focusRect = newRect
@@ -178,10 +182,12 @@ def updateFocusLocation(sender=None):
 def updateNavigatorLocation():
 	global navigatorRect
 	nav = api.getNavigatorObject()
-	if nav and hasattr(nav, 'location'):
+	if locationAvailable(nav):
 		newRect = location2rect(nav.location)
+	elif locationAvailable(api.getFocusObject()):
+		newRect = location2rect(api.getFocusObject().location)
 	else:
-		navigatorRect = location2rect(api.getFocusObject().location)
+		return
 	newRect = limitRectInDesktop(newRect)
 	if not rectEquals(newRect, navigatorRect):
 		navigatorRect = newRect
