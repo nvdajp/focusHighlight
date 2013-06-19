@@ -112,10 +112,11 @@ def rectEquals(r1, r2):
 
 def location2rect(location):
 	rect = RECT()
-	rect.left = location[0]
-	rect.top = location[1]
-	rect.right = rect.left + location[2]
-	rect.bottom = rect.top + location[3]
+	if location and len(location) >= 4:
+		rect.left = location[0]
+		rect.top = location[1]
+		rect.right = rect.left + location[2]
+		rect.bottom = rect.top + location[3]
 	return rect
 
 
