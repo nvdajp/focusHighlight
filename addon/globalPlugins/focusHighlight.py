@@ -305,7 +305,10 @@ def WndProc(hwnd, message, wParam, lParam):
 		return 0
 	elif message == win32con.WM_TIMER:
 		updateFocusLocation()
-		updateNavigatorLocation()
+		try:
+			updateNavigatorLocation()
+		except:
+			pass
 		invalidateRects()
 		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
