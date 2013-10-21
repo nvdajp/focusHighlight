@@ -13,13 +13,13 @@ addon_info = {
 	"addon-summary" : _("Focus Highlight"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on installation and add-on information
-	"addon-description" : _("""Highlight the focused location."""),
+	"addon-description" : _("Highlight the focused location."),
 	# version
-	"addon-version" : "1.0",
+	"addon-version" : "1.0-dev",
 	# Author(s)
 	"addon-author" : "Takuya Nishimoto <nishimotz@gmail.com>",
 	# URL for the add-on documentation support
-	"addon-url" : "http://en.nishimotz.com/nvda_focus_highlight"
+	"addon-url" : "http://addons.nvda-project.org"
 }
 
 

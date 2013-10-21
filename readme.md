@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Authors: Takuya Nishimoto
-* download [version 1.0][1]
+* Download [development version: 1.0-dev][1]
 
 By drawing a colored rectangle, this addon enables partially sighted users, sighted educators, or developers to track the location of the nvda navigator object and the focused object/control.
 
@@ -14,6 +14,8 @@ The following 2 colors are used by this addon:
 To disable object tracking, uninstall the addon.
 
 ## Changes for 1.0 ##
+
+* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the navigator object.
 * Initial version.
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh
