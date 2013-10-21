@@ -18,4 +18,4 @@ To disable object tracking, uninstall the addon.
 * In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the navigator object.
 * Initial version.
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh
+[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
