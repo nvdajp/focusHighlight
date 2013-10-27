@@ -1,7 +1,7 @@
 # Zvýrazňovač fokusu #
 
 * Autor: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* Stiahnuť [Vývojová verzia: 1.0-dev][1]
 
 Tento doplnok umožňuje slabozrakým používateľom, vidiacim učiteľom a
 vývojárom sledovať navigačný objekt alebo objekt, ktorý má fokus, pomocou
@@ -16,11 +16,11 @@ Na zvýraznenie sa používajú tieto farby:
 
 Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
 
-## Changes for 1.0 ##
+## Zmeny vo verzii 1.0 ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* Opravené chyby s navigaťným objektom v programoch MS Internet Explorer 8 a
+  Skype
+* Prvé vydanie.
 
 [[!tag dev]]
 

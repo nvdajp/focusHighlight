@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Authors: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* Download [development version][1]
 
 By drawing a colored rectangle, this addon enables partially sighted users, sighted educators, or developers to track the location of the nvda navigator object and the focused object/control.
 

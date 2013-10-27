@@ -18,11 +18,11 @@ Die folgenden 2 Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 1.0 ##
+## Änderungen in 1.0 ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* Problem mit Navigatorobjekten in Internet Explorer 10 und Skype für
+  Windows 8 behoben.
+* anfängliche Version
 
 [[!tag dev]]
 

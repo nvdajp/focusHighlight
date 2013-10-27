@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Autores: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* Descarga [versión de desenrolo: 1.0-dev][1]
 
 Ó dibuxar un rectángulo coloreado, este complemento permite ós usuarios con
 deficencia visual, educadores videntes, ou desenvolvedores seguir a posición
@@ -16,11 +16,11 @@ As seguintes dúas cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
-## Changes for 1.0 ##
+## Cambios para  1.0 ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* No Internet Explorer 10 e no Skype en Windows 8, arránxase un problema co
+  navegador de obxectos.
+* Versión inicial.
 
 [[!tag dev]]
 

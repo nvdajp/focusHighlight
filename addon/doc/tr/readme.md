@@ -1,7 +1,7 @@
 # Odağı Göster #
 
 * Yazarlar: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* İndir [development version: 1.0-dev][1]
 
 Renkli bir dikdörtgen çizerek, Bu eklenti az gören kullanıcıların, gören
 eğitimcilerin, ya da geliştiricilerin NVDA'nın nesne sunucusunun ya da
@@ -17,11 +17,11 @@ Bu eklenti tarafından aşağıdaki 2 renk kullanılmaktadır:
 
 Nesne izlemeyi iptal etmek için, eklentiyi kaldırın.
 
-## Changes for 1.0 ##
+## 1.0 için değişiklikler ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* Internet Explorer 10 ve Windows 8 Skype, nesne sunumu ile bir sorun
+  çözüldü.
+* İlk sürüm.
 
 [[!tag dev]]
 
