@@ -1,7 +1,7 @@
 # Zvýrazňovač fokusu #
 
 * Autor: Takuya Nishimoto
-* Stiahnuť [Vývojová verzia: 1.0-dev][1]
+* Stiahnuť [Vývojová verzia][1]
 
 Tento doplnok umožňuje slabozrakým používateľom, vidiacim učiteľom a
 vývojárom sledovať navigačný objekt alebo objekt, ktorý má fokus, pomocou

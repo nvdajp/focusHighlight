@@ -1,7 +1,7 @@
 # Odağı Göster #
 
 * Yazarlar: Takuya Nishimoto
-* İndir [development version: 1.0-dev][1]
+* İndir [geliştirilen versiyon][1]
 
 Renkli bir dikdörtgen çizerek, Bu eklenti az gören kullanıcıların, gören
 eğitimcilerin, ya da geliştiricilerin NVDA'nın nesne sunucusunun ya da

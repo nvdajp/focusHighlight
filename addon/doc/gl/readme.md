@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Autores: Takuya Nishimoto
-* Descarga [versión de desenrolo: 1.0-dev][1]
+* Descarga [versión de desenvolvemento][1]
 
 Ó dibuxar un rectángulo coloreado, este complemento permite ós usuarios con
 deficencia visual, educadores videntes, ou desenvolvedores seguir a posición

@@ -1,7 +1,7 @@
 # Focus Highlight #
 
-* Authors: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* 作者: Takuya Nishimoto
+* Download [development version][1]
 
 このアドオンは、NVDA
 のナビゲーターオブジェクトや、フォーカスのあるオブジェクト・コントロールの場所を、色のついた長方形で強調して表示します。画面の見えにくい人、晴眼の指導者、開発者にとって有用です。
@@ -14,11 +14,10 @@
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
-## Changes for 1.0 ##
+## 1.0 での変更点 ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* Windows 8 における Internet Explorer 10 と Skype のナビゲーターオブジェクトの不具合の修正
+* 最初のバージョンです。
 
 [[!tag dev]]
 

@@ -1,7 +1,7 @@
 # Realse de foco #
 
 * Autores: Takuya Nishimoto
-* Baixe [versão de desenvolvimento: 1.0-dev][1]
+* Baixe a [versão de desenvolvimento][1]
 
 Ao desenhar um retângulo colorido, este complemento possibilita usuários de
 baixa visão, educadores de visão normal ou desenvolvedores, acompanhar a

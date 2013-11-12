@@ -1,7 +1,7 @@
 # podświetlanie punktu uwagi / Focus Highlight #
 
 * Autor: Takuya Nishimoto
-* Pobierz [wersja rozwojowa: 1.0-dev][1]
+* Pobierz [wersja rozwojowa][1]
 
 Ten dodatek umożliwia niedowidzącym użytkownikom,widzącym nauczycielom, lub
 twórcom śledzenie położenia obiektu nawigatora i punktu uwagi NVDA poprzez

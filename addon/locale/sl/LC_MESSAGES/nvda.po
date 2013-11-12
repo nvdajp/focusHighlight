@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: focusHighlight 0.0.5\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2013-08-08 16:14+0200\n"
-"PO-Revision-Date: 2013-11-10 01:42+0400\n"
-"Last-Translator: Ruslan Kolodyazhni <eye0@rambler.ru>\n"
+"POT-Creation-Date: 2013-08-05 07:20+0200\n"
+"PO-Revision-Date: 2013-10-30 07:42+0100\n"
+"Last-Translator: Jožef Gregorc <jozko.gregorc[@]guest.arnes.si\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ru_RU\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,9 +20,9 @@ msgstr ""
 #. Add-on description
 #. TRANSLATORS: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
-msgstr "Focus Highlight"
+msgstr "Barvanje Žarišča"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on installation and add-on information
 msgid "Highlight the focused location."
-msgstr "Подсвечивает местоположение фокуса."
+msgstr "Obarva položaj žarišča."

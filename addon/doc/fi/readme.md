@@ -1,7 +1,7 @@
 # Aktiivisen kohdan korostus #
 
 * Tekijä: Takuya Nishimoto
-* Lataa [kehitysversio: 1.0-dev][1]
+* Lataa [kehitysversio][1]
 
 Tämä lisäosa piirtää näytölle värillisen suorakulmion, mikä mahdollistaa
 osittain näkeville käyttäjille, näkeville opettajille tai kehittäjille

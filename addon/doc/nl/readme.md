@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Auteur: Takuya Nishimoto
-* Download [ontwikkelversie: 1.0-dev][1]
+* Download [ontwikkelversie][1]
 
 Deze add-on is bedoeld voor slechtziende gebruikers en ziende instructeurs
 en ontwikkelaars. Een gekleurde rechthoek helpt hen om te weten waar het

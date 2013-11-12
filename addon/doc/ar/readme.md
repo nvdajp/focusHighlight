@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * مطورو الإضافة: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* تحميل [الإصدار التجريبي][1]
 
 هذه الإضافة تمكن المستخدمين من ضعاف البصر والمعلمين المبصرين والمطورين من
 تتبع موضع الكائن المحدد بمؤشر NVDA  أو أي عنصر  أو كائن محدد بمؤشر النظام،
@@ -16,11 +16,11 @@
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
-## Changes for 1.0 ##
+## تعديلات الإصدار 1.0 ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* تم إصلاح خطأ مرتبط بمؤشر NVDA في كل من Internet Exploer 10 و skype في نظام
+  ويندوز 8.
+* إصدار أولي
 
 [[!tag dev]]
 

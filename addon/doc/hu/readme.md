@@ -1,7 +1,7 @@
 # Fókusz kiemelő #
 
 * Készítők: Takuya Nishimoto
-* Download [development version: 1.0-dev][1]
+* Download [development version][1]
 
 Egy színes téglalap kirajzolásának segítségével a gyengénlátó felhasználók,
 látó fejlesztők vagy oktatók nyomon követhetik a navigátor kurzort és a
