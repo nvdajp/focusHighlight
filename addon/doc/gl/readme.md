@@ -1,6 +1,7 @@
 # Focus Highlight #
 
 * Autores: Takuya Nishimoto
+* Descargar [versión estable][2]
 * Descarga [versión de desenvolvemento][1]
 
 Ó dibuxar un rectángulo coloreado, este complemento permite ós usuarios con
@@ -22,6 +23,8 @@ Para deshabilitar o seguemento de obxectos, desinstala o complemento.
   navegador de obxectos.
 * Versión inicial.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

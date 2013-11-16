@@ -1,6 +1,7 @@
 # Realse de foco #
 
 * Autores: Takuya Nishimoto
+* Baixe a [versão estável][2]
 * Baixe a [versão de desenvolvimento][1]
 
 Ao desenhar um retângulo colorido, este complemento possibilita usuários de
@@ -22,6 +23,8 @@ Para desabilitar o realse de objetos, desinstale o complemento.
   com o navegador de objetos.
 * Versão inicial.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

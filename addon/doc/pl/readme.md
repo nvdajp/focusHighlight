@@ -1,6 +1,7 @@
 # podświetlanie punktu uwagi / Focus Highlight #
 
 * Autor: Takuya Nishimoto
+* Pobierz [wersja stabilna][2]
 * Pobierz [wersja rozwojowa][1]
 
 Ten dodatek umożliwia niedowidzącym użytkownikom,widzącym nauczycielom, lub
@@ -22,6 +23,8 @@ Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
   obiektem nawigatora.
 * Pierwsza wersja.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

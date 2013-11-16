@@ -1,6 +1,7 @@
 # केन्द्रीयता प्रकासक #
 
 * लेखक: ताकुया निसिमोतो
+* Download [stable version][2]
 * [विकास संस्करण][1] लाई डाउनलोड गर्नु होस् ।
 
 रङ्गिन चतुर्भुज खिचेर, , यो थप-साधनले अल्प दृश्यक, देख्ने अनुसन्दान कर्ता र
@@ -22,6 +23,8 @@
   समस्याहरूलाई समाधान गरियो ।
 * सुरुको संस्करण
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

@@ -1,6 +1,7 @@
 # Fókusz kiemelő #
 
 * Készítők: Takuya Nishimoto
+* Download [stable version][2]
 * Download [development version][1]
 
 Egy színes téglalap kirajzolásának segítségével a gyengénlátó felhasználók,
@@ -22,6 +23,8 @@ Az elemkövetés kikapcsolásához távolítsa el ezt a kiegészítőt.
   navigator object.
 * Initial version.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

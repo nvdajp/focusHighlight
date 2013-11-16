@@ -1,6 +1,7 @@
 # Focus Highlight #
 
 * مطورو الإضافة: Takuya Nishimoto
+* Download [stable version][2]
 * تحميل [الإصدار التجريبي][1]
 
 هذه الإضافة تمكن المستخدمين من ضعاف البصر والمعلمين المبصرين والمطورين من
@@ -22,6 +23,8 @@
   ويندوز 8.
 * إصدار أولي
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

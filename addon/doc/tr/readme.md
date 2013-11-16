@@ -1,6 +1,7 @@
 # Odağı Göster #
 
 * Yazarlar: Takuya Nishimoto
+* İndir [kararlı sürüm][2]
 * İndir [geliştirilen versiyon][1]
 
 Renkli bir dikdörtgen çizerek, Bu eklenti az gören kullanıcıların, gören
@@ -23,6 +24,8 @@ Nesne izlemeyi iptal etmek için, eklentiyi kaldırın.
   çözüldü.
 * İlk sürüm.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

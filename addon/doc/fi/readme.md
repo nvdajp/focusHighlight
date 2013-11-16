@@ -1,6 +1,7 @@
 # Aktiivisen kohdan korostus #
 
 * Tekijä: Takuya Nishimoto
+* Lataa [vakaa versio][2]
 * Lataa [kehitysversio][1]
 
 Tämä lisäosa piirtää näytölle värillisen suorakulmion, mikä mahdollistaa
@@ -10,9 +11,9 @@ seuraamisen.
 
 Seuraavaa kahta väriä käytetään:
 
-* Vihreä, joka merkitsee navigointiobjektia.
-* Ohut punainen suorakulmio, joka merkitsee aktiivista objektia/säädintä.
-* Paksu punainen suorakulmio, joka merkitsee, että navigointiobjekti ja
+* Vihreä, joka ilmaisee navigointiobjektia.
+* Ohut punainen suorakulmio, joka ilmaisee aktiivista objektia/säädintä.
+* Paksu punainen suorakulmio, joka ilmaisee sitä, että navigointiobjekti ja
   aktiivinen objekti ovat päällekkäin.
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
@@ -23,6 +24,8 @@ Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
   Windows 8:aa käytettäessä.
 * Ensimmäinen versio.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

@@ -1,6 +1,7 @@
 # Focus hervorheben #
 
 * Authoren: Takuya Nishimoto
+* Download [stable version][2]
 * Download [development version][1]
 
 Durch Zeichnen eines farbigen Rechtecks ermöglicht diese Erweiterung
@@ -24,6 +25,8 @@ Erweiterung.
   Windows 8 behoben.
 * anfängliche Version
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

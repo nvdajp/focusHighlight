@@ -1,6 +1,7 @@
 # Zvýrazňovač fokusu #
 
 * Autor: Takuya Nishimoto
+* Stiahnuť [Stabilná verzia][2]
 * Stiahnuť [Vývojová verzia][1]
 
 Tento doplnok umožňuje slabozrakým používateľom, vidiacim učiteľom a
@@ -18,10 +19,12 @@ Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
 
 ## Zmeny vo verzii 1.0 ##
 
-* Opravené chyby s navigaťným objektom v programoch MS Internet Explorer 8 a
+* Opravené chyby s navigačným objektom v programoch MS Internet Explorer 8 a
   Skype
 * Prvé vydanie.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh

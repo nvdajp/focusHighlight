@@ -1,6 +1,7 @@
 # Focus Highlight #
 
 * Auteur: Takuya Nishimoto
+* Download [stable version][2]
 * Download [ontwikkelversie][1]
 
 Deze add-on is bedoeld voor slechtziende gebruikers en ziende instructeurs
@@ -23,6 +24,8 @@ Om object tracking uit te schakelen, verwijdert u de addon.
   met het navigatorobject.
 * Eerste versie.
 
-[[!tag dev]]
+[[!tag dev stable]]
 
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+
+[2]: http://addons.nvda-project.org/files/get.php?file=fh
