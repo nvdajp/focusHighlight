@@ -1,7 +1,7 @@
 # Focus Highlight #
 
 * Auteur: Takuya Nishimoto
-* Download [stable version][2]
+* Download [stabiele versie][2]
 * Download [ontwikkelversie][1]
 
 Deze add-on is bedoeld voor slechtziende gebruikers en ziende instructeurs

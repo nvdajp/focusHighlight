@@ -1,8 +1,8 @@
 # Fókusz kiemelő #
 
 * Készítők: Takuya Nishimoto
-* Download [stable version][2]
-* Download [development version][1]
+* Letöltés [stabil verzió][2]
+* Letöltés [fejlesztői verzió][1]
 
 Egy színes téglalap kirajzolásának segítségével a gyengénlátó felhasználók,
 látó fejlesztők vagy oktatók nyomon követhetik a navigátor kurzort és a
@@ -17,11 +17,11 @@ A következő két szín jelenik meg a kiegészítő használatakor:
 
 Az elemkövetés kikapcsolásához távolítsa el ezt a kiegészítőt.
 
-## Changes for 1.0 ##
+## Az 1.0 verzió változásai ##
 
-* In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the
-  navigator object.
-* Initial version.
+* Javítva egy navigátor kurzor probléma az Internet explorer 10-ben és a
+  Skype programokban.
+* Első verzió
 
 [[!tag dev stable]]
 
