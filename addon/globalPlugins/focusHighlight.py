@@ -87,6 +87,8 @@ transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
 focusMarkColor = COLORREF()
 focusMarkColor.value = RGB(0xff, 0x00, 0x00)
+focusBkColor = COLORREF()
+focusBkColor.value = RGB(0xff, 0xff, 0xff)
 focusMarkBrush = windll.gdi32.CreateSolidBrush(focusMarkColor)
 
 focusRect = RECT()
@@ -97,8 +99,10 @@ FOCUS_ALPHA = 192
 focusHwndList = [0, 0, 0, 0]
 
 navigatorMarkColor = COLORREF()
-navigatorMarkColor.value = RGB(0x00, 0xff, 0x00)
-navigatorMarkBrush = windll.gdi32.CreateSolidBrush(navigatorMarkColor)
+navigatorMarkColor.value = RGB(0x00, 0x00, 0xff)
+navBkColor = COLORREF()
+navBkColor.value = RGB(0x00, 0xff, 0x00)
+navigatorMarkBrush = windll.gdi32.CreateHatchBrush(win32con.HS_DIAGCROSS, navigatorMarkColor)
 
 navigatorRect = RECT()
 navigatorMarkRectList = [RECT(), RECT(), RECT(), RECT()]
@@ -273,15 +277,16 @@ UPDATE_PERIOD = 300
 
 def doPaint(hwnd):
 	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-		color, brush = focusMarkColor, focusMarkBrush
+		color, brush, bkColor = focusMarkColor, focusMarkBrush, focusBkColor
 	elif hwnd in navigatorHwndList:
-		color, brush = navigatorMarkColor, navigatorMarkBrush
+		color, brush, bkColor = navigatorMarkColor, navigatorMarkBrush, navBkColor
 	else:
 		return
 	ps = PAINTSTRUCT()
 	rect = RECT()
 	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
 	windll.gdi32.SetDCBrushColor(c_int(hdc), color)
+	windll.gdi32.SetBkColor(c_int(hdc), bkColor)
 	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
 	windll.user32.FillRect(hdc, byref(rect), brush)
 	windll.user32.EndPaint(c_int(hwnd), byref(ps))
