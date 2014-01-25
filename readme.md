@@ -14,6 +14,10 @@ The following 2 colors are used by this addon:
 
 To disable object tracking, uninstall the addon.
 
+## Changes for 1.1 ##
+
+* Changed navigator object rectangle to cross hatching line.
+
 ## Changes for 1.0 ##
 
 * In Internet Explorer 10 and in Skype on Windows 8, fix a problem with the navigator object.
