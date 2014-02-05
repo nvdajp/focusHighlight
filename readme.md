@@ -8,7 +8,7 @@ By drawing a colored rectangle, this addon enables partially sighted users, sigh
 
 The following 2 colors are used by this addon:
 
-* Green, to indicate the navigator object.
+* Green jagged line, to indicate the navigator object.
 * Red thin rectangle , to indicate the focused object/control.
 * Red thick rectangle, to indicate when navigator object and focused object are overlapping.
 
@@ -16,7 +16,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 1.1 ##
 
-* Changed navigator object rectangle to cross hatching line.
+* Changed navigator object rectangle to jagged line.
 
 ## Changes for 1.0 ##
 
