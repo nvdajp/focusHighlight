@@ -26,4 +26,4 @@ msgstr "Открояване на фокуса"
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on installation and add-on information
 msgid "Highlight the focused location."
-msgstr "Откроява визуално елемента който е на фокус."
+msgstr "Откроява визуално елемента, който е на фокус."

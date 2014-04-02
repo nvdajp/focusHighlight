@@ -11,12 +11,16 @@ enfocado.
 
 Los siguientes 2 colores se utilizan por este complemento:
 
-* Verde, para indicar el navegador de objetos.
+* Línea quebrada verde, para indicar el navegador de objetos.
 * Rectángulo rojo delgado, para indicar el objeto o control enfocado.
 * Rectángulo rojo grueso, para indicar cuando el navegador de objetos y el
   objeto enfocado se superponen.
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
+
+## Cambios para 1.1 ##
+
+* Se cambió el rectángulo del navegador de objetos por  una línea quebrada.
 
 ## Cambios para 1.0 ##
 

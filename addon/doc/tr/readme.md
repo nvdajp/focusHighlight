@@ -10,13 +10,17 @@ odağın konumunu takip edebilmesini sağlar.
 
 Bu eklenti tarafından aşağıdaki 2 renk kullanılmaktadır:
 
-* Yeşil, nesne sunucusunun konumunu belirtmek için.
+* Green jagged line, to indicate the navigator object.
 * Kırmızı ince dikdörtgen, odağın konumundaki nesne veya kontrolü göstermek
   için.
 * Kırmızı kalın dikdörtgen, odak ve nesne sunucusu aynı konumdaysa
   kullanılır.
 
 Nesne izlemeyi iptal etmek için, eklentiyi kaldırın.
+
+## Changes for 1.1 ##
+
+* Changed navigator object rectangle to jagged line.
 
 ## 1.0 için değişiklikler ##
 

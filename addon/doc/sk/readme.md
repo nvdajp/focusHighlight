@@ -10,12 +10,16 @@ farebného obdĺžnika.
 
 Na zvýraznenie sa používajú tieto farby:
 
-* Zelená na zvýraznenie navigačného objektu.
+* Zelená prerušovaná čiara na zvýraznenie navigačného objektu.
 * červený tenký obdĺžnik na zvýraznenie objektu alebo prvku, ktorý má fokus.
 * Červený hrubý obdĺžnik na zvýraznenie prekrývajúceho sa navigačného
   objektu a objektu, ktorý má fokus.
 
 Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
+
+## Zmeny vo verzii 1.1 ##
+
+* Zmenený obdĺžnik navigačného objektu na prerušovanú čiaru.
 
 ## Zmeny vo verzii 1.0 ##
 

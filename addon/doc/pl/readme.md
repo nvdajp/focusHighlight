@@ -10,12 +10,17 @@ obrysowanie ich kolorowym prostokątem.
 
 Poniższe 2 kolory są stosowane przez ten dodatek:
 
-* Zielony oznacza obiekt nawigatora.
+* Zielona, przerywana linia, oznacza obiekt nawigatora., to indicate the
+  navigator object.
 * Czerwony cienki prostokąt oznacza obiekt/kontrolkę  w punkcie uwagi.
 * Czerwony gruby prostokąt oznacza, że obiekt nawigatora i obiekt/kontrolka
   w punkcie uwagi zachodzą na siebie.
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
+
+## Zmiany dla 1.1 ##
+
+* Zmieniono prostokąt obiektu nawigatora na linię przerywaną.
 
 ## Zmiany dla 1.0 ##
 

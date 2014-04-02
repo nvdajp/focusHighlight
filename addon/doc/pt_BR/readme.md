@@ -10,12 +10,17 @@ localização do objeto de navegação do NVDA e o objeto/controle em foco.
 
 O complemento usa as seguintes duas cores:
 
-* Verde, para indicar o objeto de navegação.
+* Linha destacada de verde, para indicar objeto de navegação.
 * Um retângulo vermelho fino, para indicar o objeto/controle em foco.
 * Um retângulo vermelho grosso, para indicar quando o objeto de navegação e
   o objeto em foco estão sobrepostos.
 
 Para desabilitar o realse de objetos, desinstale o complemento.
+
+## Mudanças na 1.1 ##
+
+* Alterado retângulo do objeto de navegação para uma linha destacada de
+  verde
 
 ## Mudanças na 1.0 ##
 

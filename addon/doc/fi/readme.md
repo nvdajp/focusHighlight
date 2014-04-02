@@ -11,12 +11,16 @@ seuraamisen.
 
 Seuraavaa kahta väriä käytetään:
 
-* Vihreä, joka ilmaisee navigointiobjektia.
+* Vihreä epätasainen viiva, joka ilmaisee navigointiobjektia.
 * Ohut punainen suorakulmio, joka ilmaisee aktiivista objektia/säädintä.
 * Paksu punainen suorakulmio, joka ilmaisee sitä, että navigointiobjekti ja
   aktiivinen objekti ovat päällekkäin.
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
+
+## Muutokset versiossa 1.1 ##
+
+* Navigointiobjektia ilmaiseva suorakulmio muutettu epätasaiseksi viivaksi.
 
 ## Muutokset versiossa 1.0 ##
 
