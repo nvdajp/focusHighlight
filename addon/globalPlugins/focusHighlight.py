@@ -355,8 +355,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self):
 		global terminating
-		global myThread
 		terminating = True
 		destroyHighlightWin()
-		myThread.join(5.0)
 		log.debug("focusHighlight terminated")
