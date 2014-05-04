@@ -13,6 +13,7 @@ import win32con
 import sys
 from ctypes import WINFUNCTYPE, Structure, windll
 from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer
+from ctypes import WinError
 from ctypes.wintypes import COLORREF
 import api
 
@@ -227,7 +228,7 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	return hwnd
 
 
-def HighlightWin():
+def createHighlightWin():
 	wndclass = WNDCLASS()
 	wndclass.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(WndProc)
@@ -318,19 +319,11 @@ def WndProc(hwnd, message, wParam, lParam):
 		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
-
-class Highlighter(object):
-	def run(self):
-		t = threading.Thread(target=self._bg)
-		t.daemon = True
-		t.start()
-	def _bg(self):
-		HighlightWin()
+t = threading.Thread(target=createHighlightWin)
+t.daemon = True
+t.start()
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-	global highlighter
-	highlighter = Highlighter()
-	highlighter.run()
 
 	def event_gainFocus(self, obj, nextHandler):
 		updateFocusLocation(obj)
