@@ -13,9 +13,10 @@ import win32con
 import sys
 from ctypes import WINFUNCTYPE, Structure, windll
 from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer
-from ctypes import WinError
+from ctypes import WinError, GetLastError, FormatError
 from ctypes.wintypes import COLORREF
 import api
+import time
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -73,6 +74,7 @@ WS_EX_TRANSPARENT = 0x00000020
 WS_EX_APPWINDOW = 0x00040000
 LWA_COLORKEY = 0x00000001
 LWA_ALPHA = 0x00000002
+ERROR_CLASS_HAS_WINDOWS = 1412
 
 def RGB(r,g,b):
 	return r | (g<<8) | (b<<16)
@@ -336,7 +338,16 @@ def destroyHighlightWin():
 	for i in xrange(4):
 		windll.user32.DestroyWindow(focusHwndList[i])
 	windll.user32.DestroyWindow(hwndHide)
-	windll.user32.UnregisterClassA(byref(wndclass), wndclass.hInstance)
+	while True:
+		ret = windll.user32.UnregisterClassA(wndclass.lpszClassName, wndclass.hInstance)
+		if ret == 0:
+			if GetLastError() == ERROR_CLASS_HAS_WINDOWS:
+				time.sleep(0.5)
+			else:
+				log.error(FormatError())
+				break
+		else:
+			break
 	wndclass = None
 	hwndHide = None
 
