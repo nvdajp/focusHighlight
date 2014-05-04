@@ -115,6 +115,10 @@ navigatorHwndList = [0, 0, 0, 0]
 ID_TIMER = 100
 UPDATE_PERIOD = 300
 
+wndclass = None
+hwndHide = None
+terminating = False
+
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
 
@@ -279,6 +283,8 @@ def wndProc(hwnd, message, wParam, lParam):
 
 
 def createHighlightWin():
+	global wndclass
+	global hwndHide
 	wndclass = WNDCLASS()
 	wndclass.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(wndProc)
@@ -314,19 +320,31 @@ def createHighlightWin():
 	NULL = c_int(win32con.NULL)
 
 	while windll.user32.GetMessageA(pMsg, NULL, 0, 0) != 0:
-		windll.user32.TranslateMessage(pMsg)
-		windll.user32.DispatchMessageA(pMsg)
+		try:
+			windll.user32.TranslateMessage(pMsg)
+			windll.user32.DispatchMessageA(pMsg)
+		except Exception as e:
+			log.debug(str(e))
+		if terminating:
+			break
+	return msg.wParam
 
+
+def destroyHighlightWin():
+	global wndclass
+	global hwndHide
 	for i in xrange(4):
 		windll.user32.DestroyWindow(focusHwndList[i])
 	windll.user32.DestroyWindow(hwndHide)
 	windll.user32.UnregisterClassA(byref(wndclass), wndclass.hInstance)
-	return msg.wParam
+	wndclass = None
+	hwndHide = None
 
 
-t = threading.Thread(target=createHighlightWin)
-t.daemon = True
-t.start()
+myThread = threading.Thread(target=createHighlightWin)
+myThread.daemon = True
+myThread.start()
+log.debug("focusHighlight started")
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
@@ -334,3 +352,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		updateFocusLocation(obj)
 		updateNavigatorLocation()
 		nextHandler()
+
+	def terminate(self):
+		global terminating
+		global myThread
+		terminating = True
+		destroyHighlightWin()
+		myThread.join(5.0)
+		log.debug("focusHighlight terminated")

@@ -17,6 +17,7 @@ To disable object tracking, uninstall the addon.
 ## Changes for 1.1 ##
 
 * Changed navigator object rectangle to jagged line.
+* Fixed issue with 'Reload plugins'.
 
 ## Changes for 1.0 ##
 
