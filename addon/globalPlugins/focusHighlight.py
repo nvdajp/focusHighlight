@@ -112,8 +112,12 @@ NAVIGATOR_PADDING = 4
 NAVIGATOR_ALPHA = 192
 navigatorHwndList = [0, 0, 0, 0]
 
+ID_TIMER = 100
+UPDATE_PERIOD = 300
+
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
+
 
 def location2rect(location):
 	rect = RECT()
@@ -166,8 +170,10 @@ def limitRectInDesktop(newRect):
 	newRect.bottom = max(0, min(t+h, newRect.bottom))
 	return newRect
 
+
 def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
+
 
 def updateFocusLocation(sender=None):
 	global focusRect
@@ -228,10 +234,54 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	return hwnd
 
 
+def doPaint(hwnd):
+	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
+		color, brush, bkColor = focusMarkColor, focusMarkBrush, focusBkColor
+	elif hwnd in navigatorHwndList:
+		color, brush, bkColor = navigatorMarkColor, navigatorMarkBrush, navBkColor
+	else:
+		return
+	ps = PAINTSTRUCT()
+	rect = RECT()
+	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
+	windll.gdi32.SetDCBrushColor(c_int(hdc), color)
+	windll.gdi32.SetBkColor(c_int(hdc), bkColor)
+	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
+	windll.user32.FillRect(hdc, byref(rect), brush)
+	windll.user32.EndPaint(c_int(hwnd), byref(ps))
+
+
+def invalidateRects():
+	for hwnd in focusHwndList + navigatorHwndList:
+		if hwnd:
+			windll.user32.InvalidateRect(c_int(hwnd), None, True)
+
+
+def wndProc(hwnd, message, wParam, lParam):
+	if message == win32con.WM_PAINT:
+		doPaint(hwnd)
+		return 0
+	elif message == win32con.WM_DESTROY:
+		windll.user32.PostQuitMessage(0)
+		return 0
+	elif message == win32con.WM_SHOWWINDOW:
+		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
+		return 0
+	elif message == win32con.WM_TIMER:
+		updateFocusLocation()
+		try:
+			updateNavigatorLocation()
+		except:
+			pass
+		invalidateRects()
+		return 0
+	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
+
+
 def createHighlightWin():
 	wndclass = WNDCLASS()
 	wndclass.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
-	wndclass.lpfnWndProc = WNDPROC(WndProc)
+	wndclass.lpfnWndProc = WNDPROC(wndProc)
 	wndclass.cbClsExtra = wndclass.cbWndExtra = 0
 	wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(win32con.NULL))
 	wndclass.hIcon = c_int(win32con.NULL)
@@ -273,51 +323,6 @@ def createHighlightWin():
 	windll.user32.UnregisterClassA(byref(wndclass), wndclass.hInstance)
 	return msg.wParam
 
-ID_TIMER = 100
-UPDATE_PERIOD = 300
-
-def doPaint(hwnd):
-	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-		color, brush, bkColor = focusMarkColor, focusMarkBrush, focusBkColor
-	elif hwnd in navigatorHwndList:
-		color, brush, bkColor = navigatorMarkColor, navigatorMarkBrush, navBkColor
-	else:
-		return
-	ps = PAINTSTRUCT()
-	rect = RECT()
-	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
-	windll.gdi32.SetDCBrushColor(c_int(hdc), color)
-	windll.gdi32.SetBkColor(c_int(hdc), bkColor)
-	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
-	windll.user32.FillRect(hdc, byref(rect), brush)
-	windll.user32.EndPaint(c_int(hwnd), byref(ps))
-
-
-def invalidateRects():
-	for hwnd in focusHwndList + navigatorHwndList:
-		if hwnd:
-			windll.user32.InvalidateRect(c_int(hwnd), None, True)
-
-
-def WndProc(hwnd, message, wParam, lParam):
-	if message == win32con.WM_PAINT:
-		doPaint(hwnd)
-		return 0
-	elif message == win32con.WM_DESTROY:
-		windll.user32.PostQuitMessage(0)
-		return 0
-	elif message == win32con.WM_SHOWWINDOW:
-		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
-		return 0
-	elif message == win32con.WM_TIMER:
-		updateFocusLocation()
-		try:
-			updateNavigatorLocation()
-		except:
-			pass
-		invalidateRects()
-		return 0
-	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
 t = threading.Thread(target=createHighlightWin)
 t.daemon = True
