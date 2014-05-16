@@ -18,7 +18,7 @@ Deze add-on gebruikt de volgende 2 kleuren:
 
 Om object tracking uit te schakelen, verwijdert u de addon.
 
-## Changes for 1.1 ##
+## Veranderingen voor 1.1 ##
 
 * Changed navigator object rectangle to jagged line.
 
