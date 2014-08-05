@@ -88,11 +88,17 @@ transColor = COLORREF()
 transColor.value = RGB(0xff, 0xff, 0xff)
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
-focusMarkColor = COLORREF()
-focusMarkColor.value = RGB(0xff, 0x00, 0x00)
-focusBkColor = COLORREF()
-focusBkColor.value = RGB(0xff, 0xff, 0xff)
-focusMarkBrush = windll.gdi32.CreateSolidBrush(focusMarkColor)
+brMarkColor = COLORREF()
+brMarkColor.value = RGB(0xff, 0x00, 0x00)
+brBkColor = COLORREF()
+brBkColor.value = RGB(0xff, 0xff, 0xff)
+brMarkBrush = windll.gdi32.CreateSolidBrush(brMarkColor)
+
+ptMarkColor = COLORREF()
+ptMarkColor.value = RGB(0xff, 0xff, 0xff)
+ptBkColor = COLORREF()
+ptBkColor.value = RGB(0x00, 0x3f, 0xff)
+ptMarkBrush = windll.gdi32.CreateHatchBrush(win32con.HS_BDIAGONAL, ptMarkColor)
 
 focusRect = RECT()
 focusMarkRectList = [RECT(), RECT(), RECT(), RECT()]
@@ -123,7 +129,6 @@ terminating = False
 
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
-
 
 def location2rect(location):
 	rect = RECT()
@@ -180,6 +185,9 @@ def limitRectInDesktop(newRect):
 def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
 
+def isPassThroughMode():
+	import virtualBuffers
+	return virtualBuffers.reportPassThrough.last
 
 def updateFocusLocation(sender=None):
 	global focusRect
@@ -242,7 +250,10 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 
 def doPaint(hwnd):
 	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-		color, brush, bkColor = focusMarkColor, focusMarkBrush, focusBkColor
+		if isPassThroughMode():
+			color, brush, bkColor = ptMarkColor, ptMarkBrush, ptBkColor
+		else:
+			color, brush, bkColor = brMarkColor, brMarkBrush, brBkColor
 	elif hwnd in navigatorHwndList:
 		color, brush, bkColor = navigatorMarkColor, navigatorMarkBrush, navBkColor
 	else:
