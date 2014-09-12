@@ -10,7 +10,7 @@ nvda navigator object is en welk object of control focus heeft.
 
 Deze add-on gebruikt de volgende 2 kleuren:
 
-* Green jagged line, to indicate the navigator object.
+* Een groene golvende lijn duidt het navigatorobject aan.
 * Een rode dunne rechthoek duidt het object of de control aan die focus
   heeft.
 * Een rode dikke rechthoek duidt aan dat het navigator object overlapt met
@@ -20,7 +20,8 @@ Om object tracking uit te schakelen, verwijdert u de addon.
 
 ## Veranderingen voor 1.1 ##
 
-* Changed navigator object rectangle to jagged line.
+* Het navigatorobject wordt niet langer aangeduid met een rechthoek maar met
+  een golvende lijn.
 
 ## Veranderingen voor 1.0 ##
 
