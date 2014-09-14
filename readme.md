@@ -14,6 +14,10 @@ The following 2 colors are used by this addon:
 
 To disable object tracking, uninstall the addon.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Changes for 1.1 ##
 
 * Changed navigator object rectangle to jagged line.
