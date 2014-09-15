@@ -6,13 +6,18 @@
 
 By drawing a colored rectangle, this addon enables partially sighted users, sighted educators, or developers to track the location of the nvda navigator object and the focused object/control.
 
-The following 2 colors are used by this addon:
+The following colors are used by this addon:
 
 * Green jagged line, to indicate the navigator object.
-* Red thin rectangle , to indicate the focused object/control.
+* Red thin rectangle, to indicate the focused object/control.
 * Red thick rectangle, to indicate when navigator object and focused object are overlapping.
+* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode, i.e. key types are passed to the control.
 
 To disable object tracking, uninstall the addon.
+
+## Changes for 2.1 ##
+
+* Ability to indicate the focus mode.
 
 ## Changes for 2.0 ##
 
