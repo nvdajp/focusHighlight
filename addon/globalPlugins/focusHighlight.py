@@ -203,7 +203,7 @@ def updateFocusLocation(sender=None):
 		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
 			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
-	
+
 
 def updateNavigatorLocation():
 	global navigatorRect

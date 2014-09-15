@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 # Build customizations
 # Change this file instead of sconstruct or manifest files, whenever possible.
 
@@ -6,20 +8,24 @@ _ = lambda x : x
 
 # Add-on information variables
 addon_info = {
-	# add-on Name
-	"addon-name" : "focusHighlight",
+	# for previously unpublished addons, please follow the community guidelines at:
+	# https://bitbucket.org/nvdaaddonteam/todo/raw/master/guideLines.txt
+	# add-on Name, internal for nvda
+	"addon_name" : "focusHighlight",
+	# Add-on summary, usually the user visible name of the addon.
+	# Translators: Summary for this add-on to be shown on installation and add-on information.
+	"addon_summary" : _("Focus Highlight"),
 	# Add-on description
-	# TRANSLATORS: Summary for this add-on to be shown on installation and add-on information.
-	"addon-summary" : _("Focus Highlight"),
-	# Add-on description
-	# Translators: Long description to be shown for this add-on on installation and add-on information
-	"addon-description" : _("Highlight the focused location."),
+	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+	"addon_description" : _("Highlight the focused location."),
 	# version
-	"addon-version" : "1.1-dev-140804",
+	"addon_version" : "2.1-dev-140915",
 	# Author(s)
-	"addon-author" : "Takuya Nishimoto <nishimotz@gmail.com>",
+	"addon_author" : u"Takuya Nishimoto <nishimotz@gmail.com>",
 	# URL for the add-on documentation support
-	"addon-url" : "http://addons.nvda-project.org"
+	"addon_url" : "http://addons.nvda-project.org",
+	# Documentation file name
+	"addon_docFileName" : "readme.html",
 }
 
 
