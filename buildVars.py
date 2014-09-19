@@ -19,7 +19,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("Highlight the focused location."),
 	# version
-	"addon_version" : "2.1-dev-140915",
+	"addon_version" : "3.0-dev-140919",
 	# Author(s)
 	"addon_author" : u"Takuya Nishimoto <nishimotz@gmail.com>",
 	# URL for the add-on documentation support
