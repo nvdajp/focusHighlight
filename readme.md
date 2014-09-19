@@ -15,7 +15,7 @@ The following colors are used by this addon:
 
 To disable object tracking, uninstall the addon.
 
-## Changes for 2.1 ##
+## Changes for 3.0 ##
 
 * Ability to indicate the focus mode.
 
