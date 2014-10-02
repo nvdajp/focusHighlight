@@ -18,9 +18,15 @@ Seuraavaa kahta väriä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
+## Muutokset versiossa 2.0 ##
+
+* Ohje on käytettävissä Lisäosien hallinnasta.
+
 ## Muutokset versiossa 1.1 ##
 
 * Navigointiobjektia ilmaiseva suorakulmio muutettu epätasaiseksi viivaksi.
+* Korjattu 'Lataa liitännäiset uudelleen' -toiminnon kanssa ilmennyt
+  ongelma.
 
 ## Muutokset versiossa 1.0 ##
 

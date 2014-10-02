@@ -18,15 +18,20 @@ Los siguientes 2 colores se utilizan por este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Cambios para 1.1 ##
 
 * Se cambió el rectángulo del navegador de objetos por  una línea quebrada.
+* Fixed issue with 'Reload plugins'.
 
 ## Cambios para 1.0 ##
 
 * En Internet Explorer 10 y en Skype en Windows 8,se soluciona un problema
   con el navegador de objetos.
-* Initial version.
+* Versión inicial.
 
 [[!tag dev stable]]
 

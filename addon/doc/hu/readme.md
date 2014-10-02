@@ -17,9 +17,14 @@ A következő két szín jelenik meg a kiegészítő használatakor:
 
 Az elemkövetés kikapcsolásához távolítsa el ezt a kiegészítőt.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Az 1.1 verzió változásai ##
 
 * A navigátor kurzor téglalapja egy szaggatott vonalra lett változtatva.
+* Fixed issue with 'Reload plugins'.
 
 ## Az 1.0 verzió változásai ##
 

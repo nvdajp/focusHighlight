@@ -16,12 +16,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Add-on description
-#. TRANSLATORS: Summary for this add-on to be shown on installation and add-on information.
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
 msgstr "Focus en Surbrillance"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on installation and add-on information
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
 msgstr "Mettez en Surbrillance l'emplacement mis en focus."

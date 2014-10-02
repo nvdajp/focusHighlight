@@ -15,9 +15,14 @@
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## 1.1 での変更点 ##
 
 * ナビゲーターオブジェクトの表示を緑のギザギザの線に変更しました。
+* Fixed issue with 'Reload plugins'.
 
 ## 1.0 での変更点 ##
 

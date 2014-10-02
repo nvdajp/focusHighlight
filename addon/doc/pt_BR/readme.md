@@ -17,10 +17,15 @@ O complemento usa as seguintes duas cores:
 
 Para desabilitar o realse de objetos, desinstale o complemento.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Mudanças na 1.1 ##
 
 * Alterado retângulo do objeto de navegação para uma linha destacada de
   verde
+* Fixed issue with 'Reload plugins'.
 
 ## Mudanças na 1.0 ##
 

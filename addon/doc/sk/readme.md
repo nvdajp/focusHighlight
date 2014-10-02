@@ -17,9 +17,14 @@ Na zvýraznenie sa používajú tieto farby:
 
 Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Zmeny vo verzii 1.1 ##
 
 * Zmenený obdĺžnik navigačného objektu na prerušovanú čiaru.
+* Fixed issue with 'Reload plugins'.
 
 ## Zmeny vo verzii 1.0 ##
 

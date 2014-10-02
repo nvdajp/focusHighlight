@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#. Add-on description
-#. TRANSLATORS: Summary for this add-on to be shown on installation and add-on information.
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
 msgstr "Focus Highlight"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on installation and add-on information
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
 msgstr "Resalta la posición enfocada."

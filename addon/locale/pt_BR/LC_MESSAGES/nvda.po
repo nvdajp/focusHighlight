@@ -10,7 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2013-08-05 07:20+0200\n"
 "PO-Revision-Date: 2013-08-05 18:17-0300\n"
 "Last-Translator: Cleverson Casarin Uliana <clever92000@yahoo.com.br>\n"
-"Language-Team: Equipe de tradução do NVDA para Português do Brasil <clever92000@yahoo.com.br>\n"
+"Language-Team: Equipe de tradução do NVDA para Português do Brasil "
+"<clever92000@yahoo.com.br>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +20,12 @@ msgstr ""
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. Add-on description
-#. TRANSLATORS: Summary for this add-on to be shown on installation and add-on information.
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
 msgstr "Realse de foco"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on installation and add-on information
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
 msgstr "Realsa o local em foco."
-

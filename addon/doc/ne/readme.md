@@ -17,9 +17,14 @@
 
 वस्तुलाई प्रकास नपार्ने हो भने यो थप-सादनलाई हटाउनु होस् ।
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## १.१ मा गरिएका परिवर्तनहरू ##
 
 * विचरण वश्तु चतुर्भुजलाई  बाङ्गो रेखामा बदलियो ।
+* Fixed issue with 'Reload plugins'.
 
 ## १.० मा गरिएका परिवर्तनहरू ##
 

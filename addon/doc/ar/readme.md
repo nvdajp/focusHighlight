@@ -17,9 +17,14 @@
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## مستجدات الإصدار 1.1 ##
 
 * تغيير شكل مؤشر NVDA من المستطيل إلى خط مسنن
+* Fixed issue with 'Reload plugins'.
 
 ## تعديلات الإصدار 1.0 ##
 

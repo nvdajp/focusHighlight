@@ -18,9 +18,15 @@ Les 2 couleurs suivantes sont utilisées par ce module complémentaire :
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
+## Changements pour la version 2.0 ##
+
+* L'aide du module complémentaire est disponible à partir du Gestionnaire de
+  modules complémentaires.
+
 ## Changements pour la version 1.1 ##
 
 * Changé objet navigateur de rectangle à traits en escalier.
+* Correction d'un problème avec "Recharger les plugins".
 
 ## Changements pour la version 1.0 ##
 
