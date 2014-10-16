@@ -18,14 +18,15 @@ Los siguientes 2 colores se utilizan por este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
-## Changes for 2.0 ##
+## Cambios para 2.0 ##
 
-* Add-on help is available from the Add-ons Manager.
+* La ayuda del complemento está disponible en el Administrador de
+  Complementos.
 
 ## Cambios para 1.1 ##
 
 * Se cambió el rectángulo del navegador de objetos por  una línea quebrada.
-* Fixed issue with 'Reload plugins'.
+* Corregido un problema  con 'Recargar plugins'.
 
 ## Cambios para 1.0 ##
 

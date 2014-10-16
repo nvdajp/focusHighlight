@@ -17,14 +17,14 @@ As seguintes dúas cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
-## Changes for 2.0 ##
+## Cambios para 2.0 ##
 
-* Add-on help is available from the Add-ons Manager.
+* A axuda do complemento está dispoñible no Administrador de Complementos.
 
 ## Cambios para 1.1 ##
 
 * Cambiado o rectángulo do navegador de obxectos por unha liña irregular.
-* Fixed issue with 'Reload plugins'.
+* Correxido un problema con 'Recargar plugins'.
 
 ## Cambios para  1.0 ##
 
