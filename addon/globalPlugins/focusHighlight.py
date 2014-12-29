@@ -186,8 +186,16 @@ def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
 
 def isPassThroughMode():
-	import virtualBuffers
-	return virtualBuffers.reportPassThrough.last
+	try:
+		# until 2014.4
+		import virtualBuffers
+		if hasattr(virtualBuffers, "reportPassThrough"):
+			return browseMode.reportPassThrough.last
+		# since 2015.1
+		import browseMode
+		return browseMode.reportPassThrough.last
+	except:
+		return False
 
 def updateFocusLocation(sender=None):
 	global focusRect
