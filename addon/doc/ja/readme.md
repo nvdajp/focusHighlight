@@ -1,8 +1,8 @@
 # Focus Highlight #
 
 * 作者: Takuya Nishimoto
-* Download [stable version][2]
-* Download [development version][1]
+* ダウンロード [安定版][2]
+* ダウンロード [開発版][1]
 
 このアドオンは、NVDA
 のナビゲーターオブジェクトや、フォーカスのあるオブジェクト・コントロールの場所を、色のついた長方形で強調して表示します。画面の見えにくい人、晴眼の指導者、開発者にとって有用です。
@@ -15,14 +15,14 @@
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
-## Changes for 2.0 ##
+## 2.0 での変更点 ##
 
-* Add-on help is available from the Add-ons Manager.
+* アドオンマネージャーからアドオンの説明を利用できます。
 
 ## 1.1 での変更点 ##
 
 * ナビゲーターオブジェクトの表示を緑のギザギザの線に変更しました。
-* Fixed issue with 'Reload plugins'.
+* プラグインの再読み込みの不具合修正。
 
 ## 1.0 での変更点 ##
 
