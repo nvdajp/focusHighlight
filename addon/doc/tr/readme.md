@@ -18,9 +18,14 @@ Bu eklenti tarafından aşağıdaki 2 renk kullanılmaktadır:
 
 Nesne izlemeyi iptal etmek için, eklentiyi kaldırın.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Changes for 1.1 ##
 
 * Changed navigator object rectangle to jagged line.
+* Fixed issue with 'Reload plugins'.
 
 ## 1.0 için değişiklikler ##
 

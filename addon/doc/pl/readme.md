@@ -18,9 +18,14 @@ Poniższe 2 kolory są stosowane przez ten dodatek:
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Zmiany dla 1.1 ##
 
 * Zmieniono prostokąt obiektu nawigatora na linię przerywaną.
+* Fixed issue with 'Reload plugins'.
 
 ## Zmiany dla 1.0 ##
 

@@ -18,12 +18,17 @@ Deze add-on gebruikt de volgende 2 kleuren:
 
 Om object tracking uit te schakelen, verwijdert u de addon.
 
+## Veranderingen in 2.0 ##
+
+* Add-on help is beschikbaar via Add-ons beheren
+
 ## Veranderingen voor 1.1 ##
 
 * Het navigatorobject wordt niet langer aangeduid met een rechthoek maar met
   een golvende lijn.
+* Probleem opgelost met 'Plugins herladen'.
 
-## Veranderingen voor 1.0 ##
+## Veranderingen in 1.0 ##
 
 * In Internet Explorer 10 en in Skype op Windows 8 is een probleem opgelost
   met het navigatorobject.

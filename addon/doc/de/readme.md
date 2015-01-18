@@ -19,9 +19,14 @@ Die folgenden 2 Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Changes for 2.0 ##
+
+* Add-on help is available from the Add-ons Manager.
+
 ## Changes for 1.1 ##
 
 * Changed navigator object rectangle to jagged line.
+* Fixed issue with 'Reload plugins'.
 
 ## Änderungen in 1.0 ##
 
