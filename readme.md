@@ -18,7 +18,10 @@ To disable object tracking, uninstall the addon.
 ## Changes for 3.0 ##
 
 * Ability to indicate the focus mode.
-* Fixed issue with NVDA 2015.1.
+
+## Changes for 2.1 ##
+
+* New and updated translations.
 
 ## Changes for 2.0 ##
 
