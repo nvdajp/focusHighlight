@@ -19,11 +19,11 @@ Die folgenden 2 Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 2.0 ##
+## Änderungen in 2.0 ##
 
 * Die Hilfe ist nun über den Erweiterungs-Manager verfügbar.
 
-## Changes for 1.1 ##
+## Änderungen in 1.1 ##
 
 * Das Navigator-Objekt wird nun mit einer gezackten Linie umrandet.
 * Fehler behoben, der beim neuladen von Plugins auftrat.
