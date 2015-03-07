@@ -11,7 +11,7 @@ verfolgen.
 
 Die folgenden 2 Farben werden von dieser Erweiterung verwendet:
 
-* Green jagged line, to indicate the navigator object.
+* Grüne gezackte Linie, zeigt das Objekt, auf dem der Navigator steht.
 * Ein rotes, dünnes Rechteck zeigt die Position des fokusierten Objekts.
 * Ein rotes breites Rechteck zeigt an, dass Fokus und Navigator auf dem
   gleichen Objekt stehen.
@@ -19,14 +19,14 @@ Die folgenden 2 Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 2.0 ##
+## Änderungen in 2.0 ##
 
-* Add-on help is available from the Add-ons Manager.
+* Die Hilfe ist nun über den Erweiterungs-Manager verfügbar.
 
-## Changes for 1.1 ##
+## Änderungen in 1.1 ##
 
-* Changed navigator object rectangle to jagged line.
-* Fixed issue with 'Reload plugins'.
+* Das Navigator-Objekt wird nun mit einer gezackten Linie umrandet.
+* Fehler behoben, der beim neuladen von Plugins auftrat.
 
 ## Änderungen in 1.0 ##
 
