@@ -9,7 +9,34 @@ from logHandler import log
 import threading
 import winUser
 from NVDAObjects.IAccessible import IAccessible
-import win32con
+from win32con import (
+	NULL,
+	CS_HREDRAW,
+	CS_VREDRAW,
+	CW_USEDEFAULT,
+	GWL_STYLE,
+	GWL_EXSTYLE,
+	HS_BDIAGONAL,
+	HS_DIAGCROSS,
+	HWND_TOPMOST,
+	IDC_ARROW,
+	LWA_COLORKEY,
+	LWA_ALPHA,
+	SWP_NOACTIVATE,
+	SW_SHOWNA,
+	WM_PAINT,
+	WM_DESTROY,
+	WM_SHOWWINDOW,
+	WM_TIMER,
+	WS_CAPTION,
+	WS_DISABLED,
+	WS_VISIBLE,
+	WS_EX_APPWINDOW,
+	WS_EX_LAYERED,
+	WS_EX_TOOLWINDOW,
+	WS_EX_TRANSPARENT,
+)
+
 import sys
 from ctypes import WINFUNCTYPE, Structure, windll
 from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer
@@ -64,16 +91,6 @@ def ErrorIfZero(handle):
 	else:
 		return handle
 
-HWND_TOPMOST = -1
-SWP_NOACTIVATE = 0x0010
-GWL_EXSTYLE = -20
-SW_SHOWNA = 8
-WS_EX_TOOLWINDOW = 0x00000080
-WS_EX_LAYERED = 0x00080000
-WS_EX_TRANSPARENT = 0x00000020
-WS_EX_APPWINDOW = 0x00040000
-LWA_COLORKEY = 0x00000001
-LWA_ALPHA = 0x00000002
 ERROR_CLASS_HAS_WINDOWS = 1412
 
 def RGB(r,g,b):
@@ -98,7 +115,7 @@ ptMarkColor = COLORREF()
 ptMarkColor.value = RGB(0xff, 0xff, 0xff)
 ptBkColor = COLORREF()
 ptBkColor.value = RGB(0x00, 0x3f, 0xff)
-ptMarkBrush = windll.gdi32.CreateHatchBrush(win32con.HS_BDIAGONAL, ptMarkColor)
+ptMarkBrush = windll.gdi32.CreateHatchBrush(HS_BDIAGONAL, ptMarkColor)
 
 focusRect = RECT()
 focusMarkRectList = [RECT(), RECT(), RECT(), RECT()]
@@ -111,7 +128,7 @@ navigatorMarkColor = COLORREF()
 navigatorMarkColor.value = RGB(0x00, 0x00, 0xff)
 navBkColor = COLORREF()
 navBkColor.value = RGB(0x00, 0xff, 0x00)
-navigatorMarkBrush = windll.gdi32.CreateHatchBrush(win32con.HS_DIAGCROSS, navigatorMarkColor)
+navigatorMarkBrush = windll.gdi32.CreateHatchBrush(HS_DIAGCROSS, navigatorMarkColor)
 
 navigatorRect = RECT()
 navigatorMarkRectList = [RECT(), RECT(), RECT(), RECT()]
@@ -234,24 +251,28 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	hwnd = CreateWindowEx(0,
 						  wndclass.lpszClassName,
 						  name,
-						  win32con.WS_POPUP|win32con.WS_VISIBLE|win32con.WS_DISABLED,
-						  win32con.CW_USEDEFAULT,
-						  win32con.CW_USEDEFAULT,
-						  win32con.CW_USEDEFAULT,
-						  win32con.CW_USEDEFAULT,
+						  WS_DISABLED,
+						  CW_USEDEFAULT,
+						  CW_USEDEFAULT,
+						  CW_USEDEFAULT,
+						  CW_USEDEFAULT,
 						  hwndHide,
-						  win32con.NULL,
+						  NULL,
 						  wndclass.hInstance,
-						  win32con.NULL)
+						  NULL)
 	left = rect.left
 	top = rect.top
 	width = rect.right - left
 	height = rect.bottom - top
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
-	style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
-	style &= ~WS_EX_APPWINDOW
-	style = style | WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
-	windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, style)
+	style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_STYLE)
+	style &= ~WS_CAPTION
+	style |= WS_VISIBLE
+	windll.user32.SetWindowLongA(c_int(hwnd), GWL_STYLE, style)
+	exstyle = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
+	exstyle &= ~WS_EX_APPWINDOW
+	exstyle |= WS_EX_LAYERED | WS_EX_TRANSPARENT
+	windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, exstyle)
 	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(transColor), alpha, (LWA_ALPHA | LWA_COLORKEY))
 	return hwnd
 
@@ -283,16 +304,16 @@ def invalidateRects():
 
 
 def wndProc(hwnd, message, wParam, lParam):
-	if message == win32con.WM_PAINT:
+	if message == WM_PAINT:
 		doPaint(hwnd)
 		return 0
-	elif message == win32con.WM_DESTROY:
+	elif message == WM_DESTROY:
 		windll.user32.PostQuitMessage(0)
 		return 0
-	elif message == win32con.WM_SHOWWINDOW:
+	elif message == WM_SHOWWINDOW:
 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
-	elif message == win32con.WM_TIMER:
+	elif message == WM_TIMER:
 		updateFocusLocation()
 		try:
 			updateNavigatorLocation()
@@ -307,12 +328,12 @@ def createHighlightWin():
 	global wndclass
 	global hwndHide
 	wndclass = WNDCLASS()
-	wndclass.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
+	wndclass.style = CS_HREDRAW | CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(wndProc)
 	wndclass.cbClsExtra = wndclass.cbWndExtra = 0
-	wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(win32con.NULL))
-	wndclass.hIcon = c_int(win32con.NULL)
-	wndclass.hCursor = windll.user32.LoadCursorA(c_int(win32con.NULL), c_int(win32con.IDC_ARROW))
+	wndclass.hInstance = windll.kernel32.GetModuleHandleA(c_int(NULL))
+	wndclass.hIcon = c_int(NULL)
+	wndclass.hCursor = windll.user32.LoadCursorA(c_int(NULL), c_int(IDC_ARROW))
 	wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(transBrush))
 	wndclass.lpszMenuName = None
 	wndclass.lpszClassName = "HighlightWin"
@@ -321,15 +342,15 @@ def createHighlightWin():
 	hwndHide = CreateWindowEx(0,
 							  wndclass.lpszClassName,
 							  "HighlightWin0",
-							  win32con.WS_POPUP|win32con.WS_DISABLED,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
-							  win32con.CW_USEDEFAULT,
+							  WS_DISABLED,
+							  CW_USEDEFAULT,
+							  CW_USEDEFAULT,
+							  CW_USEDEFAULT,
+							  CW_USEDEFAULT,
 							  gui.mainFrame.GetHandle(),
-							  win32con.NULL,
+							  NULL,
 							  wndclass.hInstance,
-							  win32con.NULL)
+							  NULL)
 	for i in xrange(4):
 		focusHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+1), hwndHide, focusMarkRectList[i], FOCUS_ALPHA)
 
@@ -338,9 +359,8 @@ def createHighlightWin():
 
 	msg = MSG()
 	pMsg = pointer(msg)
-	NULL = c_int(win32con.NULL)
 
-	while windll.user32.GetMessageA(pMsg, NULL, 0, 0) != 0:
+	while windll.user32.GetMessageA(pMsg, c_int(NULL), 0, 0) != 0:
 		try:
 			windll.user32.TranslateMessage(pMsg)
 			windll.user32.DispatchMessageA(pMsg)
@@ -371,13 +391,20 @@ def destroyHighlightWin():
 	hwndHide = None
 
 
-myThread = threading.Thread(target=createHighlightWin)
-myThread.daemon = True
-myThread.start()
-log.debug("focusHighlight started")
+def startThread():
+	global myThread
+	myThread = threading.Thread(target=createHighlightWin)
+	myThread.daemon = True
+	myThread.start()
+	log.debug("focusHighlight started")
+
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
+	def __init__(self):
+		super(globalPluginHandler.GlobalPlugin, self).__init__()
+		wx.CallAfter(startThread)
+		
 	def event_gainFocus(self, obj, nextHandler):
 		updateFocusLocation(obj)
 		updateNavigatorLocation()
