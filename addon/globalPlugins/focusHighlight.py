@@ -326,7 +326,7 @@ def createHighlightWin():
 							  win32con.CW_USEDEFAULT,
 							  win32con.CW_USEDEFAULT,
 							  win32con.CW_USEDEFAULT,
-							  win32con.HWND_DESKTOP,
+							  gui.mainFrame.GetHandle(),
 							  win32con.NULL,
 							  wndclass.hInstance,
 							  win32con.NULL)
