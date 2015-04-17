@@ -17,6 +17,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 3.0 ##
 
+* Fixed issue with Windows Task Manager.
 * Ability to indicate the focus mode.
 
 ## Changes for 2.1 ##
