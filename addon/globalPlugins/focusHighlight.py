@@ -252,17 +252,17 @@ def updateNavigatorLocation():
 
 def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	hwnd = CreateWindowEx(0,
-						  wndclass.lpszClassName,
-						  name,
-						  WS_POPUP|WS_DISABLED,
-						  CW_USEDEFAULT,
-						  CW_USEDEFAULT,
-						  CW_USEDEFAULT,
-						  CW_USEDEFAULT,
-						  hwndHide,
-						  NULL,
-						  wndclass.hInstance,
-						  NULL)
+						wndclass.lpszClassName,
+						name,
+						WS_POPUP|WS_DISABLED,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						CW_USEDEFAULT,
+						hwndHide,
+						NULL,
+						wndclass.hInstance,
+						NULL)
 	left = rect.left
 	top = rect.top
 	width = rect.right - left
@@ -341,17 +341,17 @@ def createHighlightWin():
 	if not windll.user32.RegisterClassA(byref(wndclass)):
 		raise WinError()
 	hwndHide = CreateWindowEx(0,
-							  wndclass.lpszClassName,
-							  "HighlightWin0",
-							  WS_POPUP|WS_DISABLED,
-							  CW_USEDEFAULT,
-							  CW_USEDEFAULT,
-							  CW_USEDEFAULT,
-							  CW_USEDEFAULT,
-							  HWND_DESKTOP,#gui.mainFrame.GetHandle(),
-							  NULL,
-							  wndclass.hInstance,
-							  NULL)
+							wndclass.lpszClassName,
+							"HighlightWin0",
+							WS_POPUP|WS_DISABLED,
+							CW_USEDEFAULT,
+							CW_USEDEFAULT,
+							CW_USEDEFAULT,
+							CW_USEDEFAULT,
+							HWND_DESKTOP,#gui.mainFrame.GetHandle(),
+							NULL,
+							wndclass.hInstance,
+							NULL)
 	for i in xrange(4):
 		focusHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+1), hwndHide, focusMarkRectList[i], FOCUS_ALPHA)
 
