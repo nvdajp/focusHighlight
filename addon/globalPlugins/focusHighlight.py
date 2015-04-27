@@ -143,7 +143,6 @@ ID_TIMER = 100
 UPDATE_PERIOD = 300
 
 wndclass = None
-hwndHide = None
 preparing = True
 terminating = False
 
@@ -250,7 +249,7 @@ def updateNavigatorLocation():
 			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
 
 
-def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
+def createMarkWindow(wndclass, name, hwndParent, rect, alpha):
 	hwnd = CreateWindowEx(0,
 						wndclass.lpszClassName,
 						name,
@@ -259,7 +258,7 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 						CW_USEDEFAULT,
 						CW_USEDEFAULT,
 						CW_USEDEFAULT,
-						hwndHide,
+						hwndParent,
 						NULL,
 						wndclass.hInstance,
 						NULL)
@@ -327,7 +326,6 @@ def wndProc(hwnd, message, wParam, lParam):
 
 def createHighlightWin():
 	global wndclass
-	global hwndHide
 	wndclass = WNDCLASS()
 	wndclass.style = CS_HREDRAW | CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(wndProc)
@@ -337,26 +335,15 @@ def createHighlightWin():
 	wndclass.hCursor = windll.user32.LoadCursorA(c_int(NULL), c_int(IDC_ARROW))
 	wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(transBrush))
 	wndclass.lpszMenuName = None
-	wndclass.lpszClassName = "HighlightWin"
+	wndclass.lpszClassName = "nvdaFh"
 	if not windll.user32.RegisterClassA(byref(wndclass)):
 		raise WinError()
-	hwndHide = CreateWindowEx(0,
-							wndclass.lpszClassName,
-							"HighlightWin0",
-							WS_POPUP|WS_DISABLED,
-							CW_USEDEFAULT,
-							CW_USEDEFAULT,
-							CW_USEDEFAULT,
-							CW_USEDEFAULT,
-							HWND_DESKTOP,#gui.mainFrame.GetHandle(),
-							NULL,
-							wndclass.hInstance,
-							NULL)
+	hwndParent = gui.mainFrame.GetHandle()
 	for i in xrange(4):
-		focusHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+1), hwndHide, focusMarkRectList[i], FOCUS_ALPHA)
+		focusHwndList[i] = createMarkWindow(wndclass, "nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
 
 	for i in xrange(4):
-		navigatorHwndList[i] = createMarkWindow(wndclass, "HighlightWin" + str(i+5), hwndHide, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
+		navigatorHwndList[i] = createMarkWindow(wndclass, "nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
 
 	msg = MSG()
 	pMsg = pointer(msg)
@@ -374,10 +361,8 @@ def createHighlightWin():
 
 def destroyHighlightWin():
 	global wndclass
-	global hwndHide
 	for i in xrange(4):
 		windll.user32.DestroyWindow(focusHwndList[i])
-	windll.user32.DestroyWindow(hwndHide)
 	while True:
 		ret = windll.user32.UnregisterClassA(wndclass.lpszClassName, wndclass.hInstance)
 		if ret == 0:
@@ -389,7 +374,6 @@ def destroyHighlightWin():
 		else:
 			break
 	wndclass = None
-	hwndHide = None
 
 
 def startThread():
