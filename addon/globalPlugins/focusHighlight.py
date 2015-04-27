@@ -254,7 +254,7 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	hwnd = CreateWindowEx(0,
 						  wndclass.lpszClassName,
 						  name,
-						  WS_POPUP|WS_VISIBLE|WS_DISABLED,
+						  WS_POPUP|WS_DISABLED,
 						  CW_USEDEFAULT,
 						  CW_USEDEFAULT,
 						  CW_USEDEFAULT,
@@ -268,10 +268,6 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	width = rect.right - left
 	height = rect.bottom - top
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
-	#style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_STYLE)
-	#style &= ~WS_CAPTION
-	#style |= WS_VISIBLE
-	#windll.user32.SetWindowLongA(c_int(hwnd), GWL_STYLE, style)
 	exstyle = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
 	exstyle &= ~WS_EX_APPWINDOW
 	exstyle |= WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
