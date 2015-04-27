@@ -144,6 +144,7 @@ UPDATE_PERIOD = 300
 
 wndclass = None
 hwndHide = None
+preparing = True
 terminating = False
 
 def rectEquals(r1, r2):
@@ -316,6 +317,8 @@ def wndProc(hwnd, message, wParam, lParam):
 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == WM_TIMER:
+		if preparing:
+			return 0
 		updateFocusLocation()
 		try:
 			updateNavigatorLocation()
@@ -367,7 +370,7 @@ def createHighlightWin():
 			windll.user32.TranslateMessage(pMsg)
 			windll.user32.DispatchMessageA(pMsg)
 		except Exception as e:
-			log.debug(str(e))
+			log.debug(unicode(e))
 		if terminating:
 			break
 	return msg.wParam
@@ -408,6 +411,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		wx.CallAfter(startThread)
 		
 	def event_gainFocus(self, obj, nextHandler):
+		global preparing
+		preparing = False
 		updateFocusLocation(obj)
 		updateNavigatorLocation()
 		nextHandler()
