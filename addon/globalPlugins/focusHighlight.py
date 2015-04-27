@@ -18,6 +18,7 @@ from win32con import (
 	GWL_EXSTYLE,
 	HS_BDIAGONAL,
 	HS_DIAGCROSS,
+	HWND_DESKTOP,
 	HWND_TOPMOST,
 	IDC_ARROW,
 	LWA_COLORKEY,
@@ -30,6 +31,7 @@ from win32con import (
 	WM_TIMER,
 	WS_CAPTION,
 	WS_DISABLED,
+	WS_POPUP,
 	WS_VISIBLE,
 	WS_EX_APPWINDOW,
 	WS_EX_LAYERED,
@@ -251,7 +253,7 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	hwnd = CreateWindowEx(0,
 						  wndclass.lpszClassName,
 						  name,
-						  WS_DISABLED,
+						  WS_POPUP|WS_VISIBLE|WS_DISABLED,
 						  CW_USEDEFAULT,
 						  CW_USEDEFAULT,
 						  CW_USEDEFAULT,
@@ -265,13 +267,13 @@ def createMarkWindow(wndclass, name, hwndHide, rect, alpha):
 	width = rect.right - left
 	height = rect.bottom - top
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
-	style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_STYLE)
-	style &= ~WS_CAPTION
-	style |= WS_VISIBLE
-	windll.user32.SetWindowLongA(c_int(hwnd), GWL_STYLE, style)
+	#style = windll.user32.GetWindowLongA(c_int(hwnd), GWL_STYLE)
+	#style &= ~WS_CAPTION
+	#style |= WS_VISIBLE
+	#windll.user32.SetWindowLongA(c_int(hwnd), GWL_STYLE, style)
 	exstyle = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
 	exstyle &= ~WS_EX_APPWINDOW
-	exstyle |= WS_EX_LAYERED | WS_EX_TRANSPARENT
+	exstyle |= WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
 	windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, exstyle)
 	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(transColor), alpha, (LWA_ALPHA | LWA_COLORKEY))
 	return hwnd
@@ -342,12 +344,12 @@ def createHighlightWin():
 	hwndHide = CreateWindowEx(0,
 							  wndclass.lpszClassName,
 							  "HighlightWin0",
-							  WS_DISABLED,
+							  WS_POPUP|WS_DISABLED,
 							  CW_USEDEFAULT,
 							  CW_USEDEFAULT,
 							  CW_USEDEFAULT,
 							  CW_USEDEFAULT,
-							  gui.mainFrame.GetHandle(),
+							  HWND_DESKTOP,#gui.mainFrame.GetHandle(),
 							  NULL,
 							  wndclass.hInstance,
 							  NULL)
