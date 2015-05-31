@@ -394,68 +394,66 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 		wx.CallAfter(startThread)
 		
-	def getRoleName(self, role):
-		if role in controlTypes.roleLabels:
-			return controlTypes.roleLabels[role]
-		return '%d' % role
+	#def getRoleName(self, role):
+	#	if role in controlTypes.roleLabels:
+	#		return controlTypes.roleLabels[role]
+	#	return '%d' % role
 
-	def getStateName(self, states):
-		ret = []
-		for s in states:
-			if s in controlTypes.stateLabels:
-				ret.append(controlTypes.stateLabels[s])
-		return ','.join(ret)
+	#def getStateName(self, states):
+	#	ret = []
+	#	for s in states:
+	#		if s in controlTypes.stateLabels:
+	#			ret.append(controlTypes.stateLabels[s])
+	#	return ','.join(ret)
 		
-	def getInfo(self, obj):
-		return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
+	#def getInfo(self, obj):
+	#	return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
 
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
-		log.info("gainFocus %s" % self.getInfo(obj))
+		#log.info("gainFocus %s" % self.getInfo(obj))
  		updateFocusLocation(obj)
 		updateNavigatorLocation()
 		nextHandler()
 
-	def event_focusEntered(self, obj, nextHandler):
-		if obj.windowClassName != 'Scintilla':
-			log.info("focusEntered %s" % self.getInfo(obj))
-		if obj.windowClassName == 'ComboLBox':
-			self.ComboLBox = obj
-		nextHandler()
+	#def event_focusEntered(self, obj, nextHandler):
+	#	if obj.windowClassName != 'Scintilla':
+	#		log.info("focusEntered %s" % self.getInfo(obj))
+	#	nextHandler()
 
-	def event_becomeNavigatorObject(self, obj, nextHandler):
-		log.info("becomeNavigatorObject %s" % self.getInfo(obj))
-		if obj.windowClassName == 'ComboBox':
-			updateFocusLocation(obj)
-			updateNavigatorLocation()
-		nextHandler()
+	#def event_becomeNavigatorObject(self, obj, nextHandler):
+	#	log.info("becomeNavigatorObject %s" % self.getInfo(obj))
+	#	if obj.windowClassName == 'ComboBox':
+	#		updateFocusLocation(obj)
+	#		updateNavigatorLocation()
+	#	nextHandler()
 
 	def event_stateChange(self, obj, nextHandler):
-		log.info("stateChange %s" % self.getInfo(obj))
+		#log.info("stateChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox':
 			updateFocusLocation(obj)
 			updateNavigatorLocation()
 		nextHandler()
 
 	def event_valueChange(self, obj, nextHandler):
-		log.info("valueChange %s" % self.getInfo(obj))
+		#log.info("valueChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox' and obj.role == oleacc.ROLE_SYSTEM_TOOLTIP:
 			updateFocusLocation(obj)
 			updateNavigatorLocation()
 			api.setFocusObject(obj)
 		nextHandler()
 
-	def event_nameChange(self, obj, nextHandler):
-		log.info("nameChange %s" % self.getInfo(obj))
-		nextHandler()
+	#def event_nameChange(self, obj, nextHandler):
+	#	log.info("nameChange %s" % self.getInfo(obj))
+	#	nextHandler()
 
-	def event_foreground(self, obj, nextHandler):
-		log.info("foreground %s" % self.getInfo(obj))
-		nextHandler()
+	#def event_foreground(self, obj, nextHandler):
+	#	log.info("foreground %s" % self.getInfo(obj))
+	#	nextHandler()
 
 	def terminate(self):
 		global terminating
 		terminating = True
 		destroyHighlightWin()
-		log.info("focusHighlight terminated")
+		log.debug("focusHighlight terminated")
