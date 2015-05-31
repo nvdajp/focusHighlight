@@ -1,4 +1,5 @@
 # focus highlight
+# 2015-05-31
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -8,6 +9,8 @@ import gui
 from logHandler import log
 import threading
 import winUser
+import oleacc
+import controlTypes
 from NVDAObjects.IAccessible import IAccessible
 from win32con import (
 	NULL,
@@ -46,6 +49,7 @@ from ctypes import WinError, GetLastError, FormatError
 from ctypes.wintypes import COLORREF
 import api
 import time
+import ui
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -390,15 +394,68 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 		wx.CallAfter(startThread)
 		
+	def getRoleName(self, role):
+		if role in controlTypes.roleLabels:
+			return controlTypes.roleLabels[role]
+		return '%d' % role
+
+	def getStateName(self, states):
+		ret = []
+		for s in states:
+			if s in controlTypes.stateLabels:
+				ret.append(controlTypes.stateLabels[s])
+		return ','.join(ret)
+		
+	def getInfo(self, obj):
+		return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
+
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
-		updateFocusLocation(obj)
+		log.info("gainFocus %s" % self.getInfo(obj))
+ 		updateFocusLocation(obj)
 		updateNavigatorLocation()
+		nextHandler()
+
+	def event_focusEntered(self, obj, nextHandler):
+		if obj.windowClassName != 'Scintilla':
+			log.info("focusEntered %s" % self.getInfo(obj))
+		if obj.windowClassName == 'ComboLBox':
+			self.ComboLBox = obj
+		nextHandler()
+
+	def event_becomeNavigatorObject(self, obj, nextHandler):
+		log.info("becomeNavigatorObject %s" % self.getInfo(obj))
+		if obj.windowClassName == 'ComboBox':
+			updateFocusLocation(obj)
+			updateNavigatorLocation()
+		nextHandler()
+
+	def event_stateChange(self, obj, nextHandler):
+		log.info("stateChange %s" % self.getInfo(obj))
+		if obj.windowClassName == 'ComboBox':
+			updateFocusLocation(obj)
+			updateNavigatorLocation()
+		nextHandler()
+
+	def event_valueChange(self, obj, nextHandler):
+		log.info("valueChange %s" % self.getInfo(obj))
+		if obj.windowClassName == 'ComboBox' and obj.role == oleacc.ROLE_SYSTEM_TOOLTIP:
+			updateFocusLocation(obj)
+			updateNavigatorLocation()
+			api.setFocusObject(obj)
+		nextHandler()
+
+	def event_nameChange(self, obj, nextHandler):
+		log.info("nameChange %s" % self.getInfo(obj))
+		nextHandler()
+
+	def event_foreground(self, obj, nextHandler):
+		log.info("foreground %s" % self.getInfo(obj))
 		nextHandler()
 
 	def terminate(self):
 		global terminating
 		terminating = True
 		destroyHighlightWin()
-		log.debug("focusHighlight terminated")
+		log.info("focusHighlight terminated")
