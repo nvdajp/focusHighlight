@@ -1,5 +1,5 @@
 # focus highlight
-# 2015-05-31
+# 2015-06-01
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -50,6 +50,7 @@ from ctypes.wintypes import COLORREF
 import api
 import time
 import ui
+import speech
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -439,9 +440,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def event_valueChange(self, obj, nextHandler):
 		#log.info("valueChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox' and obj.role == oleacc.ROLE_SYSTEM_TOOLTIP:
-			updateFocusLocation(obj)
-			updateNavigatorLocation()
 			api.setFocusObject(obj)
+			speech.cancelSpeech()
+			updateFocusLocation()
+			updateNavigatorLocation()
 		nextHandler()
 
 	#def event_nameChange(self, obj, nextHandler):
