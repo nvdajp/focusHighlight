@@ -17,6 +17,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Fixed issue with Windows Task Manager.
 * Ability to indicate the focus mode.
 
@@ -39,6 +40,6 @@ To disable object tracking, uninstall the addon.
 * Initial version.
 
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://www.nvda.jp/addons/focusHighlight-3.0-dev-150601.nvda-addon
 
 [2]: http://addons.nvda-project.org/files/get.php?file=fh
