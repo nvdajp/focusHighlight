@@ -9,14 +9,25 @@ con deficiencia visual, educadores videntes, o desarrolladores para seguir
 la posición del navegador de objetos de NVDA y del objeto o control
 enfocado.
 
-Los siguientes 2 colores se utilizan por este complemento:
+Los siguientes colores se utilizan con este complemento:
 
 * Línea quebrada verde, para indicar el navegador de objetos.
 * Rectángulo rojo delgado, para indicar el objeto o control enfocado.
 * Rectángulo rojo grueso, para indicar cuando el navegador de objetos y el
   objeto enfocado se superponen.
+* Rectángulo grueso azul con rayas verticales delgadas, para indicar que
+  NVDA está en el modo foco, es decir, las teclas se pasan al control.
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
+
+## Cambios para 3.0 ##
+
+* Corregido un problema  con el gestor de tareas de Windows
+* Capacidad para indicar el modo foco.
+
+## Cambios para 2.1 ##
+
+* Traducciones nuevas y actualizadas.
 
 ## Cambios para 2.0 ##
 
@@ -33,6 +44,7 @@ Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 * En Internet Explorer 10 y en Skype en Windows 8,se soluciona un problema
   con el navegador de objetos.
 * Versión inicial.
+
 
 [[!tag dev stable]]
 

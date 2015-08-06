@@ -8,14 +8,25 @@ Tento doplnok umožňuje slabozrakým používateľom, vidiacim učiteľom a
 vývojárom sledovať navigačný objekt alebo objekt, ktorý má fokus, pomocou
 farebného obdĺžnika.
 
-Na zvýraznenie sa používajú tieto farby:
+The following colors are used by this addon:
 
 * Zelená prerušovaná čiara na zvýraznenie navigačného objektu.
-* červený tenký obdĺžnik na zvýraznenie objektu alebo prvku, ktorý má fokus.
+* Red thin rectangle, to indicate the focused object/control.
 * Červený hrubý obdĺžnik na zvýraznenie prekrývajúceho sa navigačného
   objektu a objektu, ktorý má fokus.
+* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
+
+## Changes for 3.0 ##
+
+* Fixed issue with Windows Task Manager.
+* Ability to indicate the focus mode.
+
+## Changes for 2.1 ##
+
+* New and updated translations.
 
 ## Zmeny vo verzii 2.0 ##
 
@@ -31,6 +42,7 @@ Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
 * Opravené chyby s navigačným objektom v programoch MS Internet Explorer 8 a
   Skype
 * Prvé vydanie.
+
 
 [[!tag dev stable]]
 

@@ -9,14 +9,26 @@ osittain näkeville käyttäjille, näkeville opettajille tai kehittäjille
 NVDA:n navigointiobjektin ja aktiivisen objektin/säätimen sijainnin
 seuraamisen.
 
-Seuraavaa kahta väriä käytetään:
+Seuraavia värejä käytetään:
 
-* Vihreä epätasainen viiva, joka ilmaisee navigointiobjektia.
-* Ohut punainen suorakulmio, joka ilmaisee aktiivista objektia/säädintä.
-* Paksu punainen suorakulmio, joka ilmaisee sitä, että navigointiobjekti ja
+* Vihreä, epätasainen viiva, joka ilmaisee navigointiobjektin.
+* Punainen, ohut suorakulmio, joka ilmaisee aktiivisen objektin/säätimen.
+* Punainen, paksu suorakulmio, joka ilmaisee, että navigointiobjekti ja
   aktiivinen objekti ovat päällekkäin.
+* Sininen, paksu suorakulmio, jossa ohuita vinoviivoja, joka ilmaisee NVDA:n
+  olevan vuorovaikutustilassa, ts. näppäinpainallukset välitetään nykyiselle
+  säätimelle.
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
+
+## Muutokset versiossa 3.0 ##
+
+* Korjattu Windowsin Tehtävienhallinnan kanssa ilmennyt ongelma.
+* Mahdollisuus vuorovaikutustilan ilmaisemiseen.
+
+## Muutokset versiossa 2.1 ##
+
+* Käännöksiä päivitetty ja lisätty.
 
 ## Muutokset versiossa 2.0 ##
 
@@ -33,6 +45,7 @@ Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 * Korjattu navigointiobjektin ongelma Internet Explorer 10:ssä ja Skypessä
   Windows 8:aa käytettäessä.
 * Ensimmäinen versio.
+
 
 [[!tag dev stable]]
 

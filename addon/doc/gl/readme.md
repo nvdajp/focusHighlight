@@ -8,14 +8,25 @@
 deficencia visual, educadores videntes, ou desenvolvedores seguir a posición
 do navegador de obxectos do NVDA e o obxecto ou control enfocado.
 
-As seguintes dúas cores utilízanse por este complemento:
+As seguintes cores utilízanse por este complemento:
 
 * Liña irregular Verde, para indicar o navegador de obxectos.
-* Rectángulo delgado bermello, para indicar o obxecto ou control enfocados.
+* Rectángulo fino bermello, para indicar o obxecto ou control enfocados.
 * Rectángulo groso bermello, para indicar cando o navegador de obxectos e o
   obxecto enfocado se superpoñen.
+* Rectángulo fino azul con barras finas, para indicar que NVDA está en modo
+  foco, esto é, as teclas pásanse ó control.
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
+
+## Cambios para 3.0 ##
+
+* Correxido un problema co xestor de tarefas de Windows.
+* Capacidade para indicar modo foco.
+
+## Cambios para 2.1 ##
+
+* Traduccións novas e actualizadas.
 
 ## Cambios para 2.0 ##
 
@@ -31,6 +42,7 @@ Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 * No Internet Explorer 10 e no Skype en Windows 8, arránxase un problema co
   navegador de obxectos.
 * Versión inicial.
+
 
 [[!tag dev stable]]
 
