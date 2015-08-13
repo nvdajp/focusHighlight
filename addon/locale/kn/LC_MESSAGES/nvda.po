@@ -1,0 +1,28 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: focusHighlight 2.1\n"
+"Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
+"POT-Creation-Date: 2014-12-19 06:00+1000\n"
+"PO-Revision-Date: 2015-08-07 21:44+0530\n"
+"Last-Translator: siddalingeshwar ingalagi <ingalagisiddu@gmail.com>\n"
+"Language-Team: kannada <LL@li.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
+msgid "Focus Highlight"
+msgstr "ಕೇಂದ್ರಬಿಂದುವಿನ ಪ್ರಮುಖ ಅಂಶಗಳನ್ನು ಎತ್ತಿ ತೋರಿಸುವುದು"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+msgid "Highlight the focused location."
+msgstr "ಕೇಂದ್ರಬಿಂದುವಿನ ಮುಖ್ಯ ಸ್ಥಾನವನ್ನು  ಹಾಗು ಅದರ ಸ್ಥಳವನ್ನು ಎತ್ತಿ ತೋರಿಸುವುದು."
