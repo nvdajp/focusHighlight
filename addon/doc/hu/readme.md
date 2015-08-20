@@ -8,27 +8,26 @@ Egy megjelenő színes téglalap segítségével a gyengénlátó felhasználók
 fejlesztők vagy oktatók nyomon követhetik a navigátor kurzort és a fókuszban
 lévő elemet.
 
-The following colors are used by this addon:
+A következő színeket  jeleníti meg a kiegészítő:
 
 * Zöld szaggatott vonal jelzi az NVDA navigátor kurzorát.
-* Red thin rectangle, to indicate the focused object/control.
-* Vörös vékony téglalap, mely a fókusz és a navigátor kurzor átfedését
-  jelzi.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Vékony vörös téglalap jelzi a fókuszban lévő elemet
+* Vastag vörös téglalap jelzi a fókusz és a navigátor kurzor átfedését.
+* Vastag kék téglalap vékony bevágásokkal jelzi, hogy az NVDA fókusz módban
+  van.
 
 Az elemkövetés kikapcsolásához távolítsa el ezt a kiegészítőt.
 
-## Changes for 3.0 ##
+## A 3.0 verzió változásai ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Javítva egy a Windows feladatkezelőben előjövő hiba
+* A fókuszmód jelzése.
 
-## Changes for 2.1 ##
+## A 2.1 verzió változásai ##
 
-* New and updated translations.
+* Új és frissített fordítások
 
-## Az 2.0 verzió változásai ##
+## A 2.0 verzió változásai ##
 
 * A kiegészítő súgója elérhető a bővítménykezelő párbeszédablakából is.
 
