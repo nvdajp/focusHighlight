@@ -40,6 +40,8 @@ To disable object tracking, uninstall the addon.
 * Initial version.
 
 
+[[!tag dev stable]]
+
 [1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
 
 [2]: http://addons.nvda-project.org/files/get.php?file=fh
