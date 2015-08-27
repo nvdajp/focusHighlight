@@ -8,14 +8,25 @@ Ao desenhar um retângulo colorido, este complemento possibilita usuários de
 baixa visão, educadores de visão normal ou desenvolvedores, acompanhar a
 localização do objeto de navegação do NVDA e o objeto/controle em foco.
 
-O complemento usa as seguintes duas cores:
+O complemento usa as seguintes cores:
 
 * Linha destacada de verde, para indicar objeto de navegação.
 * Um retângulo vermelho fino, para indicar o objeto/controle em foco.
 * Um retângulo vermelho grosso, para indicar quando o objeto de navegação e
   o objeto em foco estão sobrepostos.
+* Um retângulo azul grosso com barras finas, para indicar que o NVDA está em
+  modo de foco, isto é, as teclas digitadas são passadas para o controle.
 
 Para desabilitar o realse de objetos, desinstale o complemento.
+
+## Mudanças na 3.0 ##
+
+* Consertados problemas com a barra de tarefas do Windows.
+* Capacidade de indicar o modo de foco.
+
+## Mudanças na 2.1 ##
+
+* Traduções novas e atualizadas.
 
 ## Mudanças na 2.0 ##
 
@@ -32,6 +43,7 @@ Para desabilitar o realse de objetos, desinstale o complemento.
 * No Internet Explorer 10 e no Skype para Windows 8, consertado um problema
   com o navegador de objetos.
 * Versão inicial.
+
 
 [[!tag dev stable]]
 

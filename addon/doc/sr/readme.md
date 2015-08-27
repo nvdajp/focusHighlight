@@ -6,13 +6,24 @@
 
 бојом показује фокусирани нвда објекат ово је корисно нпр за видеће особе
 
-следеће две боје се користе
+The following colors are used by this addon:
 
 * зелена за навигатор објекта
-* црвена за фокусирани објекат
+* Red thin rectangle, to indicate the focused object/control.
 * црвени кружић за преклапања
+* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 да искључите праћење објекта уклоните додатак
+
+## Changes for 3.0 ##
+
+* Fixed issue with Windows Task Manager.
+* Ability to indicate the focus mode.
+
+## Changes for 2.1 ##
+
+* New and updated translations.
 
 ## промене у 2.0 ##
 
@@ -27,6 +38,7 @@
 
 * поправљен проблем у интернет експлорер 11
 * прва верзија
+
 
 [[!tag dev stable]]
 

@@ -40,6 +40,6 @@ To disable object tracking, uninstall the addon.
 * Initial version.
 
 
-[1]: https://www.nvda.jp/addons/focusHighlight-dev.nvda-addon
+[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
 
 [2]: http://addons.nvda-project.org/files/get.php?file=fh

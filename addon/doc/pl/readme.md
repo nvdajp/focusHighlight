@@ -8,15 +8,26 @@ Ten dodatek umożliwia niedowidzącym użytkownikom,widzącym nauczycielom, lub
 twórcom śledzenie położenia obiektu nawigatora i punktu uwagi NVDA poprzez
 obrysowanie ich kolorowym prostokątem.
 
-Poniższe 2 kolory są stosowane przez ten dodatek:
+The following colors are used by this addon:
 
 * Zielona, przerywana linia, oznacza obiekt nawigatora., to indicate the
   navigator object.
-* Czerwony cienki prostokąt oznacza obiekt/kontrolkę  w punkcie uwagi.
+* Red thin rectangle, to indicate the focused object/control.
 * Czerwony gruby prostokąt oznacza, że obiekt nawigatora i obiekt/kontrolka
   w punkcie uwagi zachodzą na siebie.
+* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
+
+## Changes for 3.0 ##
+
+* Fixed issue with Windows Task Manager.
+* Ability to indicate the focus mode.
+
+## Changes for 2.1 ##
+
+* New and updated translations.
 
 ## Zmiany dla 2.0 ##
 
@@ -32,6 +43,7 @@ Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
 * W Internet Explorer 10 i Skype dla Windows 8, poprawiony problem z
   obiektem nawigatora.
 * Pierwsza wersja.
+
 
 [[!tag dev stable]]
 

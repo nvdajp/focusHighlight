@@ -8,14 +8,25 @@
 विकास कर्तालाइ नेत्रवाणी विचरण वस्तु अथवा केन्द्रीत् वस्तु/नियन्त्रककोस्थान
 पहिल्याउन मद्दत गर्ने छ ।
 
-यो थप-सादनले निम्न दुई रङ्गहरूको  प्रयोग गर्छ:
+The following colors are used by this addon:
 
 *  विचरण वश्तु जनाउने निलो बाङ्गो लाईन
-* केन्द्रीत वस्तु/नियन्त्रक जनाउनका लागि पातलो रातो रङ्गको चतुर्भुज ।
+* Red thin rectangle, to indicate the focused object/control.
 * विचरण बस्तु र केन्द्रीत् वस्तु खप्टिएको जनाउनका लागि मोटो रातो रङ्गको
   चतुर्भुज ।  
+* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 वस्तुलाई प्रकास नपार्ने हो भने यो थप-सादनलाई हटाउनु होस् ।
+
+## Changes for 3.0 ##
+
+* Fixed issue with Windows Task Manager.
+* Ability to indicate the focus mode.
+
+## Changes for 2.1 ##
+
+* New and updated translations.
 
 ## २.० संस्करणमा गरिएका परिवर्तनहरू ##
 
@@ -31,6 +42,7 @@
 * सण्झ्याल ८ मा  अन्तरजाल अन्वेषक१० र स्काइप चलाउँदा विचरण वस्तुमा आएका
   समस्याहरूलाई समाधान गरियो ।
 * सुरुको संस्करण
+
 
 [[!tag dev stable]]
 

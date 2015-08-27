@@ -9,14 +9,26 @@ utilisateurs malvoyants, éducateurs voyants ou aux développeurs de suivre
 l'emplacement de l'objet navigateur de NVDA et l'objet mis en focus ou le
 contrôle.
 
-Les 2 couleurs suivantes sont utilisées par ce module complémentaire :
+Les couleurs suivantes sont utilisées par ce module complémentaire :
 
 * Traits en escalier vert, pour indiquer l'objet navigateur.
 * Rectangle mince rouge, pour indiquer l'objet mis en focus ou le contrôle.
 * Rectangle épais rouge, pour indiquer lorsque  l'objet navigateur et
   l'objet mis en focus sont chevauchent.
+* Rectangle épais bleu avec fines barres obliques, pour indiquer à NVDA qui
+  est en mode focus, c'est-à-dire les principaux types sont passés au
+  contrôle.
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
+
+## Changements pour la version 3.0 ##
+
+* Correction d'un problème avec le gestionnaire de tâches Windows.
+* Capacité d'indiquer le mode focus.
+
+## Changements pour la version 2.1 ##
+
+* Traductions nouvelles et mises à jour.
 
 ## Changements pour la version 2.0 ##
 
@@ -33,6 +45,7 @@ Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 * Dans Internet Explorer 10 et Skype sur Windows 8, correction d'un problème
   avec l'objet navigateur.
 * Première version.
+
 
 [[!tag dev stable]]
 
