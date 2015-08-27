@@ -214,7 +214,7 @@ def isPassThroughMode():
 		# until 2014.4
 		import virtualBuffers
 		if hasattr(virtualBuffers, "reportPassThrough"):
-			return browseMode.reportPassThrough.last
+			return virtualBuffers.reportPassThrough.last
 		# since 2015.1
 		import browseMode
 		return browseMode.reportPassThrough.last
