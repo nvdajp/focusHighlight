@@ -361,6 +361,7 @@ def createHighlightWin():
 			log.debug(unicode(e))
 		if terminating:
 			break
+		wx.YieldIfNeeded()
 		time.sleep(0.01)
 	return msg.wParam
 
