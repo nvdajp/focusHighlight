@@ -7,24 +7,23 @@
 このアドオンは、NVDA
 のナビゲーターオブジェクトや、フォーカスのあるオブジェクト・コントロールの場所を、色のついた長方形で強調して表示します。画面の見えにくい人、晴眼の指導者、開発者にとって有用です。
 
-The following colors are used by this addon:
+以下の色を使っています：
 
 * 緑色のギザギザの線：ナビゲーターオブジェクトを示します。
-* Red thin rectangle, to indicate the focused object/control.
+* 赤色の細い線：フォーカスのあるオブジェクト・コントロールを示します。
 * 赤色の太い線：ナビゲーターオブジェクトとフォーカスが重なっていることを示します。
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* 青色の太い四角形と細い斜線: NVDAがフォーカスモード、つまりキー操作がコントロールに渡されることを示します。
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
-## Changes for 3.0 ##
+## 3.0 での変更点 ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Windows Task Managerでの不具合を修正。
+* フォーカスモードを表示する機能。
 
-## Changes for 2.1 ##
+## 2.1 での変更点 ##
 
-* New and updated translations.
+* 新規の翻訳と翻訳の更新。
 
 ## 2.0 での変更点 ##
 
