@@ -1,5 +1,5 @@
 # focus highlight
-# 2015-06-01
+# 2015-10-22
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -51,6 +51,8 @@ import api
 import time
 import ui
 import speech
+import virtualBuffers
+import browseMode
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -150,6 +152,7 @@ UPDATE_PERIOD = 300
 wndclass = None
 preparing = True
 terminating = False
+passThroughMode = False
 
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
@@ -210,16 +213,17 @@ def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
 
 def isPassThroughMode():
-	try:
-		# until 2014.4
-		import virtualBuffers
-		if hasattr(virtualBuffers, "reportPassThrough"):
-			return virtualBuffers.reportPassThrough.last
-		# since 2015.1
-		import browseMode
-		return browseMode.reportPassThrough.last
-	except:
-		return False
+	# until 2014.4
+	#if hasattr(virtualBuffers, "reportPassThrough"):
+	#	return virtualBuffers.reportPassThrough.last
+	# since 2015.1
+	#elif hasattr(browseMode, "reportPassThrough"):
+	#	return browseMode.reportPassThrough.last
+	#return False
+	focus = api.getFocusObject()
+	if hasattr(focus, 'treeInterceptor') and focus.treeInterceptor:
+		return focus.treeInterceptor.passThrough
+	return False
 
 def updateFocusLocation(sender=None):
 	global focusRect
@@ -239,7 +243,10 @@ def updateFocusLocation(sender=None):
 
 def updateNavigatorLocation():
 	global navigatorRect
-	nav = api.getNavigatorObject()
+	try:
+		nav = api.getNavigatorObject()
+	except:
+		return
 	if locationAvailable(nav):
 		newRect = location2rect(nav.location)
 	elif locationAvailable(api.getFocusObject()):
@@ -254,7 +261,8 @@ def updateNavigatorLocation():
 			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
 
 
-def createMarkWindow(wndclass, name, hwndParent, rect, alpha):
+def createMarkWindow(name, hwndParent, rect, alpha):
+	global wndclass
 	hwnd = CreateWindowEx(0,
 						wndclass.lpszClassName,
 						name,
@@ -282,7 +290,7 @@ def createMarkWindow(wndclass, name, hwndParent, rect, alpha):
 
 def doPaint(hwnd):
 	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-		if isPassThroughMode():
+		if passThroughMode:
 			color, brush, bkColor = ptMarkColor, ptMarkBrush, ptBkColor
 		else:
 			color, brush, bkColor = brMarkColor, brMarkBrush, brBkColor
@@ -307,6 +315,7 @@ def invalidateRects():
 
 
 def wndProc(hwnd, message, wParam, lParam):
+	global passThroughMode
 	if message == WM_PAINT:
 		doPaint(hwnd)
 		return 0
@@ -317,14 +326,11 @@ def wndProc(hwnd, message, wParam, lParam):
 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == WM_TIMER:
-		if preparing:
-			return 0
-		updateFocusLocation()
-		try:
+		if not preparing:
+			updateFocusLocation()
 			updateNavigatorLocation()
-		except:
-			pass
-		invalidateRects()
+			invalidateRects()
+			passThroughMode = isPassThroughMode()
 		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
@@ -345,24 +351,19 @@ def createHighlightWin():
 		raise WinError()
 	hwndParent = gui.mainFrame.GetHandle()
 	for i in xrange(4):
-		focusHwndList[i] = createMarkWindow(wndclass, "nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
+		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
 
 	for i in xrange(4):
-		navigatorHwndList[i] = createMarkWindow(wndclass, "nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
+		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
 
 	msg = MSG()
 	pMsg = pointer(msg)
 
 	while windll.user32.GetMessageA(pMsg, c_int(NULL), 0, 0) != 0:
-		try:
-			windll.user32.TranslateMessage(pMsg)
-			windll.user32.DispatchMessageA(pMsg)
-		except Exception as e:
-			log.debug(unicode(e))
+		windll.user32.TranslateMessage(pMsg)
+		windll.user32.DispatchMessageA(pMsg)
 		if terminating:
 			break
-		wx.YieldIfNeeded()
-		time.sleep(0.01)
 	return msg.wParam
 
 
@@ -418,6 +419,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		#log.info("gainFocus %s" % self.getInfo(obj))
  		updateFocusLocation(obj)
 		updateNavigatorLocation()
+		invalidateRects()
 		nextHandler()
 
 	#def event_focusEntered(self, obj, nextHandler):
@@ -446,6 +448,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			speech.cancelSpeech()
 			updateFocusLocation()
 			updateNavigatorLocation()
+			invalidateRects()
 		nextHandler()
 
 	#def event_nameChange(self, obj, nextHandler):
