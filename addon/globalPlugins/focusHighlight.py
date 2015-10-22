@@ -323,10 +323,11 @@ def wndProc(hwnd, message, wParam, lParam):
 		windll.user32.PostQuitMessage(0)
 		return 0
 	elif message == WM_SHOWWINDOW:
-		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
+		if hwnd == focusHwndList[0]:
+			timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == WM_TIMER:
-		if not preparing:
+		if not preparing and hwnd == focusHwndList[0]:
 			updateFocusLocation()
 			updateNavigatorLocation()
 			invalidateRects()
