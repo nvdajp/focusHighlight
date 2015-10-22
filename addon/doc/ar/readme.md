@@ -8,25 +8,25 @@
 تتبع موضع الكائن المحدد بمؤشر NVDA  أو أي عنصر  أو كائن محدد بمؤشر النظام،
 وذلك عن طريق رسم مستطيل ملون. 
 
-The following colors are used by this addon:
+تستخدم الإضافة الألوان التالية:
 
 * خط أخضر مسنن للإشارة إلى الكائن الحالي المحدد بمؤشر NVDA
-* Red thin rectangle, to indicate the focused object/control.
+* مستطيل أحمر رفيع يشير إلى العنصر أو الكائن المحدد بمؤشر النظام
 * ومستطيل أحمر عريض للإشارة إلى التداخل بين الكائن الحالي المحدد بمؤشر NVDA
   والكائن أو العنصر المحدد بمؤشر النظام. 
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* مستطيل أزرق كثيف بشرط مائلة رفيعة, للتوضيح بأن NVDA بنمط الحقول
+  الاستمارية, بمعنى أنه سيتم مرور المفاتيح للكائن.
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
-## Changes for 3.0 ##
+## مستجدات الإصدار 3.0 ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* إصلاح خطأ كان يحدث عند فتح مدير المهام بويندوز
+* إمكانية توضيح نمط الحقول الاستمارية
 
-## Changes for 2.1 ##
+## مستجدات الإصدار 2.1 ##
 
-* New and updated translations.
+* ترجمة الإضافة للغات جديدة وتحديث ترجمتها باللغات الأخرى
 
 ## مستجدات الإصدار 2.0 ##
 
