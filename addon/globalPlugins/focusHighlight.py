@@ -1,5 +1,5 @@
 # focus highlight
-# 2015-10-22
+# 2015-10-25
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -113,6 +113,7 @@ CreateWindowEx.restype = ErrorIfZero
 transColor = COLORREF()
 transColor.value = RGB(0xff, 0xff, 0xff)
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
+TRANS_ALPHA = 0
 
 brMarkColor = COLORREF()
 brMarkColor.value = RGB(0xff, 0x00, 0x00)
@@ -153,6 +154,7 @@ wndclass = None
 preparing = True
 terminating = False
 passThroughMode = False
+currentAppSleepMode = False
 
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
@@ -213,24 +215,22 @@ def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
 
 def isPassThroughMode():
-	# until 2014.4
-	#if hasattr(virtualBuffers, "reportPassThrough"):
-	#	return virtualBuffers.reportPassThrough.last
-	# since 2015.1
-	#elif hasattr(browseMode, "reportPassThrough"):
-	#	return browseMode.reportPassThrough.last
-	#return False
 	focus = api.getFocusObject()
 	if hasattr(focus, 'treeInterceptor') and focus.treeInterceptor:
 		return focus.treeInterceptor.passThrough
 	return False
 
-def updateFocusLocation(sender=None):
+def isCurrentAppSleepMode():
+	focus = api.getFocusObject()
+	if hasattr(focus, 'appModule') and focus.appModule:
+		return focus.appModule.sleepMode
+	return False
+
+def updateFocusLocation():
 	global focusRect
-	if locationAvailable(sender):
-		newRect = location2rect(sender.location)
-	elif locationAvailable(api.getFocusObject()):
-		newRect = location2rect(api.getFocusObject().location)
+	focus = api.getFocusObject()
+	if locationAvailable(focus):
+		newRect = location2rect(focus.location)
 	else:
 		return
 	newRect = limitRectInDesktop(newRect)
@@ -289,15 +289,18 @@ def createMarkWindow(name, hwndParent, rect, alpha):
 
 
 def doPaint(hwnd):
-	if rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
+	if currentAppSleepMode:	
+		color, brush, bkColor, alpha = transColor, transBrush, transColor, TRANS_ALPHA
+	elif rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
 		if passThroughMode:
-			color, brush, bkColor = ptMarkColor, ptMarkBrush, ptBkColor
+			color, brush, bkColor, alpha = ptMarkColor, ptMarkBrush, ptBkColor, FOCUS_ALPHA
 		else:
-			color, brush, bkColor = brMarkColor, brMarkBrush, brBkColor
+			color, brush, bkColor, alpha = brMarkColor, brMarkBrush, brBkColor, FOCUS_ALPHA
 	elif hwnd in navigatorHwndList:
-		color, brush, bkColor = navigatorMarkColor, navigatorMarkBrush, navBkColor
+		color, brush, bkColor, alpha = navigatorMarkColor, navigatorMarkBrush, navBkColor, NAVIGATOR_ALPHA
 	else:
 		return
+	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), 0, alpha, LWA_ALPHA)
 	ps = PAINTSTRUCT()
 	rect = RECT()
 	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
@@ -315,7 +318,7 @@ def invalidateRects():
 
 
 def wndProc(hwnd, message, wParam, lParam):
-	global passThroughMode
+	global passThroughMode, currentAppSleepMode
 	if message == WM_PAINT:
 		doPaint(hwnd)
 		return 0
@@ -332,6 +335,7 @@ def wndProc(hwnd, message, wParam, lParam):
 			updateNavigatorLocation()
 			invalidateRects()
 			passThroughMode = isPassThroughMode()
+			currentAppSleepMode = isCurrentAppSleepMode()
 		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
@@ -418,7 +422,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		global preparing
 		preparing = False
 		#log.info("gainFocus %s" % self.getInfo(obj))
- 		updateFocusLocation(obj)
+ 		updateFocusLocation()
 		updateNavigatorLocation()
 		invalidateRects()
 		nextHandler()
@@ -438,7 +442,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def event_stateChange(self, obj, nextHandler):
 		#log.info("stateChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox':
-			updateFocusLocation(obj)
+			updateFocusLocation()
 			updateNavigatorLocation()
 		nextHandler()
 
