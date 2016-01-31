@@ -154,6 +154,7 @@ preparing = True
 terminating = False
 passThroughMode = False
 currentAppSleepMode = False
+focusOnly = True
 
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
@@ -227,37 +228,37 @@ def isCurrentAppSleepMode():
 
 def updateFocusLocation():
 	global focusRect
-	focus = api.getFocusObject()
-	if locationAvailable(focus):
-		newRect = location2rect(focus.location)
-	else:
-		return
-	newRect = limitRectInDesktop(newRect)
-	if not rectEquals(newRect, focusRect):
-		focusRect = newRect
-		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
-		for i in xrange(4):
-			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
-
-
-def updateNavigatorLocation():
 	global navigatorRect
+	global focusOnly
+	currFocusOnly = focusOnly
+	newFocusRect = focusRect
+	newNavRect = navigatorRect
+	focus = nav = None
+	try:
+		focus = api.getFocusObject()
+	except:
+		pass
 	try:
 		nav = api.getNavigatorObject()
 	except:
-		return
+		pass
+	if locationAvailable(focus):
+		newFocusRect = limitRectInDesktop(location2rect(focus.location))
 	if locationAvailable(nav):
-		newRect = location2rect(nav.location)
-	elif locationAvailable(api.getFocusObject()):
-		newRect = location2rect(api.getFocusObject().location)
-	else:
-		return
-	newRect = limitRectInDesktop(newRect)
-	if not rectEquals(newRect, navigatorRect):
-		navigatorRect = newRect
-		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
+		newNavRect = limitRectInDesktop(location2rect(nav.location))
+	focusOnly = rectEquals(newFocusRect, newNavRect)
+	if (currFocusOnly != focusOnly) or not rectEquals(newFocusRect, focusRect) or not rectEquals(newNavRect, navigatorRect):
+		t = FOCUS_THICKNESS
+		if focusOnly:
+			t += NAVIGATOR_THICKNESS
+		setMarkPositions(focusMarkRectList, newFocusRect, t, FOCUS_PADDING)
+		for i in xrange(4):
+			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
+		setMarkPositions(navigatorMarkRectList, newNavRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
 		for i in xrange(4):
 			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
+	focusRect = newFocusRect
+	navigatorRect = newNavRect
 
 
 def createMarkWindow(name, hwndParent, rect, alpha):
@@ -290,13 +291,18 @@ def createMarkWindow(name, hwndParent, rect, alpha):
 def doPaint(hwnd):
 	if currentAppSleepMode:	
 		color, brush, bkColor, alpha = transColor, transBrush, transColor, TRANS_ALPHA
-	elif rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
+	elif hwnd in focusHwndList:
 		if passThroughMode:
 			color, brush, bkColor, alpha = ptMarkColor, ptMarkBrush, ptBkColor, FOCUS_ALPHA
 		else:
 			color, brush, bkColor, alpha = brMarkColor, brMarkBrush, brBkColor, FOCUS_ALPHA
 	elif hwnd in navigatorHwndList:
-		color, brush, bkColor, alpha = navigatorMarkColor, navigatorMarkBrush, navBkColor, NAVIGATOR_ALPHA
+		if focusOnly:
+			color, brush, bkColor, alpha = transColor, transBrush, transColor, TRANS_ALPHA
+		elif passThroughMode:
+			color, brush, bkColor, alpha = ptMarkColor, ptMarkBrush, ptBkColor, FOCUS_ALPHA
+		else:
+			color, brush, bkColor, alpha = navigatorMarkColor, navigatorMarkBrush, navBkColor, NAVIGATOR_ALPHA
 	else:
 		return
 	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), 0, alpha, LWA_ALPHA)
@@ -331,7 +337,6 @@ def wndProc(hwnd, message, wParam, lParam):
 	elif message == WM_TIMER:
 		if not preparing and hwnd == focusHwndList[0]:
 			updateFocusLocation()
-			updateNavigatorLocation()
 			invalidateRects()
 			passThroughMode = isPassThroughMode()
 			currentAppSleepMode = isCurrentAppSleepMode()
@@ -422,7 +427,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		preparing = False
 		#log.info("gainFocus %s" % self.getInfo(obj))
  		updateFocusLocation()
-		updateNavigatorLocation()
 		invalidateRects()
 		nextHandler()
 
@@ -435,14 +439,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	#	log.info("becomeNavigatorObject %s" % self.getInfo(obj))
 	#	if obj.windowClassName == 'ComboBox':
 	#		updateFocusLocation(obj)
-	#		updateNavigatorLocation()
 	#	nextHandler()
 
 	def event_stateChange(self, obj, nextHandler):
 		#log.info("stateChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox':
 			updateFocusLocation()
-			updateNavigatorLocation()
 		nextHandler()
 
 	def event_valueChange(self, obj, nextHandler):
@@ -451,7 +453,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			api.setFocusObject(obj)
 			speech.cancelSpeech()
 			updateFocusLocation()
-			updateNavigatorLocation()
 			invalidateRects()
 		nextHandler()
 
