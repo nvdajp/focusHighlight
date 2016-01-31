@@ -1,9 +1,9 @@
 # focus highlight
-# 2015-10-25
+# https://github.com/nvdajp/focusHighlight
 # Takuya Nishimoto
 
 import globalPluginHandler
-import tones
+#import tones
 import wx
 import gui
 from logHandler import log
