@@ -52,7 +52,6 @@ import time
 import ui
 import speech
 import virtualBuffers
-import browseMode
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
