@@ -7,24 +7,24 @@
 이 추가 기능은 NVDA navigator 객체와 초점이 있는 객체/컨트롤의 위치를 색깔 있는 사각형으로 강조 표시합니다. 시각 장애인
 사용자, 시각 장애인 교육자, 또는 개발자에게 유용합니다.
 
-The following colors are used by this addon:
+다음의 2 색이 이 추가 기능에 의해 사용됩니다:
 
 * 녹색 점선,navigator 객체를 나타냅니다.
-* Red thin rectangle, to indicate the focused object/control.
+* 빨간색 얇은 선, 초점이 있는 객체/콘트롤을 나타냅니다.
 *  navigator 객체와 포커스가 있는 객체가 겹치는 경우, 빨간색 굵은 선이 표시됩니다.
 * Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
   i.e. key types are passed to the control.
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
 
-## Changes for 3.0 ##
+## 3.0에서의 변경사항 ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* 윈도우즈 작업 관리자에서의 문제점 수정.
+* 포커스 모드를 표시할 수 있음.
 
-## Changes for 2.1 ##
+## 2.1에서의 변경사항 ##
 
-* New and updated translations.
+* 새 언어 추가 및 번역 업데이트.
 
 ## 2.0에서의 변경사항 ##
 
@@ -33,7 +33,7 @@ The following colors are used by this addon:
 ## 1.1에서의 변경사항 ##
 
 * navigator 객체의 사각형 표시를 점선으로 변경.
-* 'Reload plugins' 버그 수정.
+* '플러그인 제등록' 버그 수정.
 
 ## 1.0에서의 변경사항 ##
 

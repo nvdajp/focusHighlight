@@ -9,10 +9,10 @@ sehbehinderten Nutzern, sehenden Lehrern oder Entwicklern die Position des
 fokusierten Objektes sowie des Navigator-Objektes auf dem Bildschirm zu
 verfolgen.
 
-The following colors are used by this addon:
+Die folgenden Farben werden von dieser Erweiterung verwendet:
 
 * Grüne gezackte Linie, zeigt das Objekt, auf dem der Navigator steht.
-* Red thin rectangle, to indicate the focused object/control.
+* Rotes, dünnes Rechteck: Position des fokusierten Objekts anzeigen.
 * Ein rotes breites Rechteck zeigt an, dass Fokus und Navigator auf dem
   gleichen Objekt stehen.
 * Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
@@ -21,14 +21,14 @@ The following colors are used by this addon:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 3.0 ##
+## Änderungen in 3.0 ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Fehler mit dem Windows-Task-Manager behoben.
+* Fähigkeit den Lesemodus anzuzeigen
 
-## Changes for 2.1 ##
+## Änderungen in 2.1 ##
 
-* New and updated translations.
+* Neue und aktualisierte Übersetzungen
 
 ## Änderungen in 2.0 ##
 
