@@ -15,8 +15,9 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 * Rotes, dünnes Rechteck: Position des fokusierten Objekts anzeigen.
 * Ein rotes breites Rechteck zeigt an, dass Fokus und Navigator auf dem
   gleichen Objekt stehen.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Blaues dickes Rechteck mit dünnen Schrägstrichen, um zu zeigen, dass NVDA
+  im Fokus-Modus ist, d.h. Tastenanschläge werden an das aktuelle
+  Steuerelement übergeben.
 
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
