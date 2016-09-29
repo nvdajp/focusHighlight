@@ -14,8 +14,8 @@ Culorile utilizate de către acest add-on sunt:
 * dreptunghi roșu subțire, pentru a indica obiectul sau controlul focalizat.
 * Dreptunghi roșu gros, pentru a indica când obiectul navigatorului și
   obiectul focalizat se suprapun.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Dreptunghi gros albastru cu peruri subțiri, pentru a indica NVDA este în
+  modul focalizare, adică tipurile de taste sunt transmise la control.
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
