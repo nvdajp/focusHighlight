@@ -5,26 +5,24 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: focusHighlight 1.1-dev\n"
+"Project-Id-Version: focusHighlight 2.2\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2013-11-23 18:23+0100\n"
-"PO-Revision-Date: 2016-01-29 18:14+0330\n"
-"Last-Translator: Mohammadreza Rashad <mohammadreza5712@gmail.com>\n"
-"Language-Team: NVDA Translation team <nvda-translations@freelists.org>\n"
-"Language: fa\n"
+"POT-Creation-Date: 2015-10-23 06:00+1000\n"
+"PO-Revision-Date: 2016-03-18 16:31+0200\n"
+"Last-Translator: DanP <dan.punga@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
-msgstr "مشخص‌کننده‌ی محلِ فرمان‌پذیری"
+msgstr "Evidențiere focalizare"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
-msgstr ""
-"محلی که تحت فرمان است را با رنگِ دیگری از بقیه‌ی جاهای پنجره‌ی پیشِ رو مشخص "
-"میکند."
+msgstr "Evidențiere a locației focalizate."
