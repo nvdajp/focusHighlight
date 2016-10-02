@@ -16,11 +16,12 @@ A következő színeket  jeleníti meg a kiegészítő:
 * Vastag kék téglalap vékony bevágásokkal jelzi, hogy az NVDA fókusz módban
   van.
 
-Az elemkövetés kikapcsolásához távolítsa el ezt a kiegészítőt.
+Az elemkövetés kikapcsolásához függessze fel vagy távolítsa el ezt a
+kiegészítőt.
 
 ## A 3.0 verzió változásai ##
 
-* Javítva egy a Windows feladatkezelőben előjövő hiba
+* Javítva egy, a Windows feladatkezelőben előjövő hiba
 * A fókuszmód jelzése.
 
 ## A 2.1 verzió változásai ##
