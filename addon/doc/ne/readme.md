@@ -19,6 +19,10 @@ The following colors are used by this addon:
 
 वस्तुलाई प्रकास नपार्ने हो भने यो थप-सादनलाई हटाउनु होस् ।
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Changes for 3.0 ##
 
 * Fixed issue with Windows Task Manager.

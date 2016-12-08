@@ -19,6 +19,10 @@ As seguintes cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Cambios para 3.0 ##
 
 * Correxido un problema co xestor de tarefas de Windows.

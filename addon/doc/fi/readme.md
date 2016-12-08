@@ -21,6 +21,10 @@ Seuraavia värejä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Muutokset versiossa 3.0 ##
 
 * Korjattu Windowsin Tehtävienhallinnan kanssa ilmennyt ongelma.

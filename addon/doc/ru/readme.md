@@ -19,6 +19,10 @@
 
 Чтобы отключить отслеживание объекта, удалите дополнение.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Изменения для 3.0 ##
 
 * Исправлена проблема с диспетчером задач Windows.

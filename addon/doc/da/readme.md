@@ -20,6 +20,10 @@ Følgende farver bliver brugt af dette tilføjelsesprogram:
 Hvis du vil slå sporing af objekter fra, så afinstaller
 tilføjelsesprogrammet.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Ændringer i 3.0 ##
 
 * Løste problem med Windows Programstyring.

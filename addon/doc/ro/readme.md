@@ -19,6 +19,10 @@ Culorile utilizate de către acest add-on sunt:
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Modificări aduse în versiunea 3.0. ##
 
 * A fost rezolvată problema cu managerul de activități Windows.

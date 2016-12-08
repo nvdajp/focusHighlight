@@ -20,6 +20,10 @@ Los siguientes colores se utilizan con este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Cambios para 3.0 ##
 
 * Corregido un problema  con el gestor de tareas de Windows

@@ -19,6 +19,10 @@ O complemento usa as seguintes cores:
 
 Para desabilitar o realse de objetos, desinstale o complemento.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Mudanças na 3.0 ##
 
 * Consertados problemas com a barra de tarefas do Windows.

@@ -19,6 +19,10 @@ The following colors are used by this addon:
 
 Om object tracking uit te schakelen, verwijdert u de addon.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Changes for 3.0 ##
 
 * Fixed issue with Windows Task Manager.

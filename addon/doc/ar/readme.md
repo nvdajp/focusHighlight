@@ -19,6 +19,10 @@
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## مستجدات الإصدار 3.0 ##
 
 * إصلاح خطأ كان يحدث عند فتح مدير المهام بويندوز

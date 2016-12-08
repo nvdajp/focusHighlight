@@ -17,6 +17,10 @@
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## 3.0에서의 변경사항 ##
 
 * 윈도우즈 작업 관리자에서의 문제점 수정.

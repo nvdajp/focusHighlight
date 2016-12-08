@@ -22,6 +22,10 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Änderungen in 3.0 ##
 
 * Fehler mit dem Windows-Task-Manager behoben.

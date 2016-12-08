@@ -21,6 +21,10 @@ Les couleurs suivantes sont utilisées par ce module complémentaire :
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Changements pour la version 3.0 ##
 
 * Correction d'un problème avec le gestionnaire de tâches Windows.

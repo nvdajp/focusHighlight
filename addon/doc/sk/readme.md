@@ -19,6 +19,10 @@ The following colors are used by this addon:
 
 Ak chcete vypnúť zvýrazňovanie, odinštalujte doplnok.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## Changes for 3.0 ##
 
 * Fixed issue with Windows Task Manager.
