@@ -12,14 +12,13 @@
 * 녹색 점선,navigator 객체를 나타냅니다.
 * 빨간색 얇은 선, 초점이 있는 객체/콘트롤을 나타냅니다.
 *  navigator 객체와 포커스가 있는 객체가 겹치는 경우, 빨간색 굵은 선이 표시됩니다.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* 얇은 슬래시가 있는 파란색의 두꺼운 사각형은, NVDA가 포커스 모드에 있음을 나타냅니다. 즉, 키 유형이 컨트롤로 전달됩니다.
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
 
-## Changes for 4.0 ##
+## 4.0에서의 변경사항 ##
 
-* Hide rectangle if current application is in sleep mode.
+* 현재 응용 프로그램이 NVDA가 일시중지인 상태일 경우 포커스 강조 표시가 숨겨지도록 함
 
 ## 3.0에서의 변경사항 ##
 

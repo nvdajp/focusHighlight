@@ -21,9 +21,9 @@ Seuraavia värejä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
-## Changes for 4.0 ##
+## Muutokset versiossa 4.0 ##
 
-* Hide rectangle if current application is in sleep mode.
+* Suorakulmio piilotetaan, mikäli nykyinen sovellus on lepotilassa.
 
 ## Muutokset versiossa 3.0 ##
 
