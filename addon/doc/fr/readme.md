@@ -21,9 +21,9 @@ Les couleurs suivantes sont utilisées par ce module complémentaire :
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
-## Changes for 4.0 ##
+## Changements pour la version 4.0 ##
 
-* Hide rectangle if current application is in sleep mode.
+* Masquer le rectangle si l'application actuelle est en mode veille.
 
 ## Changements pour la version 3.0 ##
 

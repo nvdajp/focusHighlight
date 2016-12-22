@@ -20,9 +20,9 @@ Los siguientes colores se utilizan con este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
-## Changes for 4.0 ##
+## Cambios para 4.0 ##
 
-* Hide rectangle if current application is in sleep mode.
+* Oculta el rectángulo si la aplicación actual está en modo durmiente.
 
 ## Cambios para 3.0 ##
 
