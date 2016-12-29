@@ -22,9 +22,9 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 4.0 ##
+## Änderungen in 4.0 ##
 
-* Hide rectangle if current application is in sleep mode.
+* Sobald die aktuelle Anwendung im Schlafmodus ist, das Rechteck ausblenden.
 
 ## Änderungen in 3.0 ##
 
