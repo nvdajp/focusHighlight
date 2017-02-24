@@ -202,7 +202,10 @@ def moveAndShowWindow(hwnd, rect):
 
 
 def limitRectInDesktop(newRect):
-	l, t, w, h = api.getDesktopObject().location
+	l = windll.user32.GetSystemMetrics(76) # SM_XVIRTUALSCREEN: left side of the virtual screen
+	t = windll.user32.GetSystemMetrics(77) # SM_YVIRTUALSCREEN: top of the virtual screen
+	w = windll.user32.GetSystemMetrics(78) # SM_CXVIRTUALSCREEN: width of the virtual screen in pixels
+	h = windll.user32.GetSystemMetrics(79) # SM_CYVIRTUALSCREEN: height of the virtual screen in pixels
 	newRect.top = max(0, newRect.top)
 	newRect.left = max(0, newRect.left)
 	newRect.right = max(0, min(l+w, newRect.right))
