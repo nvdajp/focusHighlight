@@ -1,5 +1,4 @@
 # focus highlight
-# 2015-10-25
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -52,7 +51,6 @@ import time
 import ui
 import speech
 import virtualBuffers
-import windowUtils
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -147,6 +145,8 @@ NAVIGATOR_PADDING = 4
 NAVIGATOR_ALPHA = 192
 navigatorHwndList = [0, 0, 0, 0]
 
+focusShouldFixDpi = navigatorShouldFixDpi = 0
+
 ID_TIMER = 100
 UPDATE_PERIOD = 300
 
@@ -190,22 +190,26 @@ def setMarkPositions(marks, region, thickness, padding=0):
 	marks[3].left   = region.right + padding
 	marks[3].right  = region.right + thickness + padding
 
-
-def moveAndShowWindow(hwnd, rect, fixDpi=False):
-	if not hwnd: return
-	left = rect.left
-	top = rect.top
-	right = rect.right
-	bottom = rect.bottom
-	#left, top = windowUtils.physicalToLogicalPoint(hwnd, left, top)
-	#right, bottom = windowUtils.physicalToLogicalPoint(hwnd, right, bottom)
-	if fixDpi:
+def doFixLocation(left, top, right, bottom, fixDpi=0):
+	if fixDpi == 1:
 		default_dpi = 96.0
 		system_dpi = windll.user32.GetDpiForSystem()
 		left = int(system_dpi * left / default_dpi)
 		top = int(system_dpi * top / default_dpi)
 		right = int(system_dpi * right / default_dpi)
 		bottom = int(system_dpi * bottom / default_dpi)
+	elif fixDpi == 2:
+		top += 18
+		bottom += 18
+	return left, top, right, bottom
+
+def moveAndShowWindow(hwnd, rect, fixDpi=0):
+	if not hwnd: return
+	left = rect.left
+	top = rect.top
+	right = rect.right
+	bottom = rect.bottom
+	left, top, right, bottom = doFixLocation(left, top, right, bottom, fixDpi)
 	width = right - left
 	height = bottom - top
 	windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
@@ -243,29 +247,34 @@ def isCurrentAppSleepMode():
 def shouldFixDpi(obj):
 	try:
 		c = windll.user32.GetWindowDpiAwarenessContext(obj.windowHandle)
-		s = 'dpi awareness context %d' % c
-		d = windll.user32.GetDpiForWindow(obj.windowHandle)
-		s += ' dpi for window %d' % d
-		e = windll.user32.GetDpiForSystem()
-		s += ' dpi for system %d' % e
+		#s = 'dpi awareness context %d' % c
+		#d = windll.user32.GetDpiForWindow(obj.windowHandle)
+		#s += ' dpi for window %d' % d
+		#e = windll.user32.GetDpiForSystem()
+		#s += ' dpi for system %d' % e
 		appName = obj.appModule.appName if obj.appModule else ''
 		role = oleacc.GetRoleText(obj.role)
-		log.info(s + ' ' + appName + ' ' + role)
-		if appName in ('iexplore', 'firefox', 'itunes', 'mshta', 'acrord32'):
-			return False
-		if role in ('popup menu', 'menu item'):
+		windowClassName = obj.windowClassName
+		log.info(appName + ' role:' + repr(obj.role) + ' ' + windowClassName + ' ' + obj.name)
+		if appName in ('iexplore', 'firefox', 'itunes', 'mshta', 'acrord32', 'depends', 'mmc'):
+			return 0
+		if windowClassName in ('Chrome_RenderWidgetHostHWND', ):
+			return 2
+		if windowClassName in ('Chrome_WidgetWin_1', 'Chrome_WidgetWin_2'):
+			return 1
+		if obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM):
 			if appName == 'procexp64' and c == 17:
-				return True
+				return 1
 			if c == 18:
-				return True
+				return 1
 	except:
 		pass
-	return False
+	return 0
 
 def updateFocusLocation():
-	global focusRect
+	global focusRect, focusShouldFixDpi
 	focus = api.getFocusObject()
-	fixDpi = shouldFixDpi(focus)
+	focusShouldFixDpi = shouldFixDpi(focus)
 	if locationAvailable(focus):
 		newRect = location2rect(focus.location)
 	else:
@@ -275,16 +284,16 @@ def updateFocusLocation():
 		focusRect = newRect
 		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i], fixDpi)
+			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i], focusShouldFixDpi)
 
 
 def updateNavigatorLocation():
-	global navigatorRect
+	global navigatorRect, navigatorShouldFixDpi
 	try:
 		nav = api.getNavigatorObject()
 	except:
 		return
-	fixDpi = shouldFixDpi(nav)
+	navigatorShouldFixDpi = shouldFixDpi(nav)
 	if locationAvailable(nav):
 		newRect = location2rect(nav.location)
 	elif locationAvailable(api.getFocusObject()):
@@ -296,10 +305,10 @@ def updateNavigatorLocation():
 		navigatorRect = newRect
 		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i], fixDpi)
+			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i], navigatorShouldFixDpi)
 
 
-def createMarkWindow(name, hwndParent, rect, alpha):
+def createMarkWindow(name, hwndParent, rect, alpha, fixDpi=0):
 	global wndclass
 	hwnd = CreateWindowEx(0,
 						wndclass.lpszClassName,
@@ -315,8 +324,11 @@ def createMarkWindow(name, hwndParent, rect, alpha):
 						NULL)
 	left = rect.left
 	top = rect.top
-	width = rect.right - left
-	height = rect.bottom - top
+	right = rect.right
+	bottom = rect.bottom
+	left, top, right, bottom = doFixLocation(left, top, right, bottom, fixDpi)
+	width = right - left
+	height = bottom - top
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
 	exstyle = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
 	exstyle &= ~WS_EX_APPWINDOW
@@ -394,10 +406,10 @@ def createHighlightWin():
 		raise WinError()
 	hwndParent = gui.mainFrame.GetHandle()
 	for i in xrange(4):
-		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
+		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA, focusShouldFixDpi)
 
 	for i in xrange(4):
-		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
+		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA, navigatorShouldFixDpi)
 
 	msg = MSG()
 	pMsg = pointer(msg)
