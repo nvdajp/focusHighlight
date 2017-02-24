@@ -52,6 +52,7 @@ import time
 import ui
 import speech
 import virtualBuffers
+import windowUtils
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -190,12 +191,23 @@ def setMarkPositions(marks, region, thickness, padding=0):
 	marks[3].right  = region.right + thickness + padding
 
 
-def moveAndShowWindow(hwnd, rect):
+def moveAndShowWindow(hwnd, rect, fixDpi=False):
 	if not hwnd: return
 	left = rect.left
 	top = rect.top
-	width = rect.right - left
-	height = rect.bottom - top
+	right = rect.right
+	bottom = rect.bottom
+	#left, top = windowUtils.physicalToLogicalPoint(hwnd, left, top)
+	#right, bottom = windowUtils.physicalToLogicalPoint(hwnd, right, bottom)
+	if fixDpi:
+		default_dpi = 96.0
+		system_dpi = windll.user32.GetDpiForSystem()
+		left = int(system_dpi * left / default_dpi)
+		top = int(system_dpi * top / default_dpi)
+		right = int(system_dpi * right / default_dpi)
+		bottom = int(system_dpi * bottom / default_dpi)
+	width = right - left
+	height = bottom - top
 	windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
 	windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
 	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
@@ -228,9 +240,32 @@ def isCurrentAppSleepMode():
 		return focus.appModule.sleepMode
 	return False
 
+def shouldFixDpi(obj):
+	try:
+		c = windll.user32.GetWindowDpiAwarenessContext(obj.windowHandle)
+		s = 'dpi awareness context %d' % c
+		d = windll.user32.GetDpiForWindow(obj.windowHandle)
+		s += ' dpi for window %d' % d
+		e = windll.user32.GetDpiForSystem()
+		s += ' dpi for system %d' % e
+		appName = obj.appModule.appName if obj.appModule else ''
+		role = oleacc.GetRoleText(obj.role)
+		log.info(s + ' ' + appName + ' ' + role)
+		if appName in ('iexplore', 'firefox', 'itunes', 'mshta', 'acrord32'):
+			return False
+		if role in ('popup menu', 'menu item'):
+			if appName == 'procexp64' and c == 17:
+				return True
+			if c == 18:
+				return True
+	except:
+		pass
+	return False
+
 def updateFocusLocation():
 	global focusRect
 	focus = api.getFocusObject()
+	fixDpi = shouldFixDpi(focus)
 	if locationAvailable(focus):
 		newRect = location2rect(focus.location)
 	else:
@@ -240,7 +275,7 @@ def updateFocusLocation():
 		focusRect = newRect
 		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
+			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i], fixDpi)
 
 
 def updateNavigatorLocation():
@@ -249,6 +284,7 @@ def updateNavigatorLocation():
 		nav = api.getNavigatorObject()
 	except:
 		return
+	fixDpi = shouldFixDpi(nav)
 	if locationAvailable(nav):
 		newRect = location2rect(nav.location)
 	elif locationAvailable(api.getFocusObject()):
@@ -260,7 +296,7 @@ def updateNavigatorLocation():
 		navigatorRect = newRect
 		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
+			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i], fixDpi)
 
 
 def createMarkWindow(name, hwndParent, rect, alpha):
@@ -405,25 +441,37 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 		wx.CallAfter(startThread)
 		
-	#def getRoleName(self, role):
-	#	if role in controlTypes.roleLabels:
-	#		return controlTypes.roleLabels[role]
-	#	return '%d' % role
+	def getRoleName(self, role):
+		if role in controlTypes.roleLabels:
+			return controlTypes.roleLabels[role]
+		return '%d' % role
 
-	#def getStateName(self, states):
-	#	ret = []
-	#	for s in states:
-	#		if s in controlTypes.stateLabels:
-	#			ret.append(controlTypes.stateLabels[s])
-	#	return ','.join(ret)
+	def getStateName(self, states):
+		ret = []
+		for s in states:
+			if s in controlTypes.stateLabels:
+				ret.append(controlTypes.stateLabels[s])
+		return ','.join(ret)
 		
-	#def getInfo(self, obj):
-	#	return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
+	def getInfo(self, obj):
+		s = ''
+		if locationAvailable(obj):
+			s = '(%d %d %d %d) ' % obj.location
+		s += "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
+		try:
+			s += ' (dpi for system %d)' % windll.user32.GetDpiForSystem()
+		except:
+			pass
+		try:
+			s += ' (dpi for window %d)' % windll.user32.GetDpiForWindow(obj.windowHandle)
+		except:
+			pass
+		return s
 
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
-		#log.info("gainFocus %s" % self.getInfo(obj))
+		log.info("gainFocus %s" % self.getInfo(obj))
  		updateFocusLocation()
 		updateNavigatorLocation()
 		invalidateRects()
