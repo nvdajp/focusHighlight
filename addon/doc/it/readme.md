@@ -9,30 +9,31 @@ ipovedenti, educatori vedenti o agli sviluppatori di tenere traccia della
 posizione dell'oggetto sui cui si trova il navigatore ad oggetti, oppure
 dell'oggetto che ha il focus.
 
-The following colors are used by this addon:
+Sono utilizzati i colori seguenti:
 
 * Una linea frastagliata verde, per indicare la posizione del navigatore ad
   oggetti
-* Red thin rectangle, to indicate the focused object/control.
+* Un Rettangolo sottile rosso, per indicare l'oggetto o il controllo che ha
+  il focus
 * Un Rettangolo spesso rosso, per indicare quando il navigatore di oggetti e
   l'oggetto mirato si sovrappongono.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Un rettangolo spesso e blu con linee sottili sta ad indicare che NVDA è in
+  modalità focus
 
 Per disabilitare il monitor  dell'oggetto, disinstallare l'addon.
 
-## Changes for 4.0 ##
+## Cambiamenti per la 4.0. ##
 
-* Hide rectangle if current application is in sleep mode.
+* Nasconde il rettangolo se l'applicazione corrente è in modalità riposo.
 
-## Changes for 3.0 ##
+## Cambiamenti per la 3.0. ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Risolto un problema con il gestore attività di Windows.
+* Capacità di indicare la modalità focus.
 
-## Changes for 2.1 ##
+## Cambiamenti per la 2.1 ##
 
-* New and updated translations.
+* Nuove Traduzioni e aggiornamenti di quelle esistenti.
 
 ## Cambiamenti per la 2.0 ##
 
