@@ -4,9 +4,10 @@
 * Descarcă [Versiunea Stabilă][2]
 * Descarcă [versiunea în dezvoltare][1]
 
-La desenarea unui dreptunghi colorat, acest add-on le permite utilizatorilor
-cu vedere parțială, educatorilor văzători, sau dezvoltatorilor să track
-locația navigatorului de obiecte NVDA și obiectul/controlul focalizat.
+La desenarea unui dreptunghi colorat, acest supliment le permite
+utilizatorilor cu vedere parțială, educatorilor văzători, sau
+dezvoltatorilor să urmărească locația navigatorului de obiecte NVDA și
+obiectul/controlul focalizat.
 
 Culorile utilizate de către acest add-on sunt:
 
@@ -35,7 +36,7 @@ Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
 ## Modificări aduse în 2.0 ##
 
-* Ajutorul add-on-ului este valabil din managerul de add-on-uri.
+* Ajutorul suplimentului este valabil din managerul de add-on-uri.
 
 ## Modificări aduse în versiunea 1.1. ##
 
