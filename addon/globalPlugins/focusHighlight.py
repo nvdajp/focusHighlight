@@ -43,7 +43,7 @@ from win32con import (
 
 import sys
 from ctypes import WINFUNCTYPE, Structure, windll
-from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer
+from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer, POINTER, sizeof
 from ctypes import WinError, GetLastError, FormatError
 from ctypes.wintypes import COLORREF
 import api
@@ -51,6 +51,7 @@ import time
 import ui
 import speech
 import virtualBuffers
+import windowUtils
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -91,6 +92,12 @@ class MSG(Structure):
 				('lParam', c_int),
 				('time', c_int),
 				('pt', POINT)]
+
+class MONITORINFO(Structure):
+	_fields_ = [('cbSize', c_int),   # DWORD
+				('rcMonitor', RECT), # RECT
+				('rcWork', RECT),    # RECT
+				('dwFlags', c_int)]  # DWORD
 
 def ErrorIfZero(handle):
 	if handle == 0:
@@ -145,7 +152,8 @@ NAVIGATOR_PADDING = 4
 NAVIGATOR_ALPHA = 192
 navigatorHwndList = [0, 0, 0, 0]
 
-focusShouldFixDpi = navigatorShouldFixDpi = 0
+focusObject = navObject = None
+focusFixDpiMode = navigatorFixDpiMode = 0
 
 ID_TIMER = 100
 UPDATE_PERIOD = 300
@@ -159,13 +167,173 @@ currentAppSleepMode = False
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
 
-def location2rect(location):
+def getDpiInfo_v1(obj, hmon):
+	scale = 0.01 * getMonitorScaleFactor(hmon)
+	dpiForSystem = windll.user32.GetDpiForSystem()
+	if not hasattr(obj, 'windowHandle'):
+		return 0, dpiForSystem, dpiForSystem, scale
+	wh = obj.windowHandle
+	wdac = (0x0f & windll.user32.GetWindowDpiAwarenessContext(wh))
+	dpiForWindow = windll.user32.GetDpiForWindow(wh)
+
+	appName = obj.appModule.appName
+	wc = obj.windowClassName
+
+	if wdac in (1,2) and (obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM) or wc == '#32768'):
+		if appName == 'procexp64':
+			return wdac, dpiForWindow, dpiForSystem, dpiForWindow / 96.0
+		if appName == 'ffftp':
+			return wdac, dpiForWindow, dpiForSystem, dpiForWindow / 96.0
+		newScale = float(dpiForSystem) / dpiForWindow
+		if appName == 'nvda':
+			return wdac, dpiForWindow, dpiForSystem, newScale
+		if appName == 'notepad++':
+			return wdac, dpiForWindow, dpiForSystem, newScale
+		if newScale > 1.0:
+			log.info('scale %f to %f' % (scale, newScale))
+			return wdac, dpiForWindow, dpiForSystem, newScale
+		else:
+			return wdac, dpiForWindow, dpiForSystem, scale
+	if wdac == 0:
+		log.info('%s %s ac 0 newAC 1' % (appName, wc))
+		wdac, dpiForWindow, dpiForSystem, scale = 1, 96, 96, 1
+	if appName == 'ffftp':
+		if wc == 'SysTreeView32':
+			return wdac, 96, dpiForSystem, scale
+		return wdac, 96, 96, 1
+	if appName == 'explorer' and wc == 'SysListView32':
+		if scale > 1.0:
+			return wdac, dpiForWindow, dpiForSystem, 1
+		return wdac, dpiForWindow, dpiForSystem, (dpiForSystem / 96.0)
+	if appName == 'explorer' and wc == 'DirectUIHWND':
+		return wdac, dpiForWindow, dpiForSystem, 1
+ 	if ((wc == 'Edit' and appName == 'notepad') or wc == 'VirtualConsoleClass' or wc == 'ConsoleWindowClass') and (dpiForSystem != dpiForWindow):
+		return wdac, dpiForWindow, dpiForSystem, scale
+	if appName == 'microsoftedgecp':
+		return wdac, dpiForWindow, dpiForSystem, scale
+	if appName == 'chrome':
+		if wc == 'Chrome_WidgetWin_1':
+			return wdac, dpiForWindow, dpiForSystem, scale
+		#elif wc == 'Chrome_RenderWidgetHostHWND':
+		#	return wdac, dpiForWindow, dpiForSystem, 1.1#(dpiForSystem / 96.0)
+	newScale = float(dpiForSystem) / dpiForWindow
+	log.info('%s %s ac %d scale %f newScale %f' % (appName, wc, wdac, scale, newScale))
+	return wdac, dpiForWindow, dpiForSystem, newScale
+
+def getDpiInfo(obj, hmon):
+	pt = POINT()
+	pt.x = 0
+	pt.y = 0
+	hprimon = windll.user32.MonitorFromPoint(pt, 0)
+	pmScale = 0.01 * getMonitorScaleFactor(hprimon)
+	scale = 0.01 * getMonitorScaleFactor(hmon)
+	dpiForSystem = windll.user32.GetDpiForSystem()
+	if not hasattr(obj, 'windowHandle'):
+		return 0, dpiForSystem, dpiForSystem, scale
+	wh = obj.windowHandle
+	wdac = (0x0f & windll.user32.GetWindowDpiAwarenessContext(wh))
+	dpiForWindow = windll.user32.GetDpiForWindow(wh)
+
+	appName = obj.appModule.appName
+	wc = obj.windowClassName
+
+	newScale = float(dpiForSystem) / dpiForWindow if dpiForWindow > 0 else 1.0
+	if wdac == 0:
+		newScale = 1.0
+		log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+	elif wdac == 1:
+		if obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM) or wc == '#32768':
+			newScale = pmScale
+			#log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+		else:
+			newScale = 1.0
+			#log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+	elif wdac == 2:
+		if appName == 'iexplore':
+			pass
+		elif appName == 'explorer':
+			if wc == 'DirectUIHWND':
+				newScale = 1.0
+				log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+		elif wc == 'Edit' or wc == 'VirtualConsoleClass' or wc == 'ConsoleWindowClass':
+			newScale = 1.0
+			log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+		elif obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM) or wc == '#32768':
+			newScale = pmScale
+			#log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+	else:
+		log.info('ac %d %s %s scale %f newScale %f' % (wdac, appName, wc, scale, newScale))
+	return wdac, dpiForWindow, dpiForSystem, newScale
+
+def getMonitorScaleFactor(hmon):
+	scaleFactor = c_int()
+	hResult = windll.shcore.GetScaleFactorForMonitor(hmon, byref(scaleFactor))
+	if hResult != 0:
+		log.error('GetScaleFactorForMonitor (not S_OK) %x' % hResult)
+	return scaleFactor.value
+
+def getMonInfo(obj):
+	if locationAvailable(obj):
+		left, top, width, height = obj.location
+		pt = POINT()
+		pt.x = left + width / 2
+		pt.y = top + height / 2
+		hmon = windll.user32.MonitorFromPoint(pt, 0)
+	else:
+		hmon = windll.user32.MonitorFromWindow(obj.windowHandle, 0)
+	monInfo = MONITORINFO()
+	monInfo.cbSize = sizeof(MONITORINFO)
+	bResult = windll.user32.GetMonitorInfoA(hmon, byref(monInfo))
+	if bResult == 0:
+		log.error('GetMonitorInfoA error %x' % GetLastError())
+	# current monitor DPI
+	# https://msdn.microsoft.com/en-us/library/windows/desktop/dn280510(v=vs.85).aspx
+	dpiX = c_int()
+	dpiY = c_int()
+	hResult = windll.shcore.GetDpiForMonitor(hmon, 0, byref(dpiX), byref(dpiY))
+	if hResult != 0:
+		log.error('GetDpiForMonitor (not S_OK) %x' % hResult)
+	return monInfo, dpiX.value, dpiY.value, hmon
+
+def getMonPos(monInfo, dpiX, dpiY):
+	ml = int(monInfo.rcMonitor.left)
+	mt = int(monInfo.rcMonitor.top)
+	mr = int(monInfo.rcMonitor.right)
+	mb = int(monInfo.rcMonitor.bottom)
+	#if dpiX > 0:
+	#	ml = int(ml * 96.0 / dpiX)
+	#	mr = int(mr * 96.0 / dpiX)
+	#if dpiY > 0:
+	#	mt = int(mt * 96.0 / dpiY)
+	#	mb = int(mb * 96.0 / dpiY)
+	return ml, mt, mr, mb
+
+def objToRect(obj):
+	location = obj.location
 	rect = RECT()
-	if location and len(location) >= 4:
-		rect.left = location[0]
-		rect.top = location[1]
-		rect.right = rect.left + location[2]
-		rect.bottom = rect.top + location[3]
+	if not (location and len(location) >= 4):
+		return rect
+	monInfo, dpiX, dpiY, hmon = getMonInfo(obj)
+	monLeft, monTop, monRight, monBottom = getMonPos(monInfo, dpiX, dpiY)
+	wdac, dpiForWindow, dpiForSystem, scale = getDpiInfo(obj, hmon)
+	left, top, width, height = location
+	leftInMon = left
+	topInMon = top
+	if wdac == 0:
+		leftInMon -= monLeft
+		topInMon  -= monTop
+	#scale = float(dpiForSystem) / float(dpiForWindow) if dpiForWindow > 0 else 1
+	leftInMon *= scale
+	topInMon *= scale
+	width *= scale
+	height *= scale
+	rect.left = int(leftInMon)
+	rect.top  = int(topInMon)
+	if wdac == 0:
+		rect.left += int(monLeft)
+		rect.top += int(monTop)
+	rect.right = int(rect.left + width)
+	rect.bottom = int(rect.top + height)
 	return rect
 
 
@@ -190,26 +358,22 @@ def setMarkPositions(marks, region, thickness, padding=0):
 	marks[3].left   = region.right + padding
 	marks[3].right  = region.right + thickness + padding
 
-def doFixLocation(left, top, right, bottom, fixDpi=0):
-	if fixDpi == 1:
-		default_dpi = 96.0
-		system_dpi = windll.user32.GetDpiForSystem()
-		left = int(system_dpi * left / default_dpi)
-		top = int(system_dpi * top / default_dpi)
-		right = int(system_dpi * right / default_dpi)
-		bottom = int(system_dpi * bottom / default_dpi)
-	elif fixDpi == 2:
-		top += 18
-		bottom += 18
-	return left, top, right, bottom
+#def doFixLocation(left, top, right, bottom, dpiAC=0, dpiForWindow=96.0, dpiForSystem=96.0):
+#	if dpiAC == 2:
+#		scale = dpiForSystem / dpiForWindow
+#		left = int(left * scale)
+#		top = int(top * scale)
+#		right = int(right * scale)
+#		bottom = int(bottom * scale)
+#	return left, top, right, bottom
 
-def moveAndShowWindow(hwnd, rect, fixDpi=0):
+def moveAndShowWindow(hwnd, rect):
 	if not hwnd: return
 	left = rect.left
 	top = rect.top
 	right = rect.right
 	bottom = rect.bottom
-	left, top, right, bottom = doFixLocation(left, top, right, bottom, fixDpi)
+	#left, top, right, bottom = doFixLocation(left, top, right, bottom, dpiAC, dpiForWindow, dpiForSystem)
 	width = right - left
 	height = bottom - top
 	windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
@@ -217,16 +381,24 @@ def moveAndShowWindow(hwnd, rect, fixDpi=0):
 	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
 
 
-def limitRectInDesktop(newRect):
-	l = windll.user32.GetSystemMetrics(76) # SM_XVIRTUALSCREEN: left side of the virtual screen
-	t = windll.user32.GetSystemMetrics(77) # SM_YVIRTUALSCREEN: top of the virtual screen
-	w = windll.user32.GetSystemMetrics(78) # SM_CXVIRTUALSCREEN: width of the virtual screen in pixels
-	h = windll.user32.GetSystemMetrics(79) # SM_CYVIRTUALSCREEN: height of the virtual screen in pixels
-	newRect.top = max(0, newRect.top)
-	newRect.left = max(0, newRect.left)
-	newRect.right = max(0, min(l+w, newRect.right))
-	newRect.bottom = max(0, min(t+h, newRect.bottom))
-	return newRect
+#def limitRectInDesktop(newRect, dpiAC=0, dpiForWindow=96.0, dpiForSystem=96.0):
+#	#l = windll.user32.GetSystemMetrics(76) # SM_XVIRTUALSCREEN: left side of the virtual screen
+#	#t = windll.user32.GetSystemMetrics(77) # SM_YVIRTUALSCREEN: top of the virtual screen
+#	#w = windll.user32.GetSystemMetrics(78) # SM_CXVIRTUALSCREEN: width of the virtual screen in pixels
+#	#h = windll.user32.GetSystemMetrics(79) # SM_CYVIRTUALSCREEN: height of the virtual screen in pixels
+#	#r = l+w
+#	#b = t+h
+#	#if dpiAC == 2:
+#	#	scale = dpiForWindow / dpiForSystem
+#	#	l *= scale
+#	#	t *= scale
+#	#	r *= scale
+#	#	b *= scale
+#	#newRect.top = max(0, newRect.top)
+#	#newRect.left = max(0, newRect.left)
+#	#newRect.right = max(0, min(r, newRect.right))
+#	#newRect.bottom = max(0, min(b, newRect.bottom))
+#	return newRect
 
 
 def locationAvailable(obj):
@@ -244,71 +416,46 @@ def isCurrentAppSleepMode():
 		return focus.appModule.sleepMode
 	return False
 
-def shouldFixDpi(obj):
-	try:
-		c = windll.user32.GetWindowDpiAwarenessContext(obj.windowHandle)
-		#s = 'dpi awareness context %d' % c
-		#d = windll.user32.GetDpiForWindow(obj.windowHandle)
-		#s += ' dpi for window %d' % d
-		#e = windll.user32.GetDpiForSystem()
-		#s += ' dpi for system %d' % e
-		appName = obj.appModule.appName if obj.appModule else ''
-		role = oleacc.GetRoleText(obj.role)
-		windowClassName = obj.windowClassName
-		log.info(appName + ' role:' + repr(obj.role) + ' ' + windowClassName + ' ' + obj.name)
-		if appName in ('iexplore', 'firefox', 'itunes', 'mshta', 'acrord32', 'depends', 'mmc'):
-			return 0
-		if windowClassName in ('Chrome_RenderWidgetHostHWND', ):
-			return 2
-		if windowClassName in ('Chrome_WidgetWin_1', 'Chrome_WidgetWin_2'):
-			return 1
-		if obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM):
-			if appName == 'procexp64' and c == 17:
-				return 1
-			if c == 18:
-				return 1
-	except:
-		pass
-	return 0
-
 def updateFocusLocation():
-	global focusRect, focusShouldFixDpi
+	global focusRect, focusFixDpiMode, focusObject
 	focus = api.getFocusObject()
-	focusShouldFixDpi = shouldFixDpi(focus)
 	if locationAvailable(focus):
-		newRect = location2rect(focus.location)
+		newRect = objToRect(focus)
 	else:
 		return
-	newRect = limitRectInDesktop(newRect)
+	focusObject = focus
+	#focusFixDpiMode, dpiForWindow, dpiForSystem = getDpiInfo(focus)
+	#newRect = limitRectInDesktop(newRect, focusFixDpiMode, dpiForWindow, dpiForSystem)
 	if not rectEquals(newRect, focusRect):
 		focusRect = newRect
 		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i], focusShouldFixDpi)
+			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
 
 
 def updateNavigatorLocation():
-	global navigatorRect, navigatorShouldFixDpi
+	global navigatorRect, navigatorFixDpiMode, navObject
 	try:
 		nav = api.getNavigatorObject()
 	except:
 		return
-	navigatorShouldFixDpi = shouldFixDpi(nav)
 	if locationAvailable(nav):
-		newRect = location2rect(nav.location)
+		newRect = objToRect(nav)
 	elif locationAvailable(api.getFocusObject()):
-		newRect = location2rect(api.getFocusObject().location)
+		newRect = objToRect(api.getFocusObject())
 	else:
 		return
-	newRect = limitRectInDesktop(newRect)
+	navObject = nav
+	#navigatorFixDpiMode, dpiForWindow, dpiForSystem = getDpiInfo(nav)
+	#newRect = limitRectInDesktop(newRect, navigatorFixDpiMode, dpiForWindow, dpiForSystem)
 	if not rectEquals(newRect, navigatorRect):
 		navigatorRect = newRect
 		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
 		for i in xrange(4):
-			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i], navigatorShouldFixDpi)
+			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
 
 
-def createMarkWindow(name, hwndParent, rect, alpha, fixDpi=0):
+def createMarkWindow(name, hwndParent, rect, alpha):
 	global wndclass
 	hwnd = CreateWindowEx(0,
 						wndclass.lpszClassName,
@@ -326,7 +473,7 @@ def createMarkWindow(name, hwndParent, rect, alpha, fixDpi=0):
 	top = rect.top
 	right = rect.right
 	bottom = rect.bottom
-	left, top, right, bottom = doFixLocation(left, top, right, bottom, fixDpi)
+	#left, top, right, bottom = doFixLocation(left, top, right, bottom, dpiAC, dpiForWindow, dpiForSystem)
 	width = right - left
 	height = bottom - top
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
@@ -405,11 +552,12 @@ def createHighlightWin():
 	if not windll.user32.RegisterClassA(byref(wndclass)):
 		raise WinError()
 	hwndParent = gui.mainFrame.GetHandle()
+	#dpiAC, dpiForWindow, dpiForSystem = getDpiInfo(focusObject)
 	for i in xrange(4):
-		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA, focusShouldFixDpi)
-
+		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
+	#dpiAC, dpiForWindow, dpiForSystem = getDpiInfo(navObject)
 	for i in xrange(4):
-		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA, navigatorShouldFixDpi)
+		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
 
 	msg = MSG()
 	pMsg = pointer(msg)
@@ -466,24 +614,57 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		return ','.join(ret)
 		
 	def getInfo(self, obj):
-		s = ''
+		#if obj.appModule.appName != 'notepad': return None
+		if obj.appModule:
+			s = '(app %s) ' % obj.appModule.appName
+		else:
+			s = ''
+		s += "(wc %s)" % obj.windowClassName
+		rect = None
 		if locationAvailable(obj):
-			s = '(%d %d %d %d) ' % obj.location
-		s += "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
-		try:
-			s += ' (dpi for system %d)' % windll.user32.GetDpiForSystem()
-		except:
-			pass
-		try:
-			s += ' (dpi for window %d)' % windll.user32.GetDpiForWindow(obj.windowHandle)
-		except:
-			pass
+			rect = objToRect(obj)
+		if rect:
+			s += ' (rect pos %d %d size %d %d)' % (rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top)
+			#px, py = windowUtils.logicalToPhysicalPoint(obj.windowHandle, rect.left, rect.top)
+			#s += ' (phys pos %d %d)' % (px, py)
+			#lx, ly = windowUtils.physicalToLogicalPoint(obj.windowHandle, rect.left, rect.top)
+			#s += ' (logi pos %d %d)' % (lx, ly)
+		monInfo, dpiX, dpiY, hmon = getMonInfo(obj)
+		wdac, dpiForWindow, dpiForSystem, scale = getDpiInfo(obj, hmon)
+		s += ' (dpi ac %d win %d sys %d scale %.2f)' % (wdac, dpiForWindow, dpiForSystem, scale)
+		ml, mt, mr, mb = getMonPos(monInfo, dpiX, dpiY)
+		s += ' (mon pos %d %d size %d %d)' % (
+			ml, mt,
+			mr - ml,
+			mb - mt
+		)
+		if rect:
+			s += ' (posInMon %d %d)' % (
+				rect.left   - ml,
+				rect.top    - mt
+			)
+		#s += ' (workRect %d %d %d %d)' % (
+		#	monInfo.rcWork.left,
+		#	monInfo.rcWork.top,
+		#	monInfo.rcWork.right,
+		#	monInfo.rcWork.bottom
+		#)
+		s += ' (primary %d)' % monInfo.dwFlags
+		s += ' (dpiMon %d %d)' % (dpiX, dpiY)
+		# available monitors
+		cmon = windll.user32.GetSystemMetrics(80) # SM_CMONITORS
+		s += ' (cMon %d)' % cmon
+		s += " (role %s state %s roletext %s)" % (self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role))
+		if obj.name:
+			s += " (name %s)" % obj.name
 		return s
 
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
-		log.info("gainFocus %s" % self.getInfo(obj))
+		s = self.getInfo(obj)
+		if s:
+			log.info(s)
  		updateFocusLocation()
 		updateNavigatorLocation()
 		invalidateRects()
