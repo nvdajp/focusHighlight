@@ -227,7 +227,10 @@ def getDpiInfo(obj, hmon):
 	hprimon = windll.user32.MonitorFromPoint(pt, 0)
 	pmScale = 0.01 * getMonitorScaleFactor(hprimon)
 	scale = 0.01 * getMonitorScaleFactor(hmon)
-	dpiForSystem = windll.user32.GetDpiForSystem()
+	try:
+		dpiForSystem = windll.user32.GetDpiForSystem()
+	except AttributeError:
+		return 0, 96, 96, scale
 	if not hasattr(obj, 'windowHandle'):
 		return 0, dpiForSystem, dpiForSystem, scale
 	wh = obj.windowHandle
@@ -267,7 +270,10 @@ def getDpiInfo(obj, hmon):
 
 def getMonitorScaleFactor(hmon):
 	scaleFactor = c_int()
-	hResult = windll.shcore.GetScaleFactorForMonitor(hmon, byref(scaleFactor))
+	try:
+		hResult = windll.shcore.GetScaleFactorForMonitor(hmon, byref(scaleFactor))
+	except WindowsError:
+		return 100
 	if hResult != 0:
 		log.error('GetScaleFactorForMonitor (not S_OK) %x' % hResult)
 	return scaleFactor.value
@@ -290,7 +296,10 @@ def getMonInfo(obj):
 	# https://msdn.microsoft.com/en-us/library/windows/desktop/dn280510(v=vs.85).aspx
 	dpiX = c_int()
 	dpiY = c_int()
-	hResult = windll.shcore.GetDpiForMonitor(hmon, 0, byref(dpiX), byref(dpiY))
+	try:
+		hResult = windll.shcore.GetDpiForMonitor(hmon, 0, byref(dpiX), byref(dpiY))
+	except WindowsError:
+		return monInfo, 96, 96, hmon
 	if hResult != 0:
 		log.error('GetDpiForMonitor (not S_OK) %x' % hResult)
 	return monInfo, dpiX.value, dpiY.value, hmon
