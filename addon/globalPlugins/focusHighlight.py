@@ -622,7 +622,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		preparing = False
 		s = self.getInfo(obj)
 		if s:
-			log.info(s)
+			log.debug(s)
  		updateFocusLocation()
 		updateNavigatorLocation()
 		invalidateRects()
