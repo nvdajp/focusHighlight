@@ -174,22 +174,22 @@ transColor.value = TRANS_RGB
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
 # focus (passthrough)
-ptARGB = makeARGB(255, 0x00, 0x00, 0xff)
-ptDashStyle = 4
-ptThickness = 2
+ptARGB = makeARGB(255, 0x22, 0x22, 0xff)
+ptDashStyle = 2
+ptThickness = 12
 
 # focus
 fcARGB = makeARGB(255, 0xff, 0x00, 0x00)
 fcDashStyle = 0
-fcThickness = 5
+fcThickness = 6
 
 # navigator
 navARGB = makeARGB(255, 0x00, 0xff, 0x00)
-navDashStyle = 2
-navThickness = 3
+navDashStyle = 3
+navThickness = 4
 
-PADDING_THIN = 15
-PADDING_THICK = 12
+PADDING_THIN = 10
+PADDING_THICK = 5
 WINDOW_ALPHA = 192
 
 ID_TIMER = 100
@@ -316,9 +316,9 @@ def doPaint(hwnd):
 		if currentAppSleepMode:
 			pass
 		elif passThroughMode:
-			argb, dashStyle, thickness, padding = ptARGB, ptDashStyle, ptThickness, PADDING_THIN
+			argb, dashStyle, thickness, padding = ptARGB, ptDashStyle, ptThickness, PADDING_THICK
 		else:
-			argb, dashStyle, thickness, padding = fcARGB, fcDashStyle, fcThickness, PADDING_THIN
+			argb, dashStyle, thickness, padding = fcARGB, fcDashStyle, fcThickness, PADDING_THICK
 		if rectEquals(focusRect, navigatorRect):
 			if not passThroughMode:
 				thickness *= 2
@@ -452,8 +452,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
-
-		windll.shcore.SetProcessDpiAwareness(2)
 		self.gdipToken = c_ulong()
 		startupInput = GdiplusStartupInput()
 		startupInput.GdiplusVersion = 1

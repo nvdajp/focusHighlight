@@ -8,12 +8,18 @@ By drawing a colored rectangle, this addon enables partially sighted users, sigh
 
 The following colors are used by this addon:
 
-* Green jagged line, to indicate the navigator object.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Red thin rectangle, to indicate the focused object/control.
 * Red thick rectangle, to indicate when navigator object and focused object are overlapping.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode, i.e. key types are passed to the control.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode, i.e. key types are passed to the control.
 
 To disable object tracking, uninstall the addon.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
