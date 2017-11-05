@@ -1,4 +1,5 @@
 # focus highlight
+# 2017-09-12
 # Takuya Nishimoto
 
 import globalPluginHandler
@@ -26,11 +27,13 @@ from win32con import (
 	LWA_COLORKEY,
 	LWA_ALPHA,
 	SWP_NOACTIVATE,
+	SW_HIDE,
 	SW_SHOWNA,
 	WM_PAINT,
 	WM_DESTROY,
 	WM_SHOWWINDOW,
 	WM_TIMER,
+	WM_ERASEBKGND,
 	WS_CAPTION,
 	WS_DISABLED,
 	WS_POPUP,
@@ -43,15 +46,17 @@ from win32con import (
 
 import sys
 from ctypes import WINFUNCTYPE, Structure, windll
-from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer, POINTER, sizeof
+from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer, c_uint32, c_void_p, c_ulong, c_float
 from ctypes import WinError, GetLastError, FormatError
-from ctypes.wintypes import COLORREF
+from ctypes.wintypes import COLORREF, BOOL, POINTER
 import api
 import time
 import ui
 import speech
 import virtualBuffers
-import windowUtils
+from windowUtils import physicalToLogicalPoint
+
+gdiplus = windll.gdiplus
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
 
@@ -93,11 +98,56 @@ class MSG(Structure):
 				('time', c_int),
 				('pt', POINT)]
 
-class MONITORINFO(Structure):
-	_fields_ = [('cbSize', c_int),   # DWORD
-				('rcMonitor', RECT), # RECT
-				('rcWork', RECT),    # RECT
-				('dwFlags', c_int)]  # DWORD
+class GdiplusStartupInput(Structure):
+	_fields_ = [
+		('GdiplusVersion', c_uint32),
+		('DebugEventCallback', c_void_p),
+		('SuppressBackgroundThread', BOOL),
+		('SuppressExternalCodecs', BOOL)
+	]
+
+class GdiplusStartupOutput(Structure):
+	_fields = [
+		('NotificationHookProc', c_void_p),
+		('NotificationUnhookProc', c_void_p)
+	]
+
+c_void_p_p = POINTER(c_void_p)
+
+# GpStatus WINGDIPAPI GdipCreateFromHDC(HDC hdc, GpGraphics **graphics);
+gdiplus.GdipCreateFromHDC.argtypes = [c_int, c_void_p_p]
+gdiplus.GdipCreateFromHDC.restype = c_int
+
+# GpStatus WINGDIPAPI GdipCreatePen1(
+#  ARGB color, (DWORD = c_int)
+#  REAL width, (float = c_float)
+#  GpUnit unit, (enum = c_int)
+#	 0: world (non-physical) coordinates
+#	 2: Each unit is one device pixel
+#  GpPen **pen	(c_void_p_p)
+# );
+gdiplus.GdipCreatePen1.argtypes = [c_int, c_float, c_int, c_void_p_p]
+gdiplus.GdipCreatePen1.restype = c_int
+
+# GpStatus WINGDIPAPI GdipSetPenDashStyle(GpPen*,GpDashStyle);
+gdiplus.GdipSetPenDashStyle.argtypes = [c_void_p, c_int]
+gdiplus.GdipSetPenDashStyle.restype = c_int
+
+# GpStatus WINGDIPAPI GdipDrawLine(GpGraphics *graphics, GpPen *pen, REAL x1, REAL y1, REAL x2, REAL y2);
+gdiplus.GdipDrawLine.argtypes = [c_void_p, c_void_p, c_float, c_float, c_float, c_float]
+gdiplus.GdipDrawLine.restype = c_int
+
+# GpStatus WINGDIPAPI GdipDrawRectangle(GpGraphics *graphics, GpPen *pen, REAL x, REAL y, REAL w, REAL h);
+gdiplus.GdipDrawRectangle.argtypes = [c_void_p, c_void_p, c_float, c_float, c_float, c_float]
+gdiplus.GdipDrawRectangle.restype = c_int
+
+# GpStatus WINGDIPAPI GdipDeletePen(GpPen *pen);
+gdiplus.GdipDeletePen.argtypes = [c_void_p]
+gdiplus.GdipDeletePen.restype = c_int
+
+# GpStatus WINGDIPAPI GdipDeleteGraphics(GpGraphics *graphics);
+gdiplus.GdipDeleteGraphics.argtypes = [c_void_p]
+gdiplus.GdipDeleteGraphics.restype = c_int
 
 def ErrorIfZero(handle):
 	if handle == 0:
@@ -110,52 +160,46 @@ ERROR_CLASS_HAS_WINDOWS = 1412
 def RGB(r,g,b):
 	return r | (g<<8) | (b<<16)
 
+def makeARGB(a,r,g,b):
+	return (a<<24) | (r<<16) | (g<<8) | b
+
 CreateWindowEx = windll.user32.CreateWindowExA
 CreateWindowEx.argtypes = [c_int, c_char_p, c_char_p, c_int, c_int, c_int, c_int, c_int, c_int, c_int, c_int, c_int]
 CreateWindowEx.restype = ErrorIfZero
 
 # Transparent color key
+TRANS_RGB = RGB(0, 0, 0)
 transColor = COLORREF()
-transColor.value = RGB(0xff, 0xff, 0xff)
+transColor.value = TRANS_RGB
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
-TRANS_ALPHA = 0
 
-brMarkColor = COLORREF()
-brMarkColor.value = RGB(0xff, 0x00, 0x00)
-brBkColor = COLORREF()
-brBkColor.value = RGB(0xff, 0xff, 0xff)
-brMarkBrush = windll.gdi32.CreateSolidBrush(brMarkColor)
+# focus (passthrough)
+ptARGB = makeARGB(255, 0x00, 0x00, 0xff)
+ptDashStyle = 4
+ptThickness = 2
 
-ptMarkColor = COLORREF()
-ptMarkColor.value = RGB(0xff, 0xff, 0xff)
-ptBkColor = COLORREF()
-ptBkColor.value = RGB(0x00, 0x3f, 0xff)
-ptMarkBrush = windll.gdi32.CreateHatchBrush(HS_BDIAGONAL, ptMarkColor)
+# focus
+fcARGB = makeARGB(255, 0xff, 0x00, 0x00)
+fcDashStyle = 0
+fcThickness = 5
 
-focusRect = RECT()
-focusMarkRectList = [RECT(), RECT(), RECT(), RECT()]
-FOCUS_THICKNESS = 4
-FOCUS_PADDING = 0
-FOCUS_ALPHA = 192
-focusHwndList = [0, 0, 0, 0]
+# navigator
+navARGB = makeARGB(255, 0x00, 0xff, 0x00)
+navDashStyle = 2
+navThickness = 3
 
-navigatorMarkColor = COLORREF()
-navigatorMarkColor.value = RGB(0x00, 0x00, 0xff)
-navBkColor = COLORREF()
-navBkColor.value = RGB(0x00, 0xff, 0x00)
-navigatorMarkBrush = windll.gdi32.CreateHatchBrush(HS_DIAGCROSS, navigatorMarkColor)
-
-navigatorRect = RECT()
-navigatorMarkRectList = [RECT(), RECT(), RECT(), RECT()]
-NAVIGATOR_THICKNESS = 4
-NAVIGATOR_PADDING = 4
-NAVIGATOR_ALPHA = 192
-navigatorHwndList = [0, 0, 0, 0]
-
-focusObject = navObject = None
+PADDING_THIN = 15
+PADDING_THICK = 12
+WINDOW_ALPHA = 192
 
 ID_TIMER = 100
 UPDATE_PERIOD = 300
+
+focusRect = RECT()
+focusHwnd = 0
+
+navigatorRect = RECT()
+navigatorHwnd = 0
 
 wndclass = None
 preparing = True
@@ -166,204 +210,28 @@ currentAppSleepMode = False
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
 
-def getPrimaryMonitorHandle():
-	pt = POINT()
-	pt.x = 0
-	pt.y = 0
-	return windll.user32.MonitorFromPoint(pt, 0)
-
-def getMonFromPoint(x, y):
-	pt = POINT()
-	pt.x = x
-	pt.y = y
-	return windll.user32.MonitorFromPoint(pt, 0)
-
-def getMonHandle(obj):
-	if locationAvailable(obj):
-		left, top, width, height = obj.location
-		return getMonFromPoint(left + width / 2, top + height / 2)
-	return windll.user32.MonitorFromWindow(obj.windowHandle, 0)
-
-def getDpiInfo(obj, hmon):
-	scale = 0.01 * getMonitorScaleFactor(hmon)
-	try:
-		dpiForSystem = windll.user32.GetDpiForSystem()
-	except AttributeError:
-		return 0, 96, 96, scale
-	if not hasattr(obj, 'windowHandle'):
-		return 0, dpiForSystem, dpiForSystem, scale
-	wh = obj.windowHandle
-	wdac = (0x0f & windll.user32.GetWindowDpiAwarenessContext(wh))
-	dpiForWindow = windll.user32.GetDpiForWindow(wh)
-
-	return wdac, dpiForWindow, dpiForSystem, scale
-
-def getMonitorScaleFactor(hmon):
-	scaleFactor = c_int()
-	try:
-		hResult = windll.shcore.GetScaleFactorForMonitor(hmon, byref(scaleFactor))
-	except WindowsError:
-		return 100
-	if hResult != 0:
-		log.warning('GetScaleFactorForMonitor (not S_OK) %x' % hResult)
-	return scaleFactor.value
-
-def getMonInfo(hmon):
-	monInfo = MONITORINFO()
-	monInfo.cbSize = sizeof(MONITORINFO)
-	bResult = windll.user32.GetMonitorInfoA(hmon, byref(monInfo))
-	if bResult == 0:
-		log.warning('GetMonitorInfoA error %x' % GetLastError())
-	# current monitor DPI
-	# https://msdn.microsoft.com/en-us/library/windows/desktop/dn280510(v=vs.85).aspx
-	dpiX = c_int()
-	dpiY = c_int()
-	try:
-		hResult = windll.shcore.GetDpiForMonitor(hmon, 0, byref(dpiX), byref(dpiY))
-	except WindowsError:
-		return monInfo, 96, 96
-	if hResult != 0:
-		log.warning('GetDpiForMonitor (not S_OK) %x' % hResult)
-	return monInfo, dpiX.value, dpiY.value
-
-def getMonPos(monInfo):
-	ml = int(monInfo.rcMonitor.left)
-	mt = int(monInfo.rcMonitor.top)
-	mr = int(monInfo.rcMonitor.right)
-	mb = int(monInfo.rcMonitor.bottom)
-	return ml, mt, mr, mb
-
-def objToRect(obj):
-	location = obj.location
+def location2rect(location):
 	rect = RECT()
-	if not (location and len(location) >= 4):
-		return rect
-	hmon = getMonHandle(obj)
-	monInfo, dpiX, dpiY = getMonInfo(hmon)
-	monLeft, monTop, monRight, monBottom = getMonPos(monInfo)
-	wdac, dpiForWindow, dpiForSystem, scale = getDpiInfo(obj, hmon)
-	appName = obj.appModule.appName
-	wc = obj.windowClassName
-	hprimon = getPrimaryMonitorHandle()
-	pmScale = 0.01 * getMonitorScaleFactor(hprimon)
-
-	isPrimon = (hmon == hprimon)
-	isNonClient = (obj.role in (oleacc.ROLE_SYSTEM_MENUPOPUP, oleacc.ROLE_SYSTEM_MENUITEM) or wc == '#32768')
-	isPhysicalCoord = (
-		wc in ('Edit', 'VirtualConsoleClass', 'ConsoleWindowClass', 'ToolbarWindow32') or
-		(appName == 'explorer' and wc == 'DirectUIHWND') or
-		wc in ('Windows.UI.Core.CoreWindow', 'Windows.UI.Core.CoreComponentInputSource')
-	)
-	shouldScaleInMonitor = False
-	newScale = 1.0
-	#if wdac == 0:
-	#	if isNonClient:
-	#		newScale = pmScale
-	#	elif appName == 'itunes':
-	#		newScale = pmScale
-	#elif wdac == 1:
-	#	if isNonClient and appName != 'nvda':
-	#		newScale = pmScale
-	#elif wdac == 2:
-	#	if isNonClient:
-	#		newScale = pmScale
-	#	elif appName == 'chrome':
-	#		if wc == 'Chrome_WidgetWin_1':
-	#			newScale = pmScale
-	#		else:
-	#			pass # FIXME
-	#	elif wc == 'Internet Explorer_Server':
-	#		pass # FIXME
-	#	elif isPhysicalCoord:
-	#		newScale = 1.0
-	#	elif not isPrimon:
-	#		newScale = pmScale / scale
-	#		shouldScaleInMonitor = True
-	if isNonClient and appName != 'nvda':
-		newScale = pmScale
-	elif appName == 'itunes':
-		newScale = pmScale
-	elif appName == 'chrome':
-		if wc == 'Chrome_WidgetWin_1':
-			newScale = pmScale
-		else:
-			pass # FIXME
-	elif wc == 'Internet Explorer_Server':
-		pass # FIXME
-	elif isPhysicalCoord:
-		newScale = 1.0
-	elif wdac != 0 and not isPrimon:
-		newScale = pmScale / scale
-		shouldScaleInMonitor = True
-
-	left, top, width, height = location
-	leftInMon = left
-	topInMon = top
-	if shouldScaleInMonitor:
-		leftInMon -= monLeft
-		topInMon  -= monTop
-	leftInMon *= newScale
-	topInMon *= newScale
-	width *= newScale
-	height *= newScale
-	rect.left = int(leftInMon)
-	rect.top  = int(topInMon)
-	if shouldScaleInMonitor:
-		rect.left += int(monLeft)
-		rect.top += int(monTop)
-	rect.right = int(rect.left + width)
-	rect.bottom = int(rect.top + height)
+	if location and len(location) >= 4:
+		rect.left = location[0]
+		rect.top = location[1]
+		rect.right = rect.left + location[2]
+		rect.bottom = rect.top + location[3]
 	return rect
 
 
-def setMarkPositions(marks, region, thickness, padding=0):
-	marks[0].top    = region.top - thickness - padding
-	marks[0].bottom = region.top - padding
-	marks[0].left   = region.left - padding
-	marks[0].right  = region.right + padding
+def physicalRectToLogicalLocation(hwnd, rect, margin=15):
+	left, top = physicalToLogicalPoint(hwnd, rect.left - margin, rect.top - margin)
+	right, bottom = physicalToLogicalPoint(hwnd, rect.right + margin, rect.bottom + margin)
+	return left, top, right - left, bottom - top
 
-	marks[1].top    = region.bottom + padding
-	marks[1].bottom = region.bottom + thickness + padding
-	marks[1].left   = region.left - padding
-	marks[1].right  = region.right + padding
-
-	marks[2].top    = region.top - thickness - padding
-	marks[2].bottom = region.bottom + thickness + padding
-	marks[2].left   = region.left - thickness - padding
-	marks[2].right  = region.left - padding
-
-	marks[3].top    = region.top - thickness - padding
-	marks[3].bottom = region.bottom + thickness + padding
-	marks[3].left   = region.right + padding
-	marks[3].right  = region.right + thickness + padding
 
 def moveAndShowWindow(hwnd, rect):
 	if not hwnd: return
-	left = rect.left
-	top = rect.top
-	right = rect.right
-	bottom = rect.bottom
-	left, top, right, bottom = limitRectInDesktop(left, top, right, bottom)
-	width = right - left
-	height = bottom - top
-	windll.user32.ShowWindow(c_int(hwnd), winUser.SW_HIDE)
+	left, top, width, height = physicalRectToLogicalLocation(hwnd, rect)
+	windll.user32.ShowWindow(c_int(hwnd), SW_HIDE)
 	windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
 	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
-
-
-def limitRectInDesktop(left, top, right, bottom):
-	l = windll.user32.GetSystemMetrics(76) # SM_XVIRTUALSCREEN: left side of the virtual screen
-	t = windll.user32.GetSystemMetrics(77) # SM_YVIRTUALSCREEN: top of the virtual screen
-	w = windll.user32.GetSystemMetrics(78) # SM_CXVIRTUALSCREEN: width of the virtual screen in pixels
-	h = windll.user32.GetSystemMetrics(79) # SM_CYVIRTUALSCREEN: height of the virtual screen in pixels
-	r = l+w
-	b = t+h
-	left = max(l, left)
-	top = max(t, top)
-	right = min(r, right)
-	bottom = min(b, bottom)
-	return left, top, right, bottom
-
 
 def locationAvailable(obj):
 	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
@@ -381,41 +249,35 @@ def isCurrentAppSleepMode():
 	return False
 
 def updateFocusLocation():
-	global focusRect, focusObject
+	global focusRect
 	focus = api.getFocusObject()
 	if locationAvailable(focus):
-		newRect = objToRect(focus)
+		newRect = location2rect(focus.location)
 	else:
 		return
-	focusObject = focus
 	if not rectEquals(newRect, focusRect):
 		focusRect = newRect
-		setMarkPositions(focusMarkRectList, focusRect, FOCUS_THICKNESS, FOCUS_PADDING)
-		for i in xrange(4):
-			moveAndShowWindow(focusHwndList[i], focusMarkRectList[i])
+		moveAndShowWindow(focusHwnd, focusRect)
 
 
 def updateNavigatorLocation():
-	global navigatorRect, navObject
+	global navigatorRect
 	try:
 		nav = api.getNavigatorObject()
 	except:
 		return
 	if locationAvailable(nav):
-		newRect = objToRect(nav)
+		newRect = location2rect(nav.location)
 	elif locationAvailable(api.getFocusObject()):
-		newRect = objToRect(api.getFocusObject())
+		newRect = location2rect(api.getFocusObject().location)
 	else:
 		return
-	navObject = nav
 	if not rectEquals(newRect, navigatorRect):
 		navigatorRect = newRect
-		setMarkPositions(navigatorMarkRectList, navigatorRect, NAVIGATOR_THICKNESS, NAVIGATOR_PADDING)
-		for i in xrange(4):
-			moveAndShowWindow(navigatorHwndList[i], navigatorMarkRectList[i])
+		moveAndShowWindow(navigatorHwnd, navigatorRect)
 
 
-def createMarkWindow(name, hwndParent, rect, alpha):
+def createMarkWindow(name, hwndParent, rect):
 	global wndclass
 	hwnd = CreateWindowEx(0,
 						wndclass.lpszClassName,
@@ -429,46 +291,80 @@ def createMarkWindow(name, hwndParent, rect, alpha):
 						NULL,
 						wndclass.hInstance,
 						NULL)
-	left = rect.left
-	top = rect.top
-	right = rect.right
-	bottom = rect.bottom
-	width = right - left
-	height = bottom - top
+	left, top, width, height = physicalRectToLogicalLocation(hwnd, rect)
 	windll.user32.SetWindowPos(c_int(hwnd), HWND_TOPMOST, left, top, width, height, SWP_NOACTIVATE)
 	exstyle = windll.user32.GetWindowLongA(c_int(hwnd), GWL_EXSTYLE)
 	exstyle &= ~WS_EX_APPWINDOW
 	exstyle |= WS_EX_TOOLWINDOW | WS_EX_LAYERED | WS_EX_TRANSPARENT
 	windll.user32.SetWindowLongA(c_int(hwnd), GWL_EXSTYLE, exstyle)
-	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), byref(transColor), alpha, (LWA_ALPHA | LWA_COLORKEY))
+	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), TRANS_RGB, WINDOW_ALPHA, LWA_ALPHA|LWA_COLORKEY)
+	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
+	windll.user32.UpdateWindow(c_int(hwnd))
 	return hwnd
 
 
 def doPaint(hwnd):
-	if currentAppSleepMode:	
-		color, brush, bkColor, alpha = transColor, transBrush, transColor, TRANS_ALPHA
-	elif rectEquals(focusRect, navigatorRect) or hwnd in focusHwndList:
-		if passThroughMode:
-			color, brush, bkColor, alpha = ptMarkColor, ptMarkBrush, ptBkColor, FOCUS_ALPHA
-		else:
-			color, brush, bkColor, alpha = brMarkColor, brMarkBrush, brBkColor, FOCUS_ALPHA
-	elif hwnd in navigatorHwndList:
-		color, brush, bkColor, alpha = navigatorMarkColor, navigatorMarkBrush, navBkColor, NAVIGATOR_ALPHA
-	else:
-		return
-	windll.user32.SetLayeredWindowAttributes(c_int(hwnd), 0, alpha, LWA_ALPHA)
-	ps = PAINTSTRUCT()
 	rect = RECT()
-	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
-	windll.gdi32.SetDCBrushColor(c_int(hdc), color)
-	windll.gdi32.SetBkColor(c_int(hdc), bkColor)
 	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
-	windll.user32.FillRect(hdc, byref(rect), brush)
+	ps = PAINTSTRUCT()
+	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
+	log.debug("BeginPaint hdc {0!r}".format(hdc))
+	windll.user32.FillRect(hdc, byref(rect), transBrush)
+
+	argb, dashStyle, thickness, padding = None, None, None, None
+	if hwnd == focusHwnd:
+		if currentAppSleepMode:
+			pass
+		elif passThroughMode:
+			argb, dashStyle, thickness, padding = ptARGB, ptDashStyle, ptThickness, PADDING_THIN
+		else:
+			argb, dashStyle, thickness, padding = fcARGB, fcDashStyle, fcThickness, PADDING_THIN
+		if rectEquals(focusRect, navigatorRect):
+			if not passThroughMode:
+				thickness *= 2
+			padding = PADDING_THICK
+	else:
+		if currentAppSleepMode:
+			pass
+		elif rectEquals(focusRect, navigatorRect):
+			pass
+		else:
+			argb, dashStyle, thickness, padding = navARGB, navDashStyle, navThickness, PADDING_THIN
+
+	if argb is None:
+		windll.user32.EndPaint(c_int(hwnd), byref(ps))
+		return
+
+	gpGraphics = c_void_p()
+
+	gpStatus = gdiplus.GdipCreateFromHDC(hdc, byref(gpGraphics))
+	log.debug("GdipCreateFromHDC gpStatus {0!r} gpGraphics {1!r}".format(gpStatus, gpGraphics))
+
+	gpPen = c_void_p()
+
+	gpStatus = gdiplus.GdipCreatePen1(argb, thickness, 2, byref(gpPen))
+	log.debug("GdipCreatePen1 gpStatus {0!r} gpPen {1!r}".format(gpStatus, gpPen))
+
+	gpStatus = gdiplus.GdipSetPenDashStyle(gpPen, dashStyle)
+	log.debug("GdipSetPenDashStyle gpStatus {0!r}".format(gpStatus))
+
+	l = rect.left
+	t = rect.top
+	r = rect.right
+	b = rect.bottom
+	gdiplus.GdipDrawRectangle(gpGraphics, gpPen, float(l+padding), float(t+padding), float(r-l-padding*2), float(b-t-padding*2))
+
+	gpStatus = gdiplus.GdipDeletePen(gpPen)
+	log.debug("GdipDeletePen gpStatus {0!r}".format(gpStatus))
+
+	gpStatus = gdiplus.GdipDeleteGraphics(gpGraphics)
+	log.debug("GdipDeleteGraphics gpStatus {0!r}".format(gpStatus))
+
 	windll.user32.EndPaint(c_int(hwnd), byref(ps))
 
 
 def invalidateRects():
-	for hwnd in focusHwndList + navigatorHwndList:
+	for hwnd in (focusHwnd, navigatorHwnd):
 		if hwnd:
 			windll.user32.InvalidateRect(c_int(hwnd), None, True)
 
@@ -482,11 +378,11 @@ def wndProc(hwnd, message, wParam, lParam):
 		windll.user32.PostQuitMessage(0)
 		return 0
 	elif message == WM_SHOWWINDOW:
-		if hwnd == focusHwndList[0]:
+		if hwnd == focusHwnd:
 			timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == WM_TIMER:
-		if not preparing and hwnd == focusHwndList[0]:
+		if not preparing and hwnd == focusHwnd:
 			updateFocusLocation()
 			updateNavigatorLocation()
 			invalidateRects()
@@ -497,7 +393,8 @@ def wndProc(hwnd, message, wParam, lParam):
 
 
 def createHighlightWin():
-	global wndclass
+	global wndclass, focusHwnd, navigatorHwnd
+
 	wndclass = WNDCLASS()
 	wndclass.style = CS_HREDRAW | CS_VREDRAW
 	wndclass.lpfnWndProc = WNDPROC(wndProc)
@@ -511,10 +408,8 @@ def createHighlightWin():
 	if not windll.user32.RegisterClassA(byref(wndclass)):
 		raise WinError()
 	hwndParent = gui.mainFrame.GetHandle()
-	for i in xrange(4):
-		focusHwndList[i] = createMarkWindow("nvdaFh" + str(i+1), hwndParent, focusMarkRectList[i], FOCUS_ALPHA)
-	for i in xrange(4):
-		navigatorHwndList[i] = createMarkWindow("nvdaFh" + str(i+5), hwndParent, navigatorMarkRectList[i], NAVIGATOR_ALPHA)
+	focusHwnd = createMarkWindow("nvdaFh1", hwndParent, focusRect)
+	navigatorHwnd = createMarkWindow("nvdaFh2", hwndParent, navigatorRect)
 
 	msg = MSG()
 	pMsg = pointer(msg)
@@ -524,13 +419,14 @@ def createHighlightWin():
 		windll.user32.DispatchMessageA(pMsg)
 		if terminating:
 			break
+
 	return msg.wParam
 
 
 def destroyHighlightWin():
 	global wndclass
-	for i in xrange(4):
-		windll.user32.DestroyWindow(focusHwndList[i])
+	windll.user32.DestroyWindow(focusHwnd)
+	windll.user32.DestroyWindow(navigatorHwnd)
 	while True:
 		ret = windll.user32.UnregisterClassA(wndclass.lpszClassName, wndclass.hInstance)
 		if ret == 0:
@@ -556,74 +452,36 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
+
+		windll.shcore.SetProcessDpiAwareness(2)
+		self.gdipToken = c_ulong()
+		startupInput = GdiplusStartupInput()
+		startupInput.GdiplusVersion = 1
+		startupOutput = GdiplusStartupOutput()
+		gdiplus.GdiplusStartup(byref(self.gdipToken), byref(startupInput), byref(startupOutput))
+
 		wx.CallAfter(startThread)
 		
-	def getRoleName(self, role):
-		if role in controlTypes.roleLabels:
-			return controlTypes.roleLabels[role]
-		return '%d' % role
+	#def getRoleName(self, role):
+	#	if role in controlTypes.roleLabels:
+	#		return controlTypes.roleLabels[role]
+	#	return '%d' % role
 
-	def getStateName(self, states):
-		ret = []
-		for s in states:
-			if s in controlTypes.stateLabels:
-				ret.append(controlTypes.stateLabels[s])
-		return ','.join(ret)
+	#def getStateName(self, states):
+	#	ret = []
+	#	for s in states:
+	#		if s in controlTypes.stateLabels:
+	#			ret.append(controlTypes.stateLabels[s])
+	#	return ','.join(ret)
 		
-	def getInfo(self, obj):
-		#if obj.appModule.appName != 'notepad': return None
-		if obj.appModule:
-			s = '(app %s) ' % obj.appModule.appName
-		else:
-			s = ''
-		s += "(wc %s)" % obj.windowClassName
-		rect = None
-		if locationAvailable(obj):
-			rect = objToRect(obj)
-		if rect:
-			s += ' (rect pos %d %d size %d %d)' % (rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top)
-			#px, py = windowUtils.logicalToPhysicalPoint(obj.windowHandle, rect.left, rect.top)
-			#s += ' (phys pos %d %d)' % (px, py)
-			#lx, ly = windowUtils.physicalToLogicalPoint(obj.windowHandle, rect.left, rect.top)
-			#s += ' (logi pos %d %d)' % (lx, ly)
-		hmon = getMonHandle(obj)
-		monInfo, dpiX, dpiY = getMonInfo(hmon)
-		wdac, dpiForWindow, dpiForSystem, scale = getDpiInfo(obj, hmon)
-		s += ' (dpi ac %d win %d sys %d scale %.2f)' % (wdac, dpiForWindow, dpiForSystem, scale)
-		ml, mt, mr, mb = getMonPos(monInfo)
-		s += ' (mon pos %d %d size %d %d)' % (
-			ml, mt,
-			mr - ml,
-			mb - mt
-		)
-		if rect:
-			s += ' (posInMon %d %d)' % (
-				rect.left   - ml,
-				rect.top    - mt
-			)
-		#s += ' (workRect %d %d %d %d)' % (
-		#	monInfo.rcWork.left,
-		#	monInfo.rcWork.top,
-		#	monInfo.rcWork.right,
-		#	monInfo.rcWork.bottom
-		#)
-		s += ' (primary %d)' % monInfo.dwFlags
-		s += ' (dpiMon %d %d)' % (dpiX, dpiY)
-		# available monitors
-		cmon = windll.user32.GetSystemMetrics(80) # SM_CMONITORS
-		s += ' (cMon %d)' % cmon
-		s += " (role %s state %s roletext %s)" % (self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role))
-		if obj.name:
-			s += " (name %s)" % obj.name
-		return s
+	#def getInfo(self, obj):
+	#	return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
 
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
-		s = self.getInfo(obj)
-		if s:
-			log.debug(s)
- 		updateFocusLocation()
+		#log.info("gainFocus %s" % self.getInfo(obj))
+		updateFocusLocation()
 		updateNavigatorLocation()
 		invalidateRects()
 		nextHandler()
@@ -669,4 +527,5 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		global terminating
 		terminating = True
 		destroyHighlightWin()
+		gdiplus.GdiplusShutdown(self.gdipToken)
 		log.debug("focusHighlight terminated")
