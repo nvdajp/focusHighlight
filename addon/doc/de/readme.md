@@ -24,7 +24,8 @@ Erweiterung.
 
 ## Änderungen in 4.0 ##
 
-* Sobald die aktuelle Anwendung im Schlafmodus ist, das Rechteck ausblenden.
+* Sobald die aktuelle Anwendung im Schlafmodus ist, wird das Rechteck
+  ausgeblendet.
 
 ## Änderungen in 3.0 ##
 
