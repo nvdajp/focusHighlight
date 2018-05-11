@@ -10,15 +10,21 @@ og objektet/kontrollen, som har fokus.
 
 Følgende farver bliver brugt af dette tilføjelsesprogram:
 
-* Grøn ujævn linje for at indikere navigatorobjektet.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Rødt tyndt rektangel for at indikere objektet/kontrolen, som har fokus.
 * Rødt tykt rektangel for at indikere, at navigatorobjekt og objekt i fokus
   overlapper.
-* Blåt tykt rektangel med tynde skråstreger for at indikere, at NVDA er i
-  fokustilstand, d.v.s. at tastetryk bliver videregivet til kontrollen.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Hvis du vil slå sporing af objekter fra, så afinstaller
 tilføjelsesprogrammet.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -26,6 +32,7 @@ tilføjelsesprogrammet.
 
 ## Ændringer i 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Løste problem med Windows Programstyring.
 * Kan indikere fokustilstand.
 

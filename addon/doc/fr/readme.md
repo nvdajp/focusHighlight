@@ -11,15 +11,20 @@ contrôle.
 
 Les couleurs suivantes sont utilisées par ce module complémentaire :
 
-* Traits en escalier vert, pour indiquer l'objet navigateur.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Rectangle mince rouge, pour indiquer l'objet mis en focus ou le contrôle.
 * Rectangle épais rouge, pour indiquer lorsque  l'objet navigateur et
   l'objet mis en focus sont chevauchent.
-* Rectangle épais bleu avec fines barres obliques, pour indiquer à NVDA qui
-  est en mode focus, c'est-à-dire les principaux types sont passés au
-  contrôle.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changements pour la version 4.0 ##
 
@@ -27,6 +32,7 @@ Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
 ## Changements pour la version 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Correction d'un problème avec le gestionnaire de tâches Windows.
 * Capacité d'indiquer le mode focus.
 

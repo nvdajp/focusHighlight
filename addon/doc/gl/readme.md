@@ -10,14 +10,20 @@ do navegador de obxectos do NVDA e o obxecto ou control enfocado.
 
 As seguintes cores utilízanse por este complemento:
 
-* Liña irregular Verde, para indicar o navegador de obxectos.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Rectángulo fino bermello, para indicar o obxecto ou control enfocados.
 * Rectángulo groso bermello, para indicar cando o navegador de obxectos e o
   obxecto enfocado se superpoñen.
-* Rectángulo fino azul con barras finas, para indicar que NVDA está en modo
-  foco, esto é, as teclas pásanse ó control.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Cambios para 4.0 ##
 
@@ -25,6 +31,7 @@ Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
 ## Cambios para 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Correxido un problema co xestor de tarefas de Windows.
 * Capacidade para indicar modo foco.
 

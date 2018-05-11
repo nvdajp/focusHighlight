@@ -10,15 +10,20 @@ obrysowanie ich kolorowym prostokątem.
 
 Poniższe 2 kolory są stosowane przez ten dodatek:
 
-* Zielona, przerywana linia, oznacza obiekt nawigatora., to indicate the
-  navigator object.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Czerwony cienki prostokąt oznacza obiekt/kontrolkę  w punkcie uwagi.
 * Czerwony gruby prostokąt oznacza, że obiekt nawigatora i obiekt/kontrolka
   w punkcie uwagi zachodzą na siebie.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
   i.e. key types are passed to the control.
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Zmiany dla 4.0 ##
 
@@ -26,6 +31,7 @@ Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
 
 ## Zmiany dla 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Poprawiony problem z 'menedżerzem zadań'.
 * Ability to indicate the focus mode.
 

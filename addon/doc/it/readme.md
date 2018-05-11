@@ -11,16 +11,21 @@ dell'oggetto che ha il focus.
 
 Sono utilizzati i colori seguenti:
 
-* Una linea frastagliata verde, per indicare la posizione del navigatore ad
-  oggetti
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Un Rettangolo sottile rosso, per indicare l'oggetto o il controllo che ha
   il focus
 * Un Rettangolo spesso rosso, per indicare quando il navigatore di oggetti e
   l'oggetto mirato si sovrappongono.
-* Un rettangolo spesso e blu con linee sottili sta ad indicare che NVDA è in
-  modalità focus
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Per disabilitare il monitor  dell'oggetto, disinstallare l'addon.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Cambiamenti per la 4.0. ##
 
@@ -28,6 +33,7 @@ Per disabilitare il monitor  dell'oggetto, disinstallare l'addon.
 
 ## Cambiamenti per la 3.0. ##
 
+* Fixed issue regarding expanded combo box.
 * Risolto un problema con il gestore attività di Windows.
 * Capacità di indicare la modalità focus.
 

@@ -11,14 +11,20 @@ obiectul/controlul focalizat.
 
 Culorile utilizate de către acest add-on sunt:
 
-* Linie verde zimțată pentru a indica obiectul navigatorului.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * dreptunghi roșu subțire, pentru a indica obiectul sau controlul focalizat.
 * Dreptunghi roșu gros, pentru a indica când obiectul navigatorului și
   obiectul focalizat se suprapun.
-* Dreptunghi gros albastru cu peruri subțiri, pentru a indica NVDA este în
-  modul focalizare, adică tipurile de taste sunt transmise la control.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Modificări aduse în versiunea 4.0. ##
 
@@ -27,6 +33,7 @@ Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
 ## Modificări aduse în versiunea 3.0. ##
 
+* Fixed issue regarding expanded combo box.
 * A fost rezolvată problema cu managerul de activități Windows.
 * Capabilitatea de a indica modul de focalizare.
 

@@ -10,14 +10,20 @@
 
 تستخدم الإضافة الألوان التالية:
 
-* خط أخضر مسنن للإشارة إلى الكائن الحالي المحدد بمؤشر NVDA
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * مستطيل أحمر رفيع يشير إلى العنصر أو الكائن المحدد بمؤشر النظام
 * ومستطيل أحمر عريض للإشارة إلى التداخل بين الكائن الحالي المحدد بمؤشر NVDA
   والكائن أو العنصر المحدد بمؤشر النظام. 
-* مستطيل أزرق كثيف بشرط مائلة رفيعة, للتوضيح بأن NVDA بنمط الحقول
-  الاستمارية, بمعنى أنه سيتم مرور المفاتيح للكائن.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -25,6 +31,7 @@
 
 ## مستجدات الإصدار 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * إصلاح خطأ كان يحدث عند فتح مدير المهام بويندوز
 * إمكانية توضيح نمط الحقول الاستمارية
 

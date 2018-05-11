@@ -10,14 +10,20 @@
 
 В этом дополнении используются следующие цвета:
 
-* Зелёная пунктирная линия для указания объекта навигатора.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Красный тонкий прямоугольник указывает объект/тип управления в фокусе.
 * Красный толстый прямоугольник для указания наложения объекта навигатора и
   объекта в фокусе.
-* Толстый синий прямоугольник с тонкими косыми чертами, указывает на режим
-  фокуса, т.е. вводимые команды передаются элементу управления.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Чтобы отключить отслеживание объекта, удалите дополнение.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Изменения для 4.0 ##
 
@@ -25,6 +31,7 @@
 
 ## Изменения для 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Исправлена проблема с диспетчером задач Windows.
 * Возможность указать режим фокуса.
 

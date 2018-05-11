@@ -10,14 +10,20 @@ lévő elemet.
 
 A következő színeket  jeleníti meg a kiegészítő:
 
-* Zöld szaggatott vonal jelzi az NVDA navigátor kurzorát.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Vékony vörös téglalap jelzi a fókuszban lévő elemet
 * Vastag vörös téglalap jelzi a fókusz és a navigátor kurzor átfedését.
-* Vastag kék téglalap vékony bevágásokkal jelzi, hogy az NVDA fókusz módban
-  van.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Az elemkövetés kikapcsolásához függessze fel vagy távolítsa el ezt a
 kiegészítőt.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -25,6 +31,7 @@ kiegészítőt.
 
 ## A 3.0 verzió változásai ##
 
+* Fixed issue regarding expanded combo box.
 * Javítva egy, a Windows feladatkezelőben előjövő hiba
 * A fókuszmód jelzése.
 

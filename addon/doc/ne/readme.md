@@ -10,14 +10,20 @@
 
 The following colors are used by this addon:
 
-*  विचरण वश्तु जनाउने निलो बाङ्गो लाईन
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Red thin rectangle, to indicate the focused object/control.
 * विचरण बस्तु र केन्द्रीत् वस्तु खप्टिएको जनाउनका लागि मोटो रातो रङ्गको
   चतुर्भुज ।  
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
   i.e. key types are passed to the control.
 
 वस्तुलाई प्रकास नपार्ने हो भने यो थप-सादनलाई हटाउनु होस् ।
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -25,6 +31,7 @@ The following colors are used by this addon:
 
 ## Changes for 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Fixed issue with Windows Task Manager.
 * Ability to indicate the focus mode.
 

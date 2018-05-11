@@ -9,12 +9,19 @@
 
 다음의 2 색이 이 추가 기능에 의해 사용됩니다:
 
-* 녹색 점선,navigator 객체를 나타냅니다.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * 빨간색 얇은 선, 초점이 있는 객체/콘트롤을 나타냅니다.
 *  navigator 객체와 포커스가 있는 객체가 겹치는 경우, 빨간색 굵은 선이 표시됩니다.
-* 얇은 슬래시가 있는 파란색의 두꺼운 사각형은, NVDA가 포커스 모드에 있음을 나타냅니다. 즉, 키 유형이 컨트롤로 전달됩니다.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## 4.0에서의 변경사항 ##
 
@@ -22,6 +29,7 @@
 
 ## 3.0에서의 변경사항 ##
 
+* Fixed issue regarding expanded combo box.
 * 윈도우즈 작업 관리자에서의 문제점 수정.
 * 포커스 모드를 표시할 수 있음.
 

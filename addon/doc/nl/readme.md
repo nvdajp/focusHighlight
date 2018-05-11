@@ -10,14 +10,20 @@ nvda navigator object is en welk object of control focus heeft.
 
 The following colors are used by this addon:
 
-* Een groene golvende lijn duidt het navigatorobject aan.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Red thin rectangle, to indicate the focused object/control.
 * Een rode dikke rechthoek duidt aan dat het navigator object overlapt met
   het object dat focus heeft.
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
   i.e. key types are passed to the control.
 
 Om object tracking uit te schakelen, verwijdert u de addon.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -25,6 +31,7 @@ Om object tracking uit te schakelen, verwijdert u de addon.
 
 ## Changes for 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Fixed issue with Windows Task Manager.
 * Ability to indicate the focus mode.
 

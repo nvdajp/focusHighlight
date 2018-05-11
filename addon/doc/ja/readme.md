@@ -9,12 +9,19 @@
 
 以下の色を使っています：
 
-* 緑色のギザギザの線：ナビゲーターオブジェクトを示します。
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * 赤色の細い線：フォーカスのあるオブジェクト・コントロールを示します。
 * 赤色の太い線：ナビゲーターオブジェクトとフォーカスが重なっていることを示します。
-* 青色の太い四角形と細い斜線: NVDAがフォーカスモード、つまりキー操作がコントロールに渡されることを示します。
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -22,6 +29,7 @@
 
 ## 3.0 での変更点 ##
 
+* Fixed issue regarding expanded combo box.
 * Windows Task Managerでの不具合を修正。
 * フォーカスモードを表示する機能。
 

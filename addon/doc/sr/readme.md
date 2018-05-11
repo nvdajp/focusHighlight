@@ -10,14 +10,20 @@ NVDA ili fokusiranu kontrolu.
 
 Sledeće boje ovaj dodatak koristi:
 
-* Zelena linija, za navigacioni objekat.
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Crveni pravougaonik, za prepoznavanje fokusirane kontrole
 * Crveni pravougaonik, da označi kada se navigacioni objekat i fokus
   preklapaju.
-* Plavi pravougaonik sa tankim linijama, da pokaže da je NVDA u režimu
-  pretraživanja, što znači da se komande prosleđuju kontroli.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Da onemogućite praćenje objekata, uklonite dodatak
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Promene u 4.0 ##
 
@@ -25,6 +31,7 @@ Da onemogućite praćenje objekata, uklonite dodatak
 
 ## Promene u 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Popravljen problem sa Windows task menadžerom
 * Sposobnost da prepozna režim fokusiranja.
 

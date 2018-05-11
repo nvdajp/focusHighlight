@@ -11,15 +11,22 @@ seuraamisen.
 
 Seuraavia värejä käytetään:
 
-* Vihreä, epätasainen viiva, joka ilmaisee navigointiobjektin.
+* Vihreä, ohut, katko- ja pisteviivainen suorakulmio ilmaisee
+  navigointiobjektin.
 * Punainen, ohut suorakulmio, joka ilmaisee aktiivisen objektin/säätimen.
 * Punainen, paksu suorakulmio, joka ilmaisee, että navigointiobjekti ja
   aktiivinen objekti ovat päällekkäin.
-* Sininen, paksu suorakulmio, jossa ohuita vinoviivoja, joka ilmaisee NVDA:n
-  olevan vuorovaikutustilassa, ts. näppäinpainallukset välitetään nykyiselle
+* Sininen, paksu pisteviivainen suorakulmio ilmaisee NVDA:n olevan
+  vuorovaikutustilassa, ts. näppäinpainallukset välitetään nykyiselle
   säätimelle.
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
+
+## Muutokset versiossa 5.0 ##
+
+* Navigointiobjektin ja vuorovaikutustilan ilmaisimia on muutettu.
+* Useita näyttöjä tuetaan.
+* Piirtämiseen käytetään nyt GDI Plus -teknologiaa.
 
 ## Muutokset versiossa 4.0 ##
 
@@ -27,6 +34,7 @@ Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
 ## Muutokset versiossa 3.0 ##
 
+* Korjattu avatun yhdistelmäruudun ongelma.
 * Korjattu Windowsin Tehtävienhallinnan kanssa ilmennyt ongelma.
 * Mahdollisuus vuorovaikutustilan ilmaisemiseen.
 

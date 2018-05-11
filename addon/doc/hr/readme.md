@@ -10,14 +10,20 @@ fokusiranog objekta/kontrole uz pomoć nacrtanog obojenog pravokutnika.
 
 The following colors are used by this addon:
 
-* Зелену назублјену црту, која показује објект навигатора
+* Green thin dashed dotted line rectangle, to indicate the navigator object.
 * Red thin rectangle, to indicate the focused object/control.
 * crveni tanki pravokutnik, kako bi pokazivao poklapanja između objekta
   fokusa i objekta navigatora
-* Plavi pravokutnik sa tankim linijama, koji pokazuje da je NVDA u režimu
-  pretraživanja, što znači da se komande prosljeđuju kontroli.
+* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
+  i.e. key types are passed to the control.
 
 Da biste onemogućili pračenje objekata, uklonite dodatak.
+
+## Changes for 5.0 ##
+
+* Indicators of navigator object and focus mode were changed.
+* Multiple monitors are supported.
+* It now uses GDI Plus technology for drawing.
 
 ## Changes for 4.0 ##
 
@@ -25,6 +31,7 @@ Da biste onemogućili pračenje objekata, uklonite dodatak.
 
 ## Changes for 3.0 ##
 
+* Fixed issue regarding expanded combo box.
 * Fixed issue with Windows Task Manager.
 * Sposobnost da prepozna režim fokusiranja.
 
