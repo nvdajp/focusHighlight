@@ -14,19 +14,23 @@ The following colors are used by this addon:
 * Red thin rectangle, to indicate the focused object/control.
 * crveni tanki pravokutnik, kako bi pokazivao poklapanja između objekta
   fokusa i objekta navigatora
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Plavi pravokutnik sa tankim linijama, koji pokazuje da je NVDA u režimu
+  pretraživanja, što znači da se komande prosljeđuju kontroli.
 
 Da biste onemogućili pračenje objekata, uklonite dodatak.
+
+## Changes for 4.0 ##
+
+* Sakrij pravokutnik ako je trenutna aplikacija u režimu spavanja.
 
 ## Changes for 3.0 ##
 
 * Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Sposobnost da prepozna režim fokusiranja.
 
 ## Changes for 2.1 ##
 
-* New and updated translations.
+* Novi i ažurirani prijevodi.
 
 ## Izmjene u inačici 2.0 ##
 
@@ -46,6 +50,6 @@ Da biste onemogućili pračenje objekata, uklonite dodatak.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

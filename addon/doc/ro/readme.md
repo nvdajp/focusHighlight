@@ -4,9 +4,10 @@
 * Descarcă [Versiunea Stabilă][2]
 * Descarcă [versiunea în dezvoltare][1]
 
-La desenarea unui dreptunghi colorat, acest add-on le permite utilizatorilor
-cu vedere parțială, educatorilor văzători, sau dezvoltatorilor să track
-locația navigatorului de obiecte NVDA și obiectul/controlul focalizat.
+La desenarea unui dreptunghi colorat, acest supliment le permite
+utilizatorilor cu vedere parțială, educatorilor văzători, sau
+dezvoltatorilor să urmărească locația navigatorului de obiecte NVDA și
+obiectul/controlul focalizat.
 
 Culorile utilizate de către acest add-on sunt:
 
@@ -19,6 +20,11 @@ Culorile utilizate de către acest add-on sunt:
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
+## Modificări aduse în versiunea 4.0. ##
+
+* Ascunde modul dreptunghi dacă aplicația curentă este în modul de
+  hibernare.
+
 ## Modificări aduse în versiunea 3.0. ##
 
 * A fost rezolvată problema cu managerul de activități Windows.
@@ -30,7 +36,7 @@ Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
 ## Modificări aduse în 2.0 ##
 
-* Ajutorul add-on-ului este valabil din managerul de add-on-uri.
+* Ajutorul suplimentului este valabil din managerul de add-on-uri.
 
 ## Modificări aduse în versiunea 1.1. ##
 
@@ -46,6 +52,6 @@ Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

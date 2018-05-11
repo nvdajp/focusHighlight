@@ -22,6 +22,11 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Änderungen in 4.0 ##
+
+* Sobald die aktuelle Anwendung im Schlafmodus ist, wird das Rechteck
+  ausgeblendet.
+
 ## Änderungen in 3.0 ##
 
 * Fehler mit dem Windows-Task-Manager behoben.
@@ -49,6 +54,6 @@ Erweiterung.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

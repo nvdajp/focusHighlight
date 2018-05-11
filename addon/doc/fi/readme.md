@@ -21,6 +21,10 @@ Seuraavia värejä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
+## Muutokset versiossa 4.0 ##
+
+* Suorakulmio piilotetaan, mikäli nykyinen sovellus on lepotilassa.
+
 ## Muutokset versiossa 3.0 ##
 
 * Korjattu Windowsin Tehtävienhallinnan kanssa ilmennyt ongelma.
@@ -49,6 +53,6 @@ Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

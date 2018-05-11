@@ -19,6 +19,10 @@ A következő színeket  jeleníti meg a kiegészítő:
 Az elemkövetés kikapcsolásához függessze fel vagy távolítsa el ezt a
 kiegészítőt.
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## A 3.0 verzió változásai ##
 
 * Javítva egy, a Windows feladatkezelőben előjövő hiba
@@ -46,6 +50,6 @@ kiegészítőt.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

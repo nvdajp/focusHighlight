@@ -1,47 +1,55 @@
 # Focus Highlight #
 
-* autori : Takuya Nishimoto
-* preuзми стабилну верзију ][2
-* преузми верзију у развоју][1
+* Autori: Takuya Nishimoto
+* Preuzmi[stabilnu verziju][2]
+* Preuzmi[razvojnu verziju][1]
 
-бојом показује фокусирани нвда објекат ово је корисно нпр за видеће особе
+Crtanjem obojenog pravougaonika, ovaj dodatak omogućava slabovidim osobama,
+učiteljima, ili programerima da prate fokus navigacionog objekta programa
+NVDA ili fokusiranu kontrolu.
 
-The following colors are used by this addon:
+Sledeće boje ovaj dodatak koristi:
 
-* зелена за навигатор објекта
-* Red thin rectangle, to indicate the focused object/control.
-* црвени кружић за преклапања
-* Blue thick rectangle with thin slashes, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Zelena linija, za navigacioni objekat.
+* Crveni pravougaonik, za prepoznavanje fokusirane kontrole
+* Crveni pravougaonik, da označi kada se navigacioni objekat i fokus
+  preklapaju.
+* Plavi pravougaonik sa tankim linijama, da pokaže da je NVDA u režimu
+  pretraživanja, što znači da se komande prosleđuju kontroli.
 
-да искључите праћење објекта уклоните додатак
+Da onemogućite praćenje objekata, uklonite dodatak
 
-## Changes for 3.0 ##
+## Promene u 4.0 ##
 
-* Fixed issue with Windows Task Manager.
-* Ability to indicate the focus mode.
+* Sakri pravougaonik ako je trenutna aplikacija u režimu spavanja.
 
-## Changes for 2.1 ##
+## Promene u 3.0 ##
 
-* New and updated translations.
+* Popravljen problem sa Windows task menadžerom
+* Sposobnost da prepozna režim fokusiranja.
 
-## промене у 2.0 ##
+## Promene u 2.1 ##
 
-* помоћ за додатак доступна из управљај додацима
+* Novi i ažurirani prevodi.
 
-## промене у 1.1 ##
+## Promene u 2.0 ##
 
-* промењена боја
-* поправљен проблем 
+* Pomoć za dodatak je dostupna iz upravljača dodataka
 
-## промене у 1'0 ##
+## Promene u 1.1 ##
 
-* поправљен проблем у интернет експлорер 11
-* прва верзија
+* Promenjen navigacioni objekat u krivu liniju.
+* Popravljen problem sa opcijom 'ponovo učitaj dodatke'.
+
+## Promene u 1.0 ##
+
+* U programu Internet Explorer 10 i Skype na Windowsu 8, popravljen problem
+  sa navigacionim objektom.
+* Prva verzija
 
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

@@ -22,6 +22,11 @@
 
 За да изключите проследяването на обектите, трябва да премахнете добавката.
 
+## Промени във версия 4.0 ##
+
+* Правоъгълникът ще бъде скриван, ако NVDA е в спящ режим за текущо
+  фокусираното приложение.
+
 ## Промени във версия 3.0 ##
 
 * Поправен проблем с диспечера на задачите в Windows.
@@ -50,6 +55,6 @@
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

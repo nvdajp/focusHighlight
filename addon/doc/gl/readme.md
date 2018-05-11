@@ -19,6 +19,10 @@ As seguintes cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
+## Cambios para 4.0 ##
+
+* Agocha o rectángulo se a aplicación actual está en modo durminte.
+
 ## Cambios para 3.0 ##
 
 * Correxido un problema co xestor de tarefas de Windows.
@@ -46,6 +50,6 @@ Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

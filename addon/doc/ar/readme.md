@@ -19,6 +19,10 @@
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
+## Changes for 4.0 ##
+
+* Hide rectangle if current application is in sleep mode.
+
 ## مستجدات الإصدار 3.0 ##
 
 * إصلاح خطأ كان يحدث عند فتح مدير المهام بويندوز
@@ -46,6 +50,6 @@
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

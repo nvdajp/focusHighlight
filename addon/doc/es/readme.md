@@ -20,6 +20,10 @@ Los siguientes colores se utilizan con este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
+## Cambios para 4.0 ##
+
+* Oculta el rectángulo si la aplicación actual está en modo durmiente.
+
 ## Cambios para 3.0 ##
 
 * Corregido un problema  con el gestor de tareas de Windows
@@ -48,6 +52,6 @@ Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh

@@ -19,6 +19,10 @@
 
 Чтобы отключить отслеживание объекта, удалите дополнение.
 
+## Изменения для 4.0 ##
+
+* Скрыт прямоугольник, если текущее приложение находится в режиме сна.
+
 ## Изменения для 3.0 ##
 
 * Исправлена проблема с диспетчером задач Windows.
@@ -46,6 +50,6 @@
 
 [[!tag dev stable]]
 
-[1]: http://addons.nvda-project.org/files/get.php?file=fh-dev
+[1]: https://addons.nvda-project.org/files/get.php?file=fh-dev
 
-[2]: http://addons.nvda-project.org/files/get.php?file=fh
+[2]: https://addons.nvda-project.org/files/get.php?file=fh
