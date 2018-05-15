@@ -15,6 +15,10 @@ The following colors are used by this addon:
 
 To disable object tracking, uninstall the addon.
 
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.

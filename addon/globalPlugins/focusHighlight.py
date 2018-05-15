@@ -308,7 +308,7 @@ def doPaint(hwnd):
 	windll.user32.GetClientRect(c_int(hwnd), byref(rect))
 	ps = PAINTSTRUCT()
 	hdc = windll.user32.BeginPaint(c_int(hwnd), byref(ps))
-	log.debug("BeginPaint hdc {0!r}".format(hdc))
+	#log.debug("BeginPaint hdc {0!r}".format(hdc))
 	windll.user32.FillRect(hdc, byref(rect), transBrush)
 
 	argb, dashStyle, thickness, padding = None, None, None, None
@@ -338,15 +338,15 @@ def doPaint(hwnd):
 	gpGraphics = c_void_p()
 
 	gpStatus = gdiplus.GdipCreateFromHDC(hdc, byref(gpGraphics))
-	log.debug("GdipCreateFromHDC gpStatus {0!r} gpGraphics {1!r}".format(gpStatus, gpGraphics))
+	#log.debug("GdipCreateFromHDC gpStatus {0!r} gpGraphics {1!r}".format(gpStatus, gpGraphics))
 
 	gpPen = c_void_p()
 
 	gpStatus = gdiplus.GdipCreatePen1(argb, thickness, 2, byref(gpPen))
-	log.debug("GdipCreatePen1 gpStatus {0!r} gpPen {1!r}".format(gpStatus, gpPen))
+	#log.debug("GdipCreatePen1 gpStatus {0!r} gpPen {1!r}".format(gpStatus, gpPen))
 
 	gpStatus = gdiplus.GdipSetPenDashStyle(gpPen, dashStyle)
-	log.debug("GdipSetPenDashStyle gpStatus {0!r}".format(gpStatus))
+	#log.debug("GdipSetPenDashStyle gpStatus {0!r}".format(gpStatus))
 
 	l = rect.left
 	t = rect.top
@@ -355,10 +355,10 @@ def doPaint(hwnd):
 	gdiplus.GdipDrawRectangle(gpGraphics, gpPen, float(l+padding), float(t+padding), float(r-l-padding*2), float(b-t-padding*2))
 
 	gpStatus = gdiplus.GdipDeletePen(gpPen)
-	log.debug("GdipDeletePen gpStatus {0!r}".format(gpStatus))
+	#log.debug("GdipDeletePen gpStatus {0!r}".format(gpStatus))
 
 	gpStatus = gdiplus.GdipDeleteGraphics(gpGraphics)
-	log.debug("GdipDeleteGraphics gpStatus {0!r}".format(gpStatus))
+	#log.debug("GdipDeleteGraphics gpStatus {0!r}".format(gpStatus))
 
 	windll.user32.EndPaint(c_int(hwnd), byref(ps))
 
@@ -445,7 +445,7 @@ def startThread():
 	myThread = threading.Thread(target=createHighlightWin)
 	myThread.daemon = True
 	myThread.start()
-	log.debug("focusHighlight started")
+	#log.debug("focusHighlight started")
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
@@ -526,4 +526,4 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		terminating = True
 		destroyHighlightWin()
 		gdiplus.GdiplusShutdown(self.gdipToken)
-		log.debug("focusHighlight terminated")
+		#log.debug("focusHighlight terminated")
