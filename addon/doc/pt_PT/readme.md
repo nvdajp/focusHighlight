@@ -10,20 +10,21 @@ localização do objecto do navegador nvda e o objeto / control focado.
 
 As seguintes cores são usadas por este extra:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
+* Rectângulo de linha pontilhada, tracejado verde fino, para indicar o
+  objeto de navegação.
 * Rectângulo fino vermelho, para indicar o objecto / control sob o foco.
 * Rectângulo grosso vermelho, para indicar quando o objecto do navegador e o
   objecto focado se sobrepõem.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Rectângulo azul de linha pontilhada, para indicar que o NVDA está no modo
+  de foco, ou seja, que os tipos de teclas são passados para o controlo.
 
 Para desactivar o rastreamento de objecto, desinstale o extra.
 
-## Changes for 5.0 ##
+## Alterações para 5.0 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Os indicadores do objeto do navegador e do modo de foco foram alterados.
+* São suportados vários monitores.
+* Agora, usa-se a tecnologia GDI Plus para desenho.
 
 ## Alterações para 4.0 ##
 
@@ -31,7 +32,7 @@ Para desactivar o rastreamento de objecto, desinstale o extra.
 
 ## Alterações para 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* Corrigido problema em relação à caixa de combinação expandida.
 * Corrigido problema com o gestor de tarefas do Windows.
 * Capacidade de indicar o modo de foco.
 
