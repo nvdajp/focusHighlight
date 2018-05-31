@@ -22,8 +22,8 @@ Da biste onemogućili pračenje objekata, uklonite dodatak.
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Podržano je više zaslona.
+* Sada se koristi GDI plus tehnologija za crtanje.
 
 ## Changes for 4.0 ##
 
@@ -31,7 +31,7 @@ Da biste onemogućili pračenje objekata, uklonite dodatak.
 
 ## Changes for 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* Ispravljena greška vezana uz prošireni odabirni okvir.
 * Fixed issue with Windows Task Manager.
 * Sposobnost da prepozna režim fokusiranja.
 
