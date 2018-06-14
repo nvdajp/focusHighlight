@@ -11,21 +11,22 @@ verfolgen.
 
 Die folgenden Farben werden von dieser Erweiterung verwendet:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
+* Grüne, düne, gestrichelte und gepunktete Linie, zeigt das Objekt, auf dem
+  der Navigator steht.
 * Rotes, dünnes Rechteck: Position des fokusierten Objekts anzeigen.
 * Ein rotes breites Rechteck zeigt an, dass Fokus und Navigator auf dem
   gleichen Objekt stehen.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Blaues dickes gepunktetes Rechteck, um zu zeigen, dass NVDA im Fokus-Modus
+  ist, d.h. Tastenanschläge werden an das aktuelle Steuerelement übergeben.
 
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 5.0 ##
+## Änderungen in 5.0 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Die Anzeige für das Fokusobjekt und für das Navigatorobjekt wurde geändert
+* Unterstützt multiple Bildschirme.
+* Für Drawing wird nun GDI Plus verwendet
 
 ## Änderungen in 4.0 ##
 
@@ -34,7 +35,7 @@ Erweiterung.
 
 ## Änderungen in 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* Es wurde ein Problem bei erweiterten Kombinationsfeldern behoben.
 * Fehler mit dem Windows-Task-Manager behoben.
 * Fähigkeit den Lesemodus anzuzeigen
 
