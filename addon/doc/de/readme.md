@@ -24,7 +24,7 @@ Erweiterung.
 
 ## Änderungen in 5.0 ##
 
-* Die Anzeige für das Fokusobjekt und für das Navigatorobjekt wurde geändert
+* Die Anzeige für den Fokusmodus und für das Navigator-Objekt wurde geändert
 * Unterstützt multiple Bildschirme.
 * Für Drawing wird nun GDI Plus verwendet
 
@@ -54,7 +54,7 @@ Erweiterung.
 
 ## Änderungen in 1.0 ##
 
-* Problem mit Navigatorobjekten in Internet Explorer 10 und Skype für
+* Problem mit dem Navigator-Objekt in Internet Explorer 10 und Skype für
   Windows 8 behoben.
 * anfängliche Version
 
