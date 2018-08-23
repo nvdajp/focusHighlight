@@ -2,7 +2,7 @@
 
 * Forfattere: Takuya Nishimoto
 * Download [stabil version][2]
-* download [udviklingsversionversion][1]
+* Download [udviklingsversion][1]
 
 Dette tilføjelsesprogram tegner et rektangel, så svagsynede brugere, seende
 instruktører eller udviklere kan finde placeringen af NVDAs navigatorobjekt
@@ -10,29 +10,30 @@ og objektet/kontrollen, som har fokus.
 
 Følgende farver bliver brugt af dette tilføjelsesprogram:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
+* Grøn og tynd rektangel med tynde skråstreger, der indikere
+  navigatorobjektet.
 * Rødt tyndt rektangel for at indikere objektet/kontrolen, som har fokus.
 * Rødt tykt rektangel for at indikere, at navigatorobjekt og objekt i fokus
   overlapper.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Blåt rektangel med tyk prikket linje for at indikere, at NVDA er i
+  fokustilstand, d.v.s. at tastetryk bliver videregivet til kontrollen.
 
 Hvis du vil slå sporing af objekter fra, så afinstaller
 tilføjelsesprogrammet.
 
-## Changes for 5.0 ##
+## Ændringer i 5.0 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Indikatorer på navigator objektet og fokus tilstand blev ændret.
+* Flere skærme er nu understøttet.
+* Der bruges nu GDI Plus-teknologi til at tegne.
 
-## Changes for 4.0 ##
+## Ændringer i 4.0 ##
 
-* Hide rectangle if current application is in sleep mode.
+* Skjule rektangel, hvis det aktuelle program er i dvaletilstand.
 
 ## Ændringer i 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* Fixed problem med hensyn til udvidet combo box.
 * Løste problem med Windows Programstyring.
 * Kan indikere fokustilstand.
 
