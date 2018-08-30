@@ -11,46 +11,47 @@ obiectul/controlul focalizat.
 
 Culorile utilizate de către acest add-on sunt:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
-* dreptunghi roșu subțire, pentru a indica obiectul sau controlul focalizat.
+* Linie verde zimțată pentru a indica obiectul navigatorului.
+* Dreptunghi roșu subțire, pentru a indica obiectul sau controlul focalizat.
 * Dreptunghi roșu gros, pentru a indica când obiectul navigatorului și
   obiectul focalizat se suprapun.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Dreptunghi gros albastru cu peruri subțiri, pentru a indica faptul că NVDA
+  este în modul focalizare, adică tipurile de taste sunt transmise la
+  control.
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
-## Changes for 5.0 ##
+## Modificări aduse în versiunea 5.0 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Indicatorii obiectului navigator au fost modificați.
+* Sunt suportate monitoare multiple.
+* Acum, utilizează tehnologia GDI Plus pentru desen.
 
-## Modificări aduse în versiunea 4.0. ##
+## Modificări aduse în versiunea 4.0 ##
 
 * Ascunde modul dreptunghi dacă aplicația curentă este în modul de
   hibernare.
 
-## Modificări aduse în versiunea 3.0. ##
+## Modificări aduse în versiunea 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* S-a rezolvat problema cu privire la casetele combinate extinse.
 * A fost rezolvată problema cu managerul de activități Windows.
 * Capabilitatea de a indica modul de focalizare.
 
 ## Modificări aduse în versiunea 2.1 ##
 
-* traduceri noi și actualizate
+* Traduceri noi și actualizate.
 
 ## Modificări aduse în 2.0 ##
 
 * Ajutorul suplimentului este valabil din managerul de add-on-uri.
 
-## Modificări aduse în versiunea 1.1. ##
+## Modificări aduse în versiunea 1.1 ##
 
 * A fost modificat obiectul navigatorului la linie zâmțată.
 * A fost rezolvată problema cu "Reîncarcă plugin-urile".
 
-## Modificări aduse în 1.0. ##
+## Modificări aduse în 1.0 ##
 
 * În Internet Explorer 10 și în Skype pe Windows 8, a fost rezolvată
   problema cu obiectul navigatorului.

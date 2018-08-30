@@ -1,4 +1,4 @@
-# podświetlanie punktu uwagi / Focus Highlight #
+# Focus Highlight #
 
 * Autor: Takuya Nishimoto
 * Pobierz [wersja stabilna][2]
