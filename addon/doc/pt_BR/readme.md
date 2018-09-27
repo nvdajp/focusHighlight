@@ -10,20 +10,22 @@ localização do objeto de navegação do NVDA e o objeto/controle em foco.
 
 O complemento usa as seguintes cores:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
+* Retângulo com linha pontilhada tracejado verde fino, para indicar o objeto
+  de navegação.
 * Um retângulo vermelho fino, para indicar o objeto/controle em foco.
 * Um retângulo vermelho grosso, para indicar quando o objeto de navegação e
   o objeto em foco estão sobrepostos.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Retângulo azul grosso com linha pontilhada, para indicar que o NVDA está
+  no modo de foco, ou seja, as teclas digitadas são passadas para o
+  controle.
 
 Para desabilitar o realse de objetos, desinstale o complemento.
 
-## Changes for 5.0 ##
+## Mudanças na 5.0 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Os indicadores do objeto de navegação e do modo de foco foram alterados.
+* Múltiplos monitores são suportados.
+* Agora ele usa a tecnologia GDI Plus para desenho.
 
 ## Mudanças na 4.0 ##
 
@@ -31,7 +33,7 @@ Para desabilitar o realse de objetos, desinstale o complemento.
 
 ## Mudanças na 3.0 ##
 
-* Fixed issue regarding expanded combo box.
+* Corrigido problema em relação à caixa de combinação expandida.
 * Consertados problemas com a barra de tarefas do Windows.
 * Capacidade de indicar o modo de foco.
 
@@ -45,8 +47,7 @@ Para desabilitar o realse de objetos, desinstale o complemento.
 
 ## Mudanças na 1.1 ##
 
-* Alterado retângulo do objeto de navegação para uma linha destacada de
-  verde
+* Alterado retângulo do objeto de navegação para uma linha entalhada.
 * Concertado problema com "Recarregar plug-ins".
 
 ## Mudanças na 1.0 ##
