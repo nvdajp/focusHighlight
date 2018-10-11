@@ -15,6 +15,11 @@ The following colors are used by this addon:
 
 To disable object tracking, uninstall the addon.
 
+## Changes for 5.3 ##
+
+* New and updated translations.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10) regarding Chrome browser and application sleep mode.
+
 ## Changes for 5.2 ##
 
 * New and updated translations.

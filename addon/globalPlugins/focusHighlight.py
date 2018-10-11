@@ -320,7 +320,7 @@ def doPaint(hwnd):
 		else:
 			argb, dashStyle, thickness, padding = fcARGB, fcDashStyle, fcThickness, PADDING_THICK
 		if rectEquals(focusRect, navigatorRect):
-			if not passThroughMode:
+			if not passThroughMode and thickness is not None:
 				thickness *= 2
 			padding = PADDING_THICK
 	else:
