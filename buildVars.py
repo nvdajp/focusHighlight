@@ -26,6 +26,10 @@ addon_info = {
 	"addon_url" : "https://github.com/nvdajp/focushighlight",
 	# Documentation file name
 	"addon_docFileName" : "readme.html",
+	# Minimum NVDA version supported *e.g. "2018.3")
+	"addon_minimumNVDAVersion" : None,
+	# Add-on update channel (default is stable or None)
+	"addon_updateChannel" : None,
 }
 
 
