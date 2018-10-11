@@ -1,59 +1,36 @@
 # focus highlight
-# 2017-09-12
+# 2018-10-11
 # Takuya Nishimoto
 
-import globalPluginHandler
-import tones
-import wx
-import gui
-from logHandler import log
-import threading
-import winUser
-import oleacc
-import controlTypes
-from NVDAObjects.IAccessible import IAccessible
-from win32con import (
-	NULL,
-	CS_HREDRAW,
-	CS_VREDRAW,
-	CW_USEDEFAULT,
-	GWL_STYLE,
-	GWL_EXSTYLE,
-	HS_BDIAGONAL,
-	HS_DIAGCROSS,
-	HWND_DESKTOP,
-	HWND_TOPMOST,
-	IDC_ARROW,
-	LWA_COLORKEY,
-	LWA_ALPHA,
-	SWP_NOACTIVATE,
-	SW_HIDE,
-	SW_SHOWNA,
-	WM_PAINT,
-	WM_DESTROY,
-	WM_SHOWWINDOW,
-	WM_TIMER,
-	WM_ERASEBKGND,
-	WS_CAPTION,
-	WS_DISABLED,
-	WS_POPUP,
-	WS_VISIBLE,
-	WS_EX_APPWINDOW,
-	WS_EX_LAYERED,
-	WS_EX_TOOLWINDOW,
-	WS_EX_TRANSPARENT,
-)
-
 import sys
-from ctypes import WINFUNCTYPE, Structure, windll
-from ctypes import c_long, c_int, c_uint, c_char_p, c_char, byref, pointer, c_uint32, c_void_p, c_ulong, c_float
-from ctypes import WinError, GetLastError, FormatError
-from ctypes.wintypes import COLORREF, BOOL, POINTER
-import api
+import threading
 import time
-import ui
+from ctypes import (WINFUNCTYPE, FormatError, GetLastError, Structure,
+                    WinError, byref, c_char, c_char_p, c_float, c_int, c_long,
+                    c_uint, c_uint32, c_ulong, c_void_p, pointer, windll)
+from ctypes.wintypes import BOOL, COLORREF, POINTER
+
+import api
+import controlTypes
+import globalPluginHandler
+import gui
+import oleacc
 import speech
+import tones
+import ui
 import virtualBuffers
+import winUser
+import wx
+from logHandler import log
+from NVDAObjects.IAccessible import IAccessible
+from win32con import (CS_HREDRAW, CS_VREDRAW, CW_USEDEFAULT, GWL_EXSTYLE,
+                      GWL_STYLE, HS_BDIAGONAL, HS_DIAGCROSS, HWND_DESKTOP,
+                      HWND_TOPMOST, IDC_ARROW, LWA_ALPHA, LWA_COLORKEY, NULL,
+                      SW_HIDE, SW_SHOWNA, SWP_NOACTIVATE, WM_DESTROY,
+                      WM_ERASEBKGND, WM_PAINT, WM_SHOWWINDOW, WM_TIMER,
+                      WS_CAPTION, WS_DISABLED, WS_EX_APPWINDOW, WS_EX_LAYERED,
+                      WS_EX_TOOLWINDOW, WS_EX_TRANSPARENT, WS_POPUP,
+                      WS_VISIBLE)
 from windowUtils import physicalToLogicalPoint
 
 gdiplus = windll.gdiplus
