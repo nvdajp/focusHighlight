@@ -1,8 +1,8 @@
 # Focus hervorheben #
 
 * Authoren: Takuya Nishimoto
-* [Stabile Version ][1] herunterladen
-* [Testversion][1] herunterladen
+* [Stabile Version ][2] herunterladen
+* [Entwicklungsversion][1] herunterladen
 
 Durch Zeichnen eines farbigen Rechtecks ermöglicht diese Erweiterung
 sehbehinderten Nutzern, sehenden Lehrern oder Entwicklern die Position des
