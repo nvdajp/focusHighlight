@@ -1,5 +1,5 @@
 # focus highlight
-# 2018-10-11
+# 2018-12-11
 # Takuya Nishimoto
 
 import sys
@@ -8,7 +8,11 @@ import time
 from ctypes import (WINFUNCTYPE, FormatError, GetLastError, Structure,
                     WinError, byref, c_char, c_char_p, c_float, c_int, c_long,
                     c_uint, c_uint32, c_ulong, c_void_p, pointer, windll)
-from ctypes.wintypes import BOOL, COLORREF, POINTER
+from ctypes.wintypes import BOOL, COLORREF
+try:
+    from ctypes import POINTER
+except:
+    from ctypes.wintypes import POINTER
 
 import api
 import controlTypes
@@ -381,12 +385,12 @@ def createHighlightWin():
 	wndclass.hCursor = windll.user32.LoadCursorA(c_int(NULL), c_int(IDC_ARROW))
 	wndclass.hbrBackground = windll.gdi32.GetStockObject(c_int(transBrush))
 	wndclass.lpszMenuName = None
-	wndclass.lpszClassName = "nvdaFh"
+	wndclass.lpszClassName = b"nvdaFh"
 	if not windll.user32.RegisterClassA(byref(wndclass)):
 		raise WinError()
 	hwndParent = gui.mainFrame.GetHandle()
-	focusHwnd = createMarkWindow("nvdaFh1", hwndParent, focusRect)
-	navigatorHwnd = createMarkWindow("nvdaFh2", hwndParent, navigatorRect)
+	focusHwnd = createMarkWindow(b"nvdaFh1", hwndParent, focusRect)
+	navigatorHwnd = createMarkWindow(b"nvdaFh2", hwndParent, navigatorRect)
 
 	msg = MSG()
 	pMsg = pointer(msg)
