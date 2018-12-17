@@ -17,7 +17,8 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 5.5 ##
 
-* Python 3 support
+* Support Python 3.
+* Support NVDA locationHelper.
 
 ## Changes for 5.4 ##
 

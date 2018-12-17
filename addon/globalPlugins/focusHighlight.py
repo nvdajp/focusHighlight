@@ -1,5 +1,5 @@
 # focus highlight
-# 2018-12-11
+# 2018-12-17
 # Takuya Nishimoto
 
 import sys
@@ -13,6 +13,16 @@ try:
     from ctypes import POINTER
 except:
     from ctypes.wintypes import POINTER
+
+try:
+	from locationHelper import RectLTWH
+except e:
+	RectLTWH = None
+
+try:
+	from locationHelper import RectLTRB
+except e:
+	RectLTRB = None
 
 import api
 import controlTypes
@@ -193,7 +203,12 @@ def rectEquals(r1, r2):
 
 def location2rect(location):
 	rect = RECT()
-	if location and len(location) >= 4:
+	if (RectLTWH and isinstance(location, RectLTWH)) or (RectLTRB and isinstance(location, RectLTRB)):
+		rect.left = location.left
+		rect.top = location.top
+		rect.right = location.right
+		rect.bottom = location.bottom
+	elif location and len(location) >= 4:
 		rect.left = location[0]
 		rect.top = location[1]
 		rect.right = rect.left + location[2]
@@ -215,7 +230,14 @@ def moveAndShowWindow(hwnd, rect):
 	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
 
 def locationAvailable(obj):
-	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
+	if obj and hasattr(obj, 'location') and obj.location:
+		if RectLTWH and isinstance(obj, RectLTWH):
+			return True
+		elif RectLTRB and isinstance(obj, RectLTRB):
+			return True
+		elif len(obj.location) >= 4:
+			return True
+	return False
 
 def isPassThroughMode():
 	focus = api.getFocusObject()
@@ -470,7 +492,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	#		log.info("focusEntered %s" % self.getInfo(obj))
 	#	nextHandler()
 
-	#def event_becomeNavigatorObject(self, obj, nextHandler):
+	#def event_becomeNavigatorObject(self, obj, nextHandler, isFocus=None):
 	#	log.info("becomeNavigatorObject %s" % self.getInfo(obj))
 	#	if obj.windowClassName == 'ComboBox':
 	#		updateFocusLocation(obj)
