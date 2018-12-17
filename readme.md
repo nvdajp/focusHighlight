@@ -17,8 +17,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 5.5 ##
 
-* New and updated translations.
-* Support NVDA 2018.4.
+* Works better with NVDA 2018.4 and later versions.
 
 ## Changes for 5.4 ##
 
