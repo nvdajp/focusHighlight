@@ -183,7 +183,7 @@ PADDING_THIN = 10
 PADDING_THICK = 5
 WINDOW_ALPHA = 192
 
-# ID_TIMER = 100
+ID_TIMER = 100
 UPDATE_PERIOD = 300
 
 focusRect = RECT()
@@ -265,7 +265,10 @@ def updateFocusLocation():
 
 def updateNavigatorLocation():
 	global navigatorRect
-	nav = api.getNavigatorObject()
+	try:
+		nav = api.getNavigatorObject()
+	except:
+		return
 	if not isinstance(nav, NVDAObject):
 		return
 	if locationAvailable(nav):
@@ -379,18 +382,18 @@ def wndProc(hwnd, message, wParam, lParam):
 	elif message == WM_DESTROY:
 		windll.user32.PostQuitMessage(0)
 		return 0
-	# elif message == WM_SHOWWINDOW:
-	# 	if hwnd == focusHwnd:
-	# 		timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
-	# 	return 0
-	# elif message == WM_TIMER:
-	# 	if not preparing and hwnd == focusHwnd:
-	# 		updateFocusLocation()
-	# 		updateNavigatorLocation()
-	# 		invalidateRects()
-	# 		passThroughMode = isPassThroughMode()
-	# 		currentAppSleepMode = isCurrentAppSleepMode()
-	# 	return 0
+	elif message == WM_SHOWWINDOW:
+		if hwnd == focusHwnd:
+			timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
+		return 0
+	elif message == WM_TIMER:
+		if not preparing and hwnd == focusHwnd:
+			updateFocusLocation()
+			updateNavigatorLocation()
+			invalidateRects()
+			passThroughMode = isPassThroughMode()
+			currentAppSleepMode = isCurrentAppSleepMode()
+		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
 
@@ -461,20 +464,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gdiplus.GdiplusStartup(byref(self.gdipToken), byref(startupInput), byref(startupOutput))
 
 		wx.CallAfter(startThread)
-
-		import core
-		def update():
-			global passThroughMode, currentAppSleepMode
-			if terminating:
-				return
-			if not preparing:
-				updateFocusLocation()
-				updateNavigatorLocation()
-				invalidateRects()
-				passThroughMode = isPassThroughMode()
-				currentAppSleepMode = isCurrentAppSleepMode()
-			core.callLater(UPDATE_PERIOD, update)
-		core.callLater(UPDATE_PERIOD, update)
 		
 	#def getRoleName(self, role):
 	#	if role in controlTypes.roleLabels:
