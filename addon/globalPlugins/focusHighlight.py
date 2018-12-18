@@ -1,5 +1,5 @@
 # focus highlight
-# 2018-12-17
+# 2018-12-18
 # Takuya Nishimoto
 
 import sys
@@ -13,16 +13,6 @@ try:
     from ctypes import POINTER
 except:
     from ctypes.wintypes import POINTER
-
-try:
-	from locationHelper import RectLTWH
-except:
-	RectLTWH = None
-
-try:
-	from locationHelper import RectLTRB
-except:
-	RectLTRB = None
 
 import api
 import controlTypes
@@ -45,11 +35,20 @@ from win32con import (CS_HREDRAW, CS_VREDRAW, CW_USEDEFAULT, GWL_EXSTYLE,
                       WS_CAPTION, WS_DISABLED, WS_EX_APPWINDOW, WS_EX_LAYERED,
                       WS_EX_TOOLWINDOW, WS_EX_TRANSPARENT, WS_POPUP,
                       WS_VISIBLE)
-from windowUtils import physicalToLogicalPoint
+try:
+	from windowUtils import physicalToLogicalPoint
+except:
+	physicalToLogicalPoint = None
+
+try:
+	from core import callLater
+except:
+	callLater = wx.CallLater
 
 gdiplus = windll.gdiplus
 
 WNDPROC = WINFUNCTYPE(c_long, c_int, c_uint, c_int, c_int)
+
 
 class WNDCLASS(Structure):
 	_fields_ = [('style', c_uint),
@@ -63,11 +62,13 @@ class WNDCLASS(Structure):
 				('lpszMenuName', c_char_p),
 				('lpszClassName', c_char_p)]
 
+
 class RECT(Structure):
 	_fields_ = [('left', c_long),
 				('top', c_long),
 				('right', c_long),
 				('bottom', c_long)]
+
 
 class PAINTSTRUCT(Structure):
 	_fields_ = [('hdc', c_int),
@@ -77,9 +78,11 @@ class PAINTSTRUCT(Structure):
 				('fIncUpdate', c_int),
 				('rgbReserved', c_char * 32)]
 
+
 class POINT(Structure):
 	_fields_ = [('x', c_long),
 				('y', c_long)]
+
 
 class MSG(Structure):
 	_fields_ = [('hwnd', c_int),
@@ -89,6 +92,7 @@ class MSG(Structure):
 				('time', c_int),
 				('pt', POINT)]
 
+
 class GdiplusStartupInput(Structure):
 	_fields_ = [
 		('GdiplusVersion', c_uint32),
@@ -97,11 +101,13 @@ class GdiplusStartupInput(Structure):
 		('SuppressExternalCodecs', BOOL)
 	]
 
+
 class GdiplusStartupOutput(Structure):
 	_fields = [
 		('NotificationHookProc', c_void_p),
 		('NotificationUnhookProc', c_void_p)
 	]
+
 
 c_void_p_p = POINTER(c_void_p)
 
@@ -140,19 +146,24 @@ gdiplus.GdipDeletePen.restype = c_int
 gdiplus.GdipDeleteGraphics.argtypes = [c_void_p]
 gdiplus.GdipDeleteGraphics.restype = c_int
 
+
 def ErrorIfZero(handle):
 	if handle == 0:
 		raise WinError()
 	else:
 		return handle
 
+
 ERROR_CLASS_HAS_WINDOWS = 1412
+
 
 def RGB(r,g,b):
 	return r | (g<<8) | (b<<16)
 
+
 def makeARGB(a,r,g,b):
 	return (a<<24) | (r<<16) | (g<<8) | b
+
 
 CreateWindowEx = windll.user32.CreateWindowExA
 CreateWindowEx.argtypes = [c_int, c_char_p, c_char_p, c_int, c_int, c_int, c_int, c_int, c_int, c_int, c_int, c_int]
@@ -198,17 +209,14 @@ terminating = False
 passThroughMode = False
 currentAppSleepMode = False
 
+
 def rectEquals(r1, r2):
 	return (r1.top == r2.top and r1.bottom == r2.bottom and r1.left == r2.left and r1.right == r2.right)
 
+
 def location2rect(location):
 	rect = RECT()
-	if (RectLTWH and isinstance(location, RectLTWH)) or (RectLTRB and isinstance(location, RectLTRB)):
-		rect.left = location.left
-		rect.top = location.top
-		rect.right = location.right
-		rect.bottom = location.bottom
-	elif location and len(location) >= 4:
+	if location and len(location) >= 4:
 		rect.left = location[0]
 		rect.top = location[1]
 		rect.right = rect.left + location[2]
@@ -217,9 +225,16 @@ def location2rect(location):
 
 
 def physicalRectToLogicalLocation(hwnd, rect, margin=15):
-	left, top = physicalToLogicalPoint(hwnd, rect.left - margin, rect.top - margin)
-	right, bottom = physicalToLogicalPoint(hwnd, rect.right + margin, rect.bottom + margin)
-	return left, top, right - left, bottom - top
+	if physicalToLogicalPoint:
+		left, top = physicalToLogicalPoint(hwnd, rect.left - margin, rect.top - margin)
+		right, bottom = physicalToLogicalPoint(hwnd, rect.right + margin, rect.bottom + margin)
+		return left, top, right - left, bottom - top
+	return (
+		(rect.left - margin),
+		(rect.top - margin),
+		(rect.right - rect.left + margin * 2),
+		(rect.bottom - rect.top + margin * 2)
+	)
 
 
 def moveAndShowWindow(hwnd, rect):
@@ -229,15 +244,10 @@ def moveAndShowWindow(hwnd, rect):
 	windll.user32.MoveWindow(c_int(hwnd), left, top, width, height, True)
 	windll.user32.ShowWindow(c_int(hwnd), SW_SHOWNA)
 
+
 def locationAvailable(obj):
-	if obj and hasattr(obj, 'location') and obj.location:
-		if RectLTWH and isinstance(obj, RectLTWH):
-			return True
-		elif RectLTRB and isinstance(obj, RectLTRB):
-			return True
-		elif len(obj.location) >= 4:
-			return True
-	return False
+	return (obj and hasattr(obj, 'location') and obj.location and len(obj.location) >= 4)
+
 
 def isPassThroughMode():
 	focus = api.getFocusObject()
@@ -245,11 +255,13 @@ def isPassThroughMode():
 		return focus.treeInterceptor.passThrough
 	return False
 
+
 def isCurrentAppSleepMode():
 	focus = api.getFocusObject()
 	if hasattr(focus, 'appModule') and focus.appModule:
 		return focus.appModule.sleepMode
 	return False
+
 
 def updateFocusLocation():
 	global focusRect
@@ -374,8 +386,16 @@ def invalidateRects():
 			windll.user32.InvalidateRect(c_int(hwnd), None, True)
 
 
-def wndProc(hwnd, message, wParam, lParam):
+def updateLocations():
 	global passThroughMode, currentAppSleepMode
+	passThroughMode = isPassThroughMode()
+	currentAppSleepMode = isCurrentAppSleepMode()
+	updateFocusLocation()
+	updateNavigatorLocation()
+	invalidateRects()
+
+
+def wndProc(hwnd, message, wParam, lParam):
 	if message == WM_PAINT:
 		doPaint(hwnd)
 		return 0
@@ -387,12 +407,8 @@ def wndProc(hwnd, message, wParam, lParam):
 			timer = windll.user32.SetTimer(c_int(hwnd), ID_TIMER, UPDATE_PERIOD, None)
 		return 0
 	elif message == WM_TIMER:
-		if not preparing and hwnd == focusHwnd:
-			updateFocusLocation()
-			updateNavigatorLocation()
-			invalidateRects()
-			passThroughMode = isPassThroughMode()
-			currentAppSleepMode = isCurrentAppSleepMode()
+		if not preparing and hwnd == focusHwnd and not terminating:
+			updateLocations()
 		return 0
 	return windll.user32.DefWindowProcA(c_int(hwnd), c_int(message), c_int(wParam), c_int(lParam))
 
@@ -464,11 +480,24 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gdiplus.GdiplusStartup(byref(self.gdipToken), byref(startupInput), byref(startupOutput))
 
 		wx.CallAfter(startThread)
-		
+
+		def updateStarter():
+			def update():
+				if terminating:
+					return
+				if not preparing:
+					updateLocations()
+				callLater(UPDATE_PERIOD, update)
+			callLater(UPDATE_PERIOD, update)
+
+		wx.CallAfter(updateStarter)
+
+
 	#def getRoleName(self, role):
 	#	if role in controlTypes.roleLabels:
 	#		return controlTypes.roleLabels[role]
 	#	return '%d' % role
+
 
 	#def getStateName(self, states):
 	#	ret = []
@@ -476,55 +505,58 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	#		if s in controlTypes.stateLabels:
 	#			ret.append(controlTypes.stateLabels[s])
 	#	return ','.join(ret)
-		
+
+
 	#def getInfo(self, obj):
 	#	return "%s %s %s (%s) (%s)" % (obj.windowClassName, self.getRoleName(obj.role), self.getStateName(obj.states), oleacc.GetRoleText(obj.role), obj.name)
+
 
 	def event_gainFocus(self, obj, nextHandler):
 		global preparing
 		preparing = False
 		#log.info("gainFocus %s" % self.getInfo(obj))
-		updateFocusLocation()
-		updateNavigatorLocation()
-		invalidateRects()
+		updateLocations()
 		nextHandler()
+
 
 	#def event_focusEntered(self, obj, nextHandler):
 	#	if obj.windowClassName != 'Scintilla':
 	#		log.info("focusEntered %s" % self.getInfo(obj))
 	#	nextHandler()
 
+
 	#def event_becomeNavigatorObject(self, obj, nextHandler, isFocus=None):
 	#	log.info("becomeNavigatorObject %s" % self.getInfo(obj))
 	#	if obj.windowClassName == 'ComboBox':
-	#		updateFocusLocation(obj)
-	#		updateNavigatorLocation()
+	#		updateLocations()
 	#	nextHandler()
+
 
 	def event_stateChange(self, obj, nextHandler):
 		#log.info("stateChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox':
-			updateFocusLocation()
-			updateNavigatorLocation()
+			updateLocations()
 		nextHandler()
+
 
 	def event_valueChange(self, obj, nextHandler):
 		#log.info("valueChange %s" % self.getInfo(obj))
 		if obj.windowClassName == 'ComboBox' and obj.role == oleacc.ROLE_SYSTEM_TOOLTIP:
 			api.setFocusObject(obj)
 			speech.cancelSpeech()
-			updateFocusLocation()
-			updateNavigatorLocation()
-			invalidateRects()
+			updateLocations()
 		nextHandler()
+
 
 	#def event_nameChange(self, obj, nextHandler):
 	#	log.info("nameChange %s" % self.getInfo(obj))
 	#	nextHandler()
 
+
 	#def event_foreground(self, obj, nextHandler):
 	#	log.info("foreground %s" % self.getInfo(obj))
 	#	nextHandler()
+
 
 	def terminate(self):
 		global terminating
