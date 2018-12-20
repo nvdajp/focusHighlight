@@ -15,6 +15,30 @@
 
 要禁用对象跟踪，请卸载插件。
 
+## 版本 5.5 ##
+
+* 解决NVDA 2018.4和Firefox / Chrome网络浏览器的问题。
+
+## 版本 5.4 ##
+
+* 更新新的翻译。
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## 版本 5.3 ##
+
+* 更新新的翻译。
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## 版本 5.2 ##
+
+* 更新新的翻译。
+
+## 版本 5.1 ##
+
+* 删除调试日志输出。
+
 ## 版本 5.0 ##
 
 * 导航器对象和聚焦模式的指示符已更改。
@@ -47,7 +71,7 @@
 ## 版本 1.0 ##
 
 * 在Internet Explorer 10和Windows 8上的Skype中，修复了导航器对象的问题。
-* 发布初始版本
+* 发布初始版本。
 
 
 [[!tag dev stable]]

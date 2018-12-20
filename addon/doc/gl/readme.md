@@ -19,6 +19,30 @@ As seguintes cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
+## Cambios para 5.5 ##
+
+* Soluciona o problema con NVDA 2018.4 e os navegadores web Firefox/Chrome.
+
+## Cambios para 5.4 ##
+
+* Traduccións novas e actualizadas.
+* Soluciona [o problema](https://github.com/nvdajp/focusHighlight/issues/11)
+  referente ás versións compatibles.
+
+## Cambios para 5.3 ##
+
+* Traduccións novas e actualizadas.
+* Soluciona [o problema](https://github.com/nvdajp/focusHighlight/issues/10)
+  en relación co navegador Chrome e o modo de aplicación durminte.
+
+## Cambios para 5.2 ##
+
+* Traduccións novas e actualizadas.
+
+## Cambios para 5.1 ##
+
+* Eliminada a saída ó rexistro de depuración.
+
 ## Cambios para 5.0 ##
 
 * Cambiáronse os indicadores para o navegador de obxectos e para o Modo

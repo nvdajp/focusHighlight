@@ -19,6 +19,30 @@ Sledeće boje ovaj dodatak koristi:
 
 Da onemogućite praćenje objekata, uklonite dodatak
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Novi i ažurirani prevodi.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Novi i ažurirani prevodi.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Novi i ažurirani prevodi.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.

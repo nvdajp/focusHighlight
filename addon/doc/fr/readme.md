@@ -21,6 +21,30 @@ Les couleurs suivantes sont utilisées par ce module complémentaire :
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Traductions nouvelles et mises à jour.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Traductions nouvelles et mises à jour.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Traductions nouvelles et mises à jour.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changements pour la version 5.0 ##
 
 * Les indicateurs objet navigateur et le mode focus ont été modifiés.

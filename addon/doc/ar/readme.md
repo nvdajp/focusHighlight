@@ -19,6 +19,30 @@
 
 لتعطيل تتبع الكائنات يرجى إزالة الإضافة
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* ترجمة الإضافة للغات جديدة وتحديث ترجمتها باللغات الأخرى
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* ترجمة الإضافة للغات جديدة وتحديث ترجمتها باللغات الأخرى
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* ترجمة الإضافة للغات جديدة وتحديث ترجمتها باللغات الأخرى
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.

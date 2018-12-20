@@ -21,6 +21,30 @@ O complemento usa as seguintes cores:
 
 Para desabilitar o realse de objetos, desinstale o complemento.
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Traduções novas e atualizadas.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Traduções novas e atualizadas.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Traduções novas e atualizadas.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Mudanças na 5.0 ##
 
 * Os indicadores do objeto de navegação e do modo de foco foram alterados.

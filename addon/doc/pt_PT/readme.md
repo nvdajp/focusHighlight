@@ -20,6 +20,31 @@ As seguintes cores são usadas por este extra:
 
 Para desactivar o rastreamento de objecto, desinstale o extra.
 
+## Alterações para 5.5 ##
+
+* Soluciona o problema do NVDA 2018.4 com os navegadores da Web Firefox /
+  Chrome.
+
+## Alterações para 5.4 ##
+
+* Traduções novas e outras actualizadas.
+* Resolve [o problema](https://github.com/nvdajp/focusHighlight/issues/11)
+  respeitante à compatibilidade da versão
+
+## Alterações para 5.3 ##
+
+* Traduções novas e outras actualizadas.
+* Resolve [o problema](https://github.com/nvdajp/focusHighlight/issues/10)
+  respeitante ao Chrome e à suspensão da aplicação.
+
+## Alterações para 5.2 ##
+
+* Traduções novas e outras actualizadas.
+
+## Alterações para 5.1 ##
+
+* Removida a saída do log de depuração.
+
 ## Alterações para 5.0 ##
 
 * Os indicadores do objeto do navegador e do modo de foco foram alterados.
