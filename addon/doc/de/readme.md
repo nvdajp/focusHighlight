@@ -22,29 +22,29 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-## Changes for 5.5 ##
+## Änderungen für 5.5 ##
 
-* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+* Behebt das Problem mit NVDA 2018.4 und Firefox/Chrome-Internet-Browsern.
 
-## Changes for 5.4 ##
-
-* Neue und aktualisierte Übersetzungen
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
-  regarding version compatibility.
-
-## Changes for 5.3 ##
+## Änderungen für 5.4 ##
 
 * Neue und aktualisierte Übersetzungen
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
-  regarding Chrome browser and application sleep mode.
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/11)
+  bzgl. der Versionskompatibilität.
 
-## Changes for 5.2 ##
+## Änderungen für 5.3 ##
+
+* Neue und aktualisierte Übersetzungen
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/10)
+  bzgl. Chrome-Browser und Schlafmodus von Anwendungen.
+
+## Änderungen für 5.2 ##
 
 * Neue und aktualisierte Übersetzungen
 
-## Changes for 5.1 ##
+## Änderungen für 5.1 ##
 
-* Removed debug log output.
+* Die Protokollierungsstufe "debug"  wurde entfernt.
 
 ## Änderungen in 5.0 ##
 
