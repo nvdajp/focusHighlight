@@ -1,12 +1,12 @@
 # Focus Highlight #
 
 * Autore: Takuya Nishimoto
-* Download [stable version][2]
-* Download [development version][1]
+* Scarica la [versione stabile][2]
+* Scarica la [versione in sviluppo][1]
 
 Disegnando un rettangolo colorato, questo addon consente agli utenti
 ipovedenti, educatori vedenti o agli sviluppatori di tenere traccia della
-posizione dell'oggetto sui cui si trova il navigatore ad oggetti, oppure
+posizione dell'oggetto su cui si trova il navigatore ad oggetti, oppure
 dell'oggetto che ha il focus.
 
 Sono utilizzati i colori seguenti:
