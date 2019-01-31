@@ -17,6 +17,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 5.6 ##
 
+* New and updated translations.
 * Addresses the compatibility issue with NVDA snapshot alpha-16682.
 
 ## Changes for 5.5 ##
