@@ -20,6 +20,33 @@ Los siguientes colores se utilizan con este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
+## Cambios para 5.5 ##
+
+* Resuelve la incidencia con NVDA 2018.4 y los navegadores web Firefox y
+  Chrome.
+
+## Cambios para 5.4 ##
+
+* Traducciones nuevas y actualizadas.
+* Soluciona [la
+  incidencia](https://github.com/nvdajp/focusHighlight/issues/11)
+  relacionada con la compatibilidad de versiones.
+
+## Cambios para 5.3 ##
+
+* Traducciones nuevas y actualizadas.
+* Resuelve [la
+  incidencia](https://github.com/nvdajp/focusHighlight/issues/10)
+  relacionada con el navegador Chrome y el modo silencioso en aplicaciones.
+
+## Cambios para 5.2 ##
+
+* Traducciones nuevas y actualizadas.
+
+## Cambios para 5.1 ##
+
+* Se ha eliminado la salida del registro de depuración.
+
 ## Cambios para 5.0 ##
 
 * Se cambiaron los indicadores para navegador de objetos y Modo Foco.
@@ -33,7 +60,7 @@ Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 ## Cambios para 3.0 ##
 
 * Corregido un problema relacionado con el cuadro combinado expandido.
-* Corregido un problema  con el gestor de tareas de Windows
+* Corregido un problema  con el gestor de tareas de Windows.
 * Capacidad para indicar el modo foco.
 
 ## Cambios para 2.1 ##

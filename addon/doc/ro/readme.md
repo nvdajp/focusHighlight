@@ -21,6 +21,31 @@ Culorile utilizate de către acest add-on sunt:
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
+## Modificări aduse în versiunea 5.5 ##
+
+* Adresa problemei în legătură cu NVDA 2018.4 și navigatoarele web Firefox &
+  Chrome.
+
+## Modificări aduse în versiunea 5.4 ##
+
+* Traduceri noi și actualizate.
+* Adresa [problema](https://github.com/nvdajp/focusHighlight/issues/11) în
+  legătură cu compatibilitatea versiunii.
+
+## Modificări aduse în versiunea 5.3 ##
+
+* Traduceri noi și actualizate.
+* Adresa [problemei](https://github.com/nvdajp/focusHighlight/issues/10) în
+  legătură cu navigatorul Chrome și modul de repaus al aplicației.
+
+## Modificări aduse în versiunea 5.2 ##
+
+* Traduceri noi și actualizate.
+
+## Modificări aduse în versiunea 5.1 ##
+
+* A fost eliminată ieșirea jurnalului diagnosticării.
+
 ## Modificări aduse în versiunea 5.0 ##
 
 * Indicatorii obiectului navigator au fost modificați.

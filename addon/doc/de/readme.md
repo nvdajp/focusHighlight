@@ -22,6 +22,30 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Änderungen für 5.5 ##
+
+* Behebt das Problem mit NVDA 2018.4 und Firefox/Chrome-Internet-Browsern.
+
+## Änderungen für 5.4 ##
+
+* Neue und aktualisierte Übersetzungen
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/11)
+  bzgl. der Versionskompatibilität.
+
+## Änderungen für 5.3 ##
+
+* Neue und aktualisierte Übersetzungen
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/10)
+  bzgl. Chrome-Browser und Schlafmodus von Anwendungen.
+
+## Änderungen für 5.2 ##
+
+* Neue und aktualisierte Übersetzungen
+
+## Änderungen für 5.1 ##
+
+* Die Protokollierungsstufe "debug"  wurde entfernt.
+
 ## Änderungen in 5.0 ##
 
 * Die Anzeige für den Fokusmodus und für das Navigator-Objekt wurde geändert

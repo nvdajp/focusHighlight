@@ -19,6 +19,30 @@ Poniższe 2 kolory są stosowane przez ten dodatek:
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Nowe i odświeżone tłumaczenia.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Nowe i odświeżone tłumaczenia.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Nowe i odświeżone tłumaczenia.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.

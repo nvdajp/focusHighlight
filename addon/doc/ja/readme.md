@@ -9,27 +9,50 @@
 
 以下の色を使っています：
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
+* 緑色のギザギザの線：ナビゲーターオブジェクトを示します。
 * 赤色の細い線：フォーカスのあるオブジェクト・コントロールを示します。
 * 赤色の太い線：ナビゲーターオブジェクトとフォーカスが重なっていることを示します。
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* 青色の太い四角形: NVDAがフォーカスモード、つまりキー操作がコントロールに渡されることを示します。
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
-## Changes for 5.0 ##
+## Changes for 5.5 ##
 
-* Indicators of navigator object and focus mode were changed.
-* Multiple monitors are supported.
-* It now uses GDI Plus technology for drawing.
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
 
-## Changes for 4.0 ##
+## Changes for 5.4 ##
 
-* Hide rectangle if current application is in sleep mode.
+* 新規の翻訳と翻訳の更新。
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* 新規の翻訳と翻訳の更新。
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* 新規の翻訳と翻訳の更新。
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
+## 5.0 での変更点 ##
+
+* ナビゲーターオブジェクトとフォーカスモードの表示が変わりました。
+* 複数モニタをサポートしました。
+* 描画にはGDI Plus技術を使用するようになりました。
+
+## 4.0 での変更点 ##
+
+* アプリケーションがスリープモードにある時に四角を隠すようにしました。
 
 ## 3.0 での変更点 ##
 
-* Fixed issue regarding expanded combo box.
+* 拡張コンボボックスでの不具合を修正。
 * Windows Task Managerでの不具合を修正。
 * フォーカスモードを表示する機能。
 

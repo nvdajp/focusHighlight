@@ -1,12 +1,12 @@
 # Focus Highlight #
 
 * Autore: Takuya Nishimoto
-* Download [stable version][2]
-* Download [development version][1]
+* Scarica la [versione stabile][2]
+* Scarica la [versione in sviluppo][1]
 
 Disegnando un rettangolo colorato, questo addon consente agli utenti
 ipovedenti, educatori vedenti o agli sviluppatori di tenere traccia della
-posizione dell'oggetto sui cui si trova il navigatore ad oggetti, oppure
+posizione dell'oggetto su cui si trova il navigatore ad oggetti, oppure
 dell'oggetto che ha il focus.
 
 Sono utilizzati i colori seguenti:
@@ -22,6 +22,30 @@ Sono utilizzati i colori seguenti:
   visualizzato a schermo.
 
 Per disabilitare il monitor  dell'oggetto, disinstallare l'addon.
+
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Nuove Traduzioni e aggiornamenti di quelle esistenti.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Nuove Traduzioni e aggiornamenti di quelle esistenti.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Nuove Traduzioni e aggiornamenti di quelle esistenti.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
 
 ## Cambiamenti per la 5.0. ##
 

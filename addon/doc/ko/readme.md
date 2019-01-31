@@ -17,6 +17,30 @@
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* 새 언어 추가 및 번역 업데이트.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* 새 언어 추가 및 번역 업데이트.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* 새 언어 추가 및 번역 업데이트.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Changes for 5.0 ##
 
 * Indicators of navigator object and focus mode were changed.

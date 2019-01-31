@@ -21,6 +21,30 @@ Følgende farver bliver brugt af dette tilføjelsesprogram:
 Hvis du vil slå sporing af objekter fra, så afinstaller
 tilføjelsesprogrammet.
 
+## Changes for 5.5 ##
+
+* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
+
+## Changes for 5.4 ##
+
+* Nye og opdaterede oversættelser.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
+  regarding version compatibility.
+
+## Changes for 5.3 ##
+
+* Nye og opdaterede oversættelser.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
+  regarding Chrome browser and application sleep mode.
+
+## Changes for 5.2 ##
+
+* Nye og opdaterede oversættelser.
+
+## Changes for 5.1 ##
+
+* Removed debug log output.
+
 ## Ændringer i 5.0 ##
 
 * Indikatorer på navigator objektet og fokus tilstand blev ændret.

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: focusHighlight 1.1-dev\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-11-23 18:23+0100\n"
-"PO-Revision-Date: 2014-11-09 21:07+0100\n"
-"Last-Translator: Bue Vester-Andersen <bue@vester-andersen.dk>\n"
-"Language-Team: Dansk <bue@vester-andersen.dk>\n"
+"PO-Revision-Date: 2019-01-14 12:35+0100\n"
+"Last-Translator: Nicolai Svendsen <chojiro1990@gmail.com>\n"
+"Language-Team: Dansk NVDA <dansk@nvda.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 2.2\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.

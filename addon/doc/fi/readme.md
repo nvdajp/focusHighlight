@@ -22,6 +22,31 @@ Seuraavia värejä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
+## Muutokset versiossa 5.5 ##
+
+* Korjaa NVDA 2018.4:n ja Firefox/Chrome-verkkoselainten kanssa olleen
+  ongelman.
+
+## Muutokset versiossa 5.4 ##
+
+* Käännöksiä päivitetty ja lisätty.
+* Korjaa [ongelman](https://github.com/nvdajp/focusHighlight/issues/11),
+  joka liittyy versioyhteensopivuuteen.
+
+## Muutokset versiossa 5.3 ##
+
+* Käännöksiä päivitetty ja lisätty.
+* Korjaa [ongelman](https://github.com/nvdajp/focusHighlight/issues/10),
+  joka liittyy Chrome-selaimeen ja sovelluksen lepotilaan.
+
+## Muutokset versiossa 5.2 ##
+
+* Käännöksiä päivitetty ja lisätty.
+
+## Muutokset versiossa 5.1 ##
+
+* Poistettu virheenkorjauslokin tulostus.
+
 ## Muutokset versiossa 5.0 ##
 
 * Navigointiobjektin ja vuorovaikutustilan ilmaisimia on muutettu.
