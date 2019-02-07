@@ -19,6 +19,12 @@ As seguintes cores utilízanse por este complemento:
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
+## Cambios para 5.6 ##
+
+* Traduccións novas e actualizadas.
+* Arranxa o problema de compatibilidade coa compilación de desenvolvemento
+  de NVDA alpha-16682.
+
 ## Cambios para 5.5 ##
 
 * Soluciona o problema con NVDA 2018.4 e os navegadores web Firefox/Chrome.

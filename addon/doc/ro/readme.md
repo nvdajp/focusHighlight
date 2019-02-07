@@ -21,6 +21,11 @@ Culorile utilizate de către acest add-on sunt:
 
 Pentru a dezactiva track obiect, dezinstalează add-on-ul.
 
+## Changes for 5.6 ##
+
+* Traduceri noi și actualizate.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Modificări aduse în versiunea 5.5 ##
 
 * Adresa problemei în legătură cu NVDA 2018.4 și navigatoarele web Firefox &

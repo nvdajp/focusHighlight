@@ -21,6 +21,11 @@ Les couleurs suivantes sont utilisées par ce module complémentaire :
 
 Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
+## Changements pour la version 5.6 ##
+
+* Traductions nouvelles et mises à jour.
+* Résout le problème de compatibilité avec la snapshot de NVDA alpha-16682.
+
 ## Changements pour la version 5.5 ##
 
 * Résout le problème avec NVDA 2018.4 et les navigateurs Web Firefox /

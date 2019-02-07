@@ -19,6 +19,11 @@ Sledeće boje ovaj dodatak koristi:
 
 Da onemogućite praćenje objekata, uklonite dodatak
 
+## Changes for 5.6 ##
+
+* Novi i ažurirani prevodi.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

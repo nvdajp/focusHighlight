@@ -20,6 +20,11 @@ Los siguientes colores se utilizan con este complemento:
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 
+## Cambios para 5.6 ##
+
+* Traducciones nuevas y actualizadas.
+* Soluciona problemas de compatibilidad con la snapshot de NVDA alpha-16682.
+
 ## Cambios para 5.5 ##
 
 * Resuelve la incidencia con NVDA 2018.4 y los navegadores web Firefox y

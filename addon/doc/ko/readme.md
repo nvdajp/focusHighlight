@@ -17,6 +17,11 @@
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
 
+## Changes for 5.6 ##
+
+* 새 언어 추가 및 번역 업데이트.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

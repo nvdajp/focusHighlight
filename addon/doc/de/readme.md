@@ -22,6 +22,11 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Changes for 5.6 ##
+
+* Neue und aktualisierte Übersetzungen
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Änderungen für 5.5 ##
 
 * Behebt das Problem mit NVDA 2018.4 und Firefox/Chrome-Internet-Browsern.

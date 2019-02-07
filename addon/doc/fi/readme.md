@@ -22,6 +22,11 @@ Seuraavia värejä käytetään:
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 
+## Muutokset versiossa 5.6 ##
+
+* Käännöksiä päivitetty ja lisätty.
+* Korjaa yhteensopivuusongelman NVDA:n alfa-kehitysversion 16682 kanssa.
+
 ## Muutokset versiossa 5.5 ##
 
 * Korjaa NVDA 2018.4:n ja Firefox/Chrome-verkkoselainten kanssa olleen

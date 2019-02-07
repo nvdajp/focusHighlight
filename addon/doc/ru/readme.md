@@ -19,6 +19,11 @@
 
 Чтобы отключить отслеживание объекта, удалите дополнение.
 
+## Changes for 5.6 ##
+
+* Новые и обновлённые переводы.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

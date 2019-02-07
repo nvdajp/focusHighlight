@@ -21,6 +21,11 @@ Følgende farver bliver brugt af dette tilføjelsesprogram:
 Hvis du vil slå sporing af objekter fra, så afinstaller
 tilføjelsesprogrammet.
 
+## Changes for 5.6 ##
+
+* Nye og opdaterede oversættelser.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
