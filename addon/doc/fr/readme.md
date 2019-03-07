@@ -4,22 +4,22 @@
 * Télécharger [version stable][2]
 * Télécharger [version de développement][1]
 
-En dessinant un rectangle coloré, ce module complémentaire permet aux
-utilisateurs malvoyants, éducateurs voyants ou aux développeurs de suivre
-l'emplacement de l'objet navigateur de NVDA et l'objet mis en focus ou le
-contrôle.
+En dessinant un rectangle coloré, cette extension permet aux utilisateurs
+malvoyants, éducateurs voyants ou aux développeurs de suivre l'emplacement
+de l'objet navigateur de NVDA et le contrôle de l'objet en focus.
 
-Les couleurs suivantes sont utilisées par ce module complémentaire :
+Les couleurs suivantes sont utilisées par cette extension :
 
 * Rectangle traits mince en ligne pointillé vert, pour indiquer l'objet
   navigateur.
 * Rectangle mince rouge, pour indiquer l'objet mis en focus ou le contrôle.
 * Rectangle épais rouge, pour indiquer lorsque  l'objet navigateur et
-  l'objet mis en focus sont chevauchent.
-* Rectangle épais en ligne pointillé bleu, pour indiquer à NVDA qui est en
-  mode focus, c'est-à-dire les principaux types sont passés au contrôle.
+  l'objet mis en focus se chevauchent.
+* Rectangle épais en ligne pointillé bleu, pour indiquer que NVDA est en
+  mode focus, c'est-à-dire que les frappes de touches sont passées au
+  contrôle.
 
-Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
+Pour désactiver le suivi d'objets, désinstallez l'extension.
 
 ## Changements pour la version 5.6 ##
 
@@ -53,7 +53,7 @@ Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
 ## Changements pour la version 5.0 ##
 
-* Les indicateurs objet navigateur et le mode focus ont été modifiés.
+* Les indicateurs d'objet navigateur et de mode focus ont été modifiés.
 * Plusieurs moniteurs sont pris en charge.
 * Il utilise maintenant la technologie GDI Plus pour le dessin.
 
@@ -74,13 +74,13 @@ Pour désactiver le suivi d'objets, désinstallez le module complémentaire.
 
 ## Changements pour la version 2.0 ##
 
-* L'aide du module complémentaire est disponible à partir du Gestionnaire de
-  modules complémentaires.
+* L'aide de l'extension est disponible à partir du Gestionnaire
+  d'extensions.
 
 ## Changements pour la version 1.1 ##
 
 * Changé objet navigateur de rectangle à traits en escalier.
-* Correction d'un problème avec "Recharger les plugins".
+* Correction d'un problème avec "Recharger les extensions".
 
 ## Changements pour la version 1.0 ##
 
