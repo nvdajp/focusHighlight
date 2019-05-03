@@ -22,25 +22,30 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
+## Änderungen für 5.6 ##
+
+* Neue und aktualisierte Übersetzungen.
+* Behebt das Kompatibilitätsproblem mit dem NVDA-Snapshot alpha-16682.
+
 ## Änderungen für 5.5 ##
 
 * Behebt das Problem mit NVDA 2018.4 und Firefox/Chrome-Internet-Browsern.
 
 ## Änderungen für 5.4 ##
 
-* Neue und aktualisierte Übersetzungen
+* Neue und aktualisierte Übersetzungen.
 * Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/11)
   bzgl. der Versionskompatibilität.
 
 ## Änderungen für 5.3 ##
 
-* Neue und aktualisierte Übersetzungen
+* Neue und aktualisierte Übersetzungen.
 * Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/10)
   bzgl. Chrome-Browser und Schlafmodus von Anwendungen.
 
 ## Änderungen für 5.2 ##
 
-* Neue und aktualisierte Übersetzungen
+* Neue und aktualisierte Übersetzungen.
 
 ## Änderungen für 5.1 ##
 
@@ -48,9 +53,10 @@ Erweiterung.
 
 ## Änderungen in 5.0 ##
 
-* Die Anzeige für den Fokusmodus und für das Navigator-Objekt wurde geändert
+* Die Anzeige für den Fokusmodus und für das Navigator-Objekt wurde
+  geändert.
 * Unterstützt multiple Bildschirme.
-* Für Drawing wird nun GDI Plus verwendet
+* Für Drawing wird nun GDI Plus verwendet.
 
 ## Änderungen in 4.0 ##
 
@@ -61,11 +67,11 @@ Erweiterung.
 
 * Es wurde ein Problem bei erweiterten Kombinationsfeldern behoben.
 * Fehler mit dem Windows-Task-Manager behoben.
-* Fähigkeit den Lesemodus anzuzeigen
+* Fähigkeit den Lesemodus anzuzeigen.
 
 ## Änderungen in 2.1 ##
 
-* Neue und aktualisierte Übersetzungen
+* Neue und aktualisierte Übersetzungen.
 
 ## Änderungen in 2.0 ##
 
@@ -80,7 +86,7 @@ Erweiterung.
 
 * Problem mit dem Navigator-Objekt in Internet Explorer 10 und Skype für
   Windows 8 behoben.
-* anfängliche Version
+* Anfängliche Version.
 
 
 [[!tag dev stable]]

@@ -19,6 +19,11 @@ Poniższe 2 kolory są stosowane przez ten dodatek:
 
 Aby wyłączyć śledzenie obiektu, odinstaluj ten dodatek.
 
+## Changes for 5.6 ##
+
+* Nowe i odświeżone tłumaczenia.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

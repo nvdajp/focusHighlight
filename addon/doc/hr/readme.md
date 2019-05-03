@@ -19,6 +19,11 @@ The following colors are used by this addon:
 
 Da biste onemogućili pračenje objekata, uklonite dodatak.
 
+## Changes for 5.6 ##
+
+* Novi i ažurirani prijevodi.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

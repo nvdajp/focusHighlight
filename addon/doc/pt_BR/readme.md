@@ -21,6 +21,11 @@ O complemento usa as seguintes cores:
 
 Para desabilitar o realse de objetos, desinstale o complemento.
 
+## Changes for 5.6 ##
+
+* Traduções novas e atualizadas.
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Mudanças na 5.5 ##
 
 * Soluciona o problema com o NVDA 2018.4 e os navegadores web

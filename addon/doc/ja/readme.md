@@ -16,6 +16,11 @@
 
 オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
 
+## Changes for 5.6 ##
+
+* 新規の翻訳と翻訳の更新。
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.

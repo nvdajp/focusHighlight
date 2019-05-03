@@ -20,6 +20,12 @@ As seguintes cores são usadas por este extra:
 
 Para desactivar o rastreamento de objecto, desinstale o extra.
 
+## Alterações para 5.6 ##
+
+* Traduções novas e outras actualizadas.
+* Soluciona o problema de compatibilidade com o snapshot do NVDA
+  alpha-16682.
+
 ## Alterações para 5.5 ##
 
 * Soluciona o problema do NVDA 2018.4 com os navegadores da Web Firefox /

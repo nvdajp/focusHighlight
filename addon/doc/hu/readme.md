@@ -19,6 +19,11 @@ A következő színeket  jeleníti meg a kiegészítő:
 Az elemkövetés kikapcsolásához függessze fel vagy távolítsa el ezt a
 kiegészítőt.
 
+## Changes for 5.6 ##
+
+* Új és frissített fordítások
+* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+
 ## Changes for 5.5 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
