@@ -1,5 +1,5 @@
 # focus highlight
-# 2018-12-18
+# 2019-05-03
 # Takuya Nishimoto
 
 import sys
@@ -253,7 +253,7 @@ def isPassThroughMode():
 	focus = api.getFocusObject()
 	if hasattr(focus, 'treeInterceptor') and focus.treeInterceptor:
 		return focus.treeInterceptor.passThrough
-	return False
+	return True
 
 
 def isCurrentAppSleepMode():

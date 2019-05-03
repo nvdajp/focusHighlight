@@ -19,7 +19,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("Highlight the focused location."),
 	# version
-	"addon_version" : "5.6",
+	"addon_version" : "5.7",
 	# Author(s)
 	"addon_author" : u"Takuya Nishimoto <nishimotz@gmail.com>",
 	# URL for the add-on documentation support
@@ -29,7 +29,7 @@ addon_info = {
 	# Minimum NVDA version supported *e.g. "2018.3")
 	"addon_minimumNVDAVersion" : "2014.1.0",
 	# Last NVDA version supported/tested (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion" : "2019.1.0",
+	"addon_lastTestedNVDAVersion" : "2019.2.0",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel" : None,
 }
