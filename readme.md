@@ -17,6 +17,7 @@ To disable object tracking, uninstall the addon.
 
 ## Changes for 5.7 ##
 
+* New and updated translations.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13) regarding the browse mode.
 
 ## Changes for 5.6 ##
