@@ -206,7 +206,7 @@ navigatorHwnd = 0
 wndclass = None
 preparing = True
 terminating = False
-passThroughMode = False
+passThroughMode = True
 currentAppSleepMode = False
 
 
@@ -252,7 +252,7 @@ def locationAvailable(obj):
 def isPassThroughMode():
 	focus = api.getFocusObject()
 	if hasattr(focus, 'treeInterceptor') and focus.treeInterceptor:
-		return focus.treeInterceptor.passThrough
+		return bool(focus.treeInterceptor.passThrough)
 	return True
 
 

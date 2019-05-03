@@ -8,17 +8,18 @@ By drawing a colored rectangle, this addon enables partially sighted users, sigh
 
 The following colors are used by this addon:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
-* Red thin rectangle, to indicate the focused object/control.
-* Red thick rectangle, to indicate when navigator object and focused object are overlapping.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode, i.e. key types are passed to the control.
+* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and this is the navigator object.
+* Red thin rectangle shows NVDA is in browse mode, and this is the focused object/control.
+* Red thick rectangle shows NVDA is in browse mode, and this is both the navigator object and the focused object which are overlapping.
+* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e., key types are passed to the control.
 
 To disable object tracking, uninstall the addon.
 
-## Changes for 5.7 ##
+## Changes for 6.0 ##
 
 * New and updated translations.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13) regarding the browse mode.
+* Since this version, if the browse mode of NVDA is not available for an application, it is always shown that NVDA is in focus mode for the application, rather than using the red thick rectangle.
 
 ## Changes for 5.6 ##
 
