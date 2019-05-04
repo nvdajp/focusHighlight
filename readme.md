@@ -20,6 +20,7 @@ To disable object tracking, uninstall the addon.
 * New and updated translations.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13) regarding the browse mode.
 * Since this version, if the browse mode of NVDA is not available for an application, it is always shown that NVDA is in focus mode for the application, rather than using the red thick rectangle.
+* The thickness of the line representing the focus mode has been reduced to half.
 
 ## Changes for 5.6 ##
 

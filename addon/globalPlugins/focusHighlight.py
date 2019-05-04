@@ -178,7 +178,7 @@ transBrush = windll.gdi32.CreateSolidBrush(transColor)
 # focus (passthrough)
 ptARGB = makeARGB(255, 0x22, 0x22, 0xff)
 ptDashStyle = 2
-ptThickness = 12
+ptThickness = 6
 
 # focus
 fcARGB = makeARGB(255, 0xff, 0x00, 0x00)
