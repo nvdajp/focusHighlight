@@ -11,16 +11,29 @@ seuraamisen.
 
 Seuraavia värejä käytetään:
 
-* Vihreä, ohut, katko- ja pisteviivainen suorakulmio ilmaisee
-  navigointiobjektin.
-* Punainen, ohut suorakulmio, joka ilmaisee aktiivisen objektin/säätimen.
-* Punainen, paksu suorakulmio, joka ilmaisee, että navigointiobjekti ja
-  aktiivinen objekti ovat päällekkäin.
+* Vihreä, ohut, katko- ja pisteviivainen suorakulmio ilmaisee NVDA:n olevan
+  selaustilassa sekä näyttää navigointiobjektin.
+* Punainen, ohut suorakulmio, joka ilmaisee NVDA:n olevan selaustilassa sekä
+  näyttää aktiivisen objektin/säätimen.
+* Punainen, paksu suorakulmio, joka ilmaisee NVDA:n olevan selaustilassa
+  sekä näyttää, että navigointiobjekti ja aktiivinen objekti ovat
+  päällekkäin.
 * Sininen, paksu pisteviivainen suorakulmio ilmaisee NVDA:n olevan
   vuorovaikutustilassa, ts. näppäinpainallukset välitetään nykyiselle
   säätimelle.
 
 Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
+
+## Muutokset versiossa 6.0 ##
+
+* Käännöksiä päivitetty ja lisätty.
+* Korjaa [ongelman](https://github.com/nvdajp/focusHighlight/issues/13),
+  joka liittyy selaustilaan.
+* Mikäli selaustila ei ole käytettävissä sovelluksessa, tästä
+  lisäosaversiosta alkaen näytetään aina NVDA:n olevan vuorovaikutustilassa
+  sen sijaan, että näytettäisiin paksu punainen suorakulmio.
+* Vuorovaikutustilaa ilmaisevan viivan paksuutta on vähennetty puoleen
+  aiemmasta.
 
 ## Muutokset versiossa 5.6 ##
 
@@ -87,7 +100,6 @@ Poista objektien seuranta käytöstä poistamalla tämä lisäosa.
 * Korjattu navigointiobjektin ongelma Internet Explorer 10:ssä ja Skypessä
   Windows 8:aa käytettäessä.
 * Ensimmäinen versio.
-
 
 [[!tag dev stable]]
 

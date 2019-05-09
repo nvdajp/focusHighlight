@@ -11,16 +11,28 @@ verfolgen.
 
 Die folgenden Farben werden von dieser Erweiterung verwendet:
 
-* Grüne, düne, gestrichelte und gepunktete Linie, zeigt das Objekt, auf dem
-  der Navigator steht.
-* Rotes, dünnes Rechteck: Position des fokusierten Objekts anzeigen.
-* Ein rotes breites Rechteck zeigt an, dass Fokus und Navigator auf dem
-  gleichen Objekt stehen.
-* Blaues dickes gepunktetes Rechteck, um zu zeigen, dass NVDA im Fokus-Modus
-  ist, d.h. Tastenanschläge werden an das aktuelle Steuerelement übergeben.
+* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
+  this is the navigator object.
+* Red thin rectangle shows NVDA is in browse mode, and this is the focused
+  object/control.
+* Red thick rectangle shows NVDA is in browse mode, and this is both the
+  navigator object and the focused object which are overlapping.
+* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
+  key types are passed to the control.
 
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
+
+## Changes for 6.0 ##
+
+* Neue und aktualisierte Übersetzungen.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
+  regarding the browse mode.
+* Since this version, if the browse mode of NVDA is not available for an
+  application, it is always shown that NVDA is in focus mode for the
+  application, rather than using the red thick rectangle.
+* The thickness of the line representing the focus mode has been reduced to
+  half.
 
 ## Änderungen für 5.6 ##
 
@@ -87,7 +99,6 @@ Erweiterung.
 * Problem mit dem Navigator-Objekt in Internet Explorer 10 und Skype für
   Windows 8 behoben.
 * Anfängliche Version.
-
 
 [[!tag dev stable]]
 

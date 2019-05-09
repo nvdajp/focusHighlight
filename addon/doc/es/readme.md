@@ -11,14 +11,29 @@ enfocado.
 
 Los siguientes colores se utilizan con este complemento:
 
-* Rectángulo verde de líneas punteadas para indicar el navegador de objetos.
-* Rectángulo rojo delgado, para indicar el objeto o control enfocado.
-* Rectángulo rojo grueso, para indicar cuando el navegador de objetos y el
-  objeto enfocado se superponen.
-* Rectángulo de líneas punteadas gruesas azules, para indicar que NVDA está
-  en modo foco, es decir, las teclas se pasan al control.
+* Un rectángulo verde de líneas punteadas indica que NVDA está en modo
+  exploración, y muestra el navegador de objetos.
+* Un rectángulo rojo delgado indica que NVDA está en modo exploración, y
+  muestra el objeto o control enfocado.
+* Un rectángulo rojo grueso indica que NVDA está en el modo exploración, y
+  se muestra cuando el navegador de objetos y el objeto enfocado se
+  superponen.
+* Un rectángulo de líneas punteadas gruesas azules indica que NVDA está en
+  modo foco, es decir, las teclas se pasan al control.
 
 Para deshabilitar el seguimiento de objetos, desinstala el complemento.
+
+## Cambios para 6.0 ##
+
+* Traducciones nuevas y actualizadas.
+* Resuelve [la
+  incidencia](https://github.com/nvdajp/focusHighlight/issues/13)
+  relacionada con el modo exploración.
+* A partir de esta versión, si el modo exploración de NVDA no está
+  disponible en alguna aplicación, siempre se indica que está activo el modo
+  foco en esa aplicación en vez de usar el rectángulo rojo grueso.
+* El grosor de la línea que representa el modo foco se ha reducido a la
+  mitad.
 
 ## Cambios para 5.6 ##
 
@@ -87,7 +102,6 @@ Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 * En Internet Explorer 10 y en Skype en Windows 8,se soluciona un problema
   con el navegador de objetos.
 * Versión inicial.
-
 
 [[!tag dev stable]]
 

@@ -9,13 +9,27 @@
 
 다음의 2 색이 이 추가 기능에 의해 사용됩니다:
 
-* Green thin dashed dotted line rectangle, to indicate the navigator object.
-* 빨간색 얇은 선, 초점이 있는 객체/콘트롤을 나타냅니다.
-*  navigator 객체와 포커스가 있는 객체가 겹치는 경우, 빨간색 굵은 선이 표시됩니다.
-* Blue thick dotted line rectangle, to indicate NVDA is in focus mode,
-  i.e. key types are passed to the control.
+* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
+  this is the navigator object.
+* Red thin rectangle shows NVDA is in browse mode, and this is the focused
+  object/control.
+* Red thick rectangle shows NVDA is in browse mode, and this is both the
+  navigator object and the focused object which are overlapping.
+* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
+  key types are passed to the control.
 
 개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
+
+## Changes for 6.0 ##
+
+* 새 언어 추가 및 번역 업데이트.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
+  regarding the browse mode.
+* Since this version, if the browse mode of NVDA is not available for an
+  application, it is always shown that NVDA is in focus mode for the
+  application, rather than using the red thick rectangle.
+* The thickness of the line representing the focus mode has been reduced to
+  half.
 
 ## Changes for 5.6 ##
 
@@ -79,7 +93,6 @@
 
 * Windows 8에서 Internet Explorer 10 및 Skype navigator 객체의 버그 수정.
 * 첫 번째 버전.
-
 
 [[!tag dev stable]]
 
