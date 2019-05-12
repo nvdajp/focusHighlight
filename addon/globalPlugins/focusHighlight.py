@@ -1,7 +1,8 @@
 # focus highlight
-# 2019-05-03
+# 2019-05-12
 # Takuya Nishimoto
 
+import os
 import sys
 import threading
 import time
@@ -9,19 +10,20 @@ from ctypes import (WINFUNCTYPE, FormatError, GetLastError, Structure,
                     WinError, byref, c_char, c_char_p, c_float, c_int, c_long,
                     c_uint, c_uint32, c_ulong, c_void_p, pointer, windll)
 from ctypes.wintypes import BOOL, COLORREF
-try:
-    from ctypes import POINTER
-except:
-    from ctypes.wintypes import POINTER
+from io import BytesIO
 
 import api
+import config
+import configobj
 import controlTypes
 import globalPluginHandler
+import globalVars
 import gui
 import oleacc
 import speech
 import tones
 import ui
+import validate
 import virtualBuffers
 import winUser
 import wx
@@ -35,6 +37,12 @@ from win32con import (CS_HREDRAW, CS_VREDRAW, CW_USEDEFAULT, GWL_EXSTYLE,
                       WS_CAPTION, WS_DISABLED, WS_EX_APPWINDOW, WS_EX_LAYERED,
                       WS_EX_TOOLWINDOW, WS_EX_TRANSPARENT, WS_POPUP,
                       WS_VISIBLE)
+
+try:
+    from ctypes import POINTER
+except:
+    from ctypes.wintypes import POINTER
+
 try:
 	from windowUtils import physicalToLogicalPoint
 except:
@@ -175,20 +183,51 @@ transColor = COLORREF()
 transColor.value = TRANS_RGB
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
+CONFIG_FILENAME = 'focusHighlight.ini'
+path = os.path.join(globalVars.appArgs.configPath, CONFIG_FILENAME)
+config = configobj.ConfigObj(path, configspec=BytesIO(b"""
+[passthrough]
+    color = string(min=6, default='2222ff')
+    dashStyle = integer(default=2)
+    thickness = integer(default=12)
+
+[focus]
+    color = string(min=6, default='ff0000')
+    dashStyle = integer(default=0)
+    thickness = integer(default=6)
+
+[navigator]
+    color = string(min=6, default='00ff00')
+    dashStyle = integer(default=3)
+    thickness = integer(default=4)
+""")
+)
+config.validate(validate.Validator(), copy=True)
+config.filename = path
+config.write()
+
+
+def getConfigARGB(category):
+	color = config[category]['color']
+	r = int(color[0:2], 16)
+	g = int(color[2:4], 16)
+	b = int(color[4:6], 16)
+	return makeARGB(255, r, g, b)
+
 # focus (passthrough)
-ptARGB = makeARGB(255, 0x22, 0x22, 0xff)
-ptDashStyle = 2
-ptThickness = 6
+#ptARGB = makeARGB(255, 0x22, 0x22, 0xff)
+#ptDashStyle = 2
+#ptThickness = 6
 
 # focus
-fcARGB = makeARGB(255, 0xff, 0x00, 0x00)
-fcDashStyle = 0
-fcThickness = 6
+#fcARGB = makeARGB(255, 0xff, 0x00, 0x00)
+#fcDashStyle = 0
+#fcThickness = 6
 
 # navigator
-navARGB = makeARGB(255, 0x00, 0xff, 0x00)
-navDashStyle = 3
-navThickness = 4
+#navARGB = makeARGB(255, 0x00, 0xff, 0x00)
+#navDashStyle = 3
+#navThickness = 4
 
 PADDING_THIN = 10
 PADDING_THICK = 5
@@ -333,9 +372,19 @@ def doPaint(hwnd):
 		if currentAppSleepMode:
 			pass
 		elif passThroughMode:
-			argb, dashStyle, thickness, padding = ptARGB, ptDashStyle, ptThickness, PADDING_THICK
+			argb, dashStyle, thickness, padding = (
+				getConfigARGB('passthrough'),
+				config['passthrough']['dashStyle'],
+				config['passthrough']['thickness'],
+				PADDING_THICK
+			)
 		else:
-			argb, dashStyle, thickness, padding = fcARGB, fcDashStyle, fcThickness, PADDING_THICK
+			argb, dashStyle, thickness, padding = (
+				getConfigARGB('focus'),
+				config['focus']['dashStyle'],
+				config['focus']['thickness'],
+				PADDING_THICK
+			)
 		if rectEquals(focusRect, navigatorRect):
 			if not passThroughMode and thickness is not None:
 				thickness *= 2
@@ -346,7 +395,12 @@ def doPaint(hwnd):
 		elif rectEquals(focusRect, navigatorRect):
 			pass
 		else:
-			argb, dashStyle, thickness, padding = navARGB, navDashStyle, navThickness, PADDING_THIN
+			argb, dashStyle, thickness, padding = (
+				getConfigARGB('navigator'),
+				config['navigator']['dashStyle'],
+				config['navigator']['thickness'],
+				PADDING_THIN
+			)
 
 	if argb is None:
 		windll.user32.EndPaint(c_int(hwnd), byref(ps))
