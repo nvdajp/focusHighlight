@@ -10,27 +10,26 @@ do navegador de obxectos do NVDA e o obxecto ou control enfocado.
 
 As seguintes cores utilízanse por este complemento:
 
-* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
-  this is the navigator object.
-* Red thin rectangle shows NVDA is in browse mode, and this is the focused
-  object/control.
-* Red thick rectangle shows NVDA is in browse mode, and this is both the
-  navigator object and the focused object which are overlapping.
-* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
-  key types are passed to the control.
+* Rectángulo fino verde de liñas punteadas para indicar o navegador de
+  obxectos.
+* Rectángulo fino bermello amosa que NVDA está en modo exploración, e que
+  éste é o obxecto/control enfocado.
+* Rectángulo groso bermello amosa que NVDA está en modo exploración, e que
+  éste é o obxecto/control enfocado.
+* Rectángulo groso azul de liñas punteadas indica que NVDA está en modo
+  foco, p.ex., as pulsacións de teclas pásanse ao control.
 
 Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 
-## Changes for 6.0 ##
+## Cambios para 6.0 ##
 
 * Traduccións novas e actualizadas.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
-  regarding the browse mode.
-* Since this version, if the browse mode of NVDA is not available for an
-  application, it is always shown that NVDA is in focus mode for the
-  application, rather than using the red thick rectangle.
-* The thickness of the line representing the focus mode has been reduced to
-  half.
+* Soluciona [o problema](https://github.com/nvdajp/focusHighlight/issues/13)
+  en relación co modo exploración.
+* Dende esta versión, se o modo exploración do NVDA non está dispoñible para
+  unha aplicación, amósase sempre que NVDA está en modo foco para a
+  aplicación, en lugar de utilizar o rectángulo groso vermello.
+* O grosor da liña que representa o modo foco reduciuse á metade.
 
 ## Cambios para 5.6 ##
 
