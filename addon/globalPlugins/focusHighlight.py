@@ -14,7 +14,6 @@ from io import BytesIO
 
 import api
 import config
-import configobj
 import controlTypes
 import globalPluginHandler
 import globalVars
@@ -183,32 +182,27 @@ transColor = COLORREF()
 transColor.value = TRANS_RGB
 transBrush = windll.gdi32.CreateSolidBrush(transColor)
 
-CONFIG_FILENAME = 'focusHighlight.ini'
-path = os.path.join(globalVars.appArgs.configPath, CONFIG_FILENAME)
-config = configobj.ConfigObj(path, configspec=BytesIO(b"""
-[passthrough]
-    color = string(min=6, default='2222ff')
-    dashStyle = integer(default=2)
-    thickness = integer(default=12)
-
-[focus]
-    color = string(min=6, default='ff0000')
-    dashStyle = integer(default=0)
-    thickness = integer(default=6)
-
-[navigator]
-    color = string(min=6, default='00ff00')
-    dashStyle = integer(default=3)
-    thickness = integer(default=4)
-""")
-)
-config.validate(validate.Validator(), copy=True)
-config.filename = path
-config.write()
-
+config.conf.spec["focusHighlight"] = {
+	"passthrough": {
+		"defaultMode": "boolean(default=True)",
+		"color": "string(min=6, default='2222ff')",
+		"dashStyle": "integer(default=2)",
+		"thickness": "integer(default=6)",
+	},
+	"focus": {
+		"color": "string(min=6, default='ff0000')",
+		"dashStyle": "integer(default=0)",
+		"thickness": "integer(default=6)",
+	},
+	"navigator": {
+		"color": "string(min=6, default='00ff00')",
+		"dashStyle": "integer(default=3)",
+		"thickness": "integer(default=4)",
+	}
+}
 
 def getConfigARGB(category):
-	color = config[category]['color']
+	color = config.conf['focusHighlight'][category]['color']
 	r = int(color[0:2], 16)
 	g = int(color[2:4], 16)
 	b = int(color[4:6], 16)
@@ -245,7 +239,7 @@ navigatorHwnd = 0
 wndclass = None
 preparing = True
 terminating = False
-passThroughMode = True
+passThroughMode = config.conf['focusHighlight']['passthrough']['defaultMode']
 currentAppSleepMode = False
 
 
@@ -292,7 +286,7 @@ def isPassThroughMode():
 	focus = api.getFocusObject()
 	if hasattr(focus, 'treeInterceptor') and focus.treeInterceptor:
 		return bool(focus.treeInterceptor.passThrough)
-	return True
+	return config.conf['focusHighlight']['passthrough']['defaultMode']
 
 
 def isCurrentAppSleepMode():
@@ -374,15 +368,15 @@ def doPaint(hwnd):
 		elif passThroughMode:
 			argb, dashStyle, thickness, padding = (
 				getConfigARGB('passthrough'),
-				config['passthrough']['dashStyle'],
-				config['passthrough']['thickness'],
+				config.conf['focusHighlight']['passthrough']['dashStyle'],
+				config.conf['focusHighlight']['passthrough']['thickness'],
 				PADDING_THICK
 			)
 		else:
 			argb, dashStyle, thickness, padding = (
 				getConfigARGB('focus'),
-				config['focus']['dashStyle'],
-				config['focus']['thickness'],
+				config.conf['focusHighlight']['focus']['dashStyle'],
+				config.conf['focusHighlight']['focus']['thickness'],
 				PADDING_THICK
 			)
 		if rectEquals(focusRect, navigatorRect):
@@ -397,8 +391,8 @@ def doPaint(hwnd):
 		else:
 			argb, dashStyle, thickness, padding = (
 				getConfigARGB('navigator'),
-				config['navigator']['dashStyle'],
-				config['navigator']['thickness'],
+				config.conf['focusHighlight']['navigator']['dashStyle'],
+				config.conf['focusHighlight']['navigator']['thickness'],
 				PADDING_THIN
 			)
 
