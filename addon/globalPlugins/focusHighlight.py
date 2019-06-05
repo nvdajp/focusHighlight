@@ -22,7 +22,6 @@ import oleacc
 import speech
 import tones
 import ui
-import validate
 import virtualBuffers
 import winUser
 import wx
