@@ -8,12 +8,19 @@
 
 此插件使用以下颜色：
 
-* 绿色的锯齿线，以指示导航对象。
-* 红色的细长矩形，以指示聚焦的对象/控件。
-* 红色厚矩形，用于指示导航器对象和聚焦对象何时重叠。
-* 蓝色的粗斜长方形，表示NVDA处于对焦模式，即按键类型传递给控件。
+* 绿色带点虚线，表示NVDA处于浏览模式下，矩形内是当前导航对象。
+* 红色细线围成的矩形，以指示处于焦点的的对象/控件。
+* 红色粗线围成的矩形，表示导航器对象和焦点是重叠的。
+* 蓝色粗虚线围成的长方形，表示NVDA处于模式，即按键类型传递给控件。
 
 要禁用对象跟踪，请卸载插件。
+
+## 6.0更新日志 ##
+
+* 更新新的翻译。
+* 解决了[与浏览模式有关的这个问题](https://github.com/nvdajp/focusHighlight/issues/10)
+* 从这个版本开始, 如果应用程序没有浏览模式时， 则始终显示NVDA 处于焦点模式, 而不是使用红色粗边矩形。
+* 表示焦点模式的矩形粗细已减半。
 
 ## 版本5.6 ##
 
@@ -27,14 +34,12 @@
 ## 版本 5.4 ##
 
 * 更新新的翻译。
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
-  regarding version compatibility.
+* 解决了 [版本兼容标识问题](https://github.com/nvdajp/focusHighlight/issues/11)。
 
 ## 版本 5.3 ##
 
 * 更新新的翻译。
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
-  regarding Chrome browser and application sleep mode.
+* 解决了和谷歌浏览器以及应用程序睡眠模式有关的[这个问题](https://github.com/nvdajp/focusHighlight/issues/10)
 
 ## 版本 5.2 ##
 
@@ -77,7 +82,6 @@
 
 * 在Internet Explorer 10和Windows 8上的Skype中，修复了导航器对象的问题。
 * 发布初始版本。
-
 
 [[!tag dev stable]]
 
