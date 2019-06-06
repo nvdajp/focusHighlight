@@ -654,15 +654,36 @@ if NVDASettingsDialog:
 
 		title = ADDON_PANEL_TITLE
 
+		def setWidgetValues(self):
+			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))			
+
 		def makeSettings(self, settingsSizer):
 			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
 			# Translators: label of a checkbox.
 			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=_("passThroughDefaultMode")))
-			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
+			restoreDefaultsButton = sHelper.addItem(
+				# Translators: Label of a button.
+				wx.Button(self, label=_("Restore defaults"))
+			)
+			restoreDefaultsButton.Bind(wx.EVT_BUTTON, lambda evt: self.restoreToDefaults())
+			self.setWidgetValues()
 
 		def postInit(self):
 			self.passThroughDefaultModeCheckbox.SetFocus()
 
 		def onSave(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
+
+		def restoreToDefaults(self):
+			config.conf['focusHighlight']['passthrough']['defaultMode'] = True
+			config.conf['focusHighlight']['passthrough']['color'] = '2222ff'
+			config.conf['focusHighlight']['passthrough']['dashStyle'] = 2
+			config.conf['focusHighlight']['passthrough']['thickness'] = 6
+			config.conf['focusHighlight']['focus']['color'] = 'ff0000'
+			config.conf['focusHighlight']['focus']['dashStyle'] = 0
+			config.conf['focusHighlight']['focus']['thickness'] = 6
+			config.conf['focusHighlight']['navigator']['color'] = '00ff00'
+			config.conf['focusHighlight']['navigator']['dashStyle'] = 3
+			config.conf['focusHighlight']['navigator']['thickness'] = 4
+			self.setWidgetValues()
 
