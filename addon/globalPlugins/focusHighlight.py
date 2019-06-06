@@ -655,12 +655,16 @@ if NVDASettingsDialog:
 		title = ADDON_PANEL_TITLE
 
 		def setWidgetValues(self):
-			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))			
+			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
+			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
 
 		def makeSettings(self, settingsSizer):
 			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
 			# Translators: label of a checkbox.
 			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=_("passThroughDefaultMode")))
+			# Translators: label for an edit field.
+			passThroughColorText = _("passThroughColor")
+			self.passThroughColorTextCtrl = sHelper.addLabeledControl(passThroughColorText, wx.TextCtrl)
 			restoreDefaultsButton = sHelper.addItem(
 				# Translators: Label of a button.
 				wx.Button(self, label=_("Restore defaults"))
@@ -673,6 +677,7 @@ if NVDASettingsDialog:
 
 		def onSave(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
+			config.conf['focusHighlight']['passthrough']['color'] = str(self.passThroughColorTextCtrl.GetValue()).lower()
 
 		def restoreToDefaults(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = True
