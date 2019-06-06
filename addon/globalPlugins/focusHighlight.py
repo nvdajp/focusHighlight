@@ -8,8 +8,8 @@ import sys
 import threading
 import time
 from ctypes import (WINFUNCTYPE, FormatError, GetLastError, Structure,
-                    WinError, byref, c_char, c_char_p, c_float, c_int, c_long,
-                    c_uint, c_uint32, c_ulong, c_void_p, pointer, windll)
+					WinError, byref, c_char, c_char_p, c_float, c_int, c_long,
+					c_uint, c_uint32, c_ulong, c_void_p, pointer, windll)
 from ctypes.wintypes import BOOL, COLORREF
 from io import BytesIO
 
@@ -31,14 +31,14 @@ from logHandler import log
 from NVDAObjects import NVDAObject
 
 try:
-    addonHandler.initTranslation()
+	addonHandler.initTranslation()
 except:
 	_ = lambda x : x
 try:
-    ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
-    ADDON_PANEL_TITLE = str(ADDON_SUMMARY) if sys.version_info.major >= 3 else unicode(ADDON_SUMMARY) 
+	ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
+	ADDON_PANEL_TITLE = str(ADDON_SUMMARY) if sys.version_info.major >= 3 else unicode(ADDON_SUMMARY) 
 except:
-    ADDON_PANEL_TITLE = ADDON_SUMMARY = 'focusHighlight'
+	ADDON_PANEL_TITLE = ADDON_SUMMARY = 'focusHighlight'
 try:
 	from gui import SettingsPanel, NVDASettingsDialog, guiHelper
 except:
@@ -68,9 +68,9 @@ CS_HREDRAW = 2
 IDC_ARROW = 32512
 
 try:
-    from ctypes import POINTER
+	from ctypes import POINTER
 except:
-    from ctypes.wintypes import POINTER
+	from ctypes.wintypes import POINTER
 
 try:
 	from windowUtils import physicalToLogicalPoint
