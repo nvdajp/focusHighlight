@@ -1,6 +1,7 @@
+# -*- coding: UTF-8 -*-
 # focus highlight
-# 2019-05-12
-# Takuya Nishimoto
+#Copyright (C) 2013-2019 Takuya Nishimoto
+# Released under GPL 2
 
 import os
 import sys
@@ -12,6 +13,7 @@ from ctypes import (WINFUNCTYPE, FormatError, GetLastError, Structure,
 from ctypes.wintypes import BOOL, COLORREF
 from io import BytesIO
 
+import addonHandler
 import api
 import config
 import controlTypes
@@ -27,6 +29,20 @@ import winUser
 import wx
 from logHandler import log
 from NVDAObjects import NVDAObject
+
+try:
+    addonHandler.initTranslation()
+except:
+	_ = lambda x : x
+try:
+    ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
+    ADDON_PANEL_TITLE = str(ADDON_SUMMARY) if sys.version_info.major >= 3 else unicode(ADDON_SUMMARY) 
+except:
+    ADDON_PANEL_TITLE = ADDON_SUMMARY = 'focusHighlight'
+try:
+	from gui import SettingsPanel, NVDASettingsDialog, guiHelper
+except:
+	SettingsPanel = NVDASettingsDialog = guiHelper = None
 
 NULL = 0
 SW_HIDE = 0
@@ -535,6 +551,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
+		if NVDASettingsDialog:
+			NVDASettingsDialog.categoryClasses.append(AddonSettingsPanel)
 		self.gdipToken = c_ulong()
 		startupInput = GdiplusStartupInput()
 		startupInput.GdiplusVersion = 1
@@ -621,8 +639,30 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 
 	def terminate(self):
+		if NVDASettingsDialog:
+			NVDASettingsDialog.categoryClasses.remove(AddonSettingsPanel)
 		global terminating
 		terminating = True
 		destroyHighlightWin()
 		gdiplus.GdiplusShutdown(self.gdipToken)
 		#log.debug("focusHighlight terminated")
+
+
+if NVDASettingsDialog:
+
+	class AddonSettingsPanel(SettingsPanel):
+
+		title = ADDON_PANEL_TITLE
+
+		def makeSettings(self, settingsSizer):
+			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+			# Translators: label of a checkbox.
+			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=_("passThroughDefaultMode")))
+			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
+
+		def postInit(self):
+			self.passThroughDefaultModeCheckbox.SetFocus()
+
+		def onSave(self):
+			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
+
