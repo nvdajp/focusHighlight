@@ -36,7 +36,7 @@ except:
 	_ = lambda x : x
 try:
 	ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
-	ADDON_PANEL_TITLE = str(ADDON_SUMMARY) if sys.version_info.major >= 3 else unicode(ADDON_SUMMARY) 
+	ADDON_PANEL_TITLE = str(ADDON_SUMMARY) if sys.version_info.major >= 3 else unicode(ADDON_SUMMARY)
 except:
 	ADDON_PANEL_TITLE = ADDON_SUMMARY = 'focusHighlight'
 try:
@@ -658,6 +658,24 @@ if NVDASettingsDialog:
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
 			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
 
+		def saveColor(self, subGroupName, value):
+			color = str(value) if sys.version_info.major >= 3 else unicode(value)
+			color = color.strip().lower()[:6]
+			if len(color) == 3:
+				color = color[0] * 2 + color[1] * 2 + color[2] * 2
+			valid = True
+			try:
+				n = int(color, 16)
+				# 0x000000 is used for transparent color key
+				if n == 0:
+					valid = False
+			except ValueError:
+				valid = False
+			if valid and '{:06x}'.format(n) != color:
+				valid = False
+			if valid:
+				config.conf['focusHighlight'][subGroupName]['color'] = color
+
 		def makeSettings(self, settingsSizer):
 			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
 			# Translators: label of a checkbox.
@@ -677,7 +695,9 @@ if NVDASettingsDialog:
 
 		def onSave(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
-			config.conf['focusHighlight']['passthrough']['color'] = str(self.passThroughColorTextCtrl.GetValue()).lower()
+			self.saveColor('passthrough', self.passThroughColorTextCtrl.GetValue())
+			# values may be reverted or fixed, so update widgets
+			self.setWidgetValues()
 
 		def restoreToDefaults(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = True
