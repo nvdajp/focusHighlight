@@ -657,6 +657,8 @@ if NVDASettingsDialog:
 		def setWidgetValues(self):
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
 			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
+			self.focusColorTextCtrl.SetValue(str(config.conf['focusHighlight']['focus']['color']))
+			self.navigatorColorTextCtrl.SetValue(str(config.conf['focusHighlight']['navigator']['color']))
 
 		def saveColor(self, subGroupName, value):
 			color = str(value) if sys.version_info.major >= 3 else unicode(value)
@@ -683,6 +685,12 @@ if NVDASettingsDialog:
 			# Translators: label for an edit field.
 			passThroughColorText = _("passThroughColor")
 			self.passThroughColorTextCtrl = sHelper.addLabeledControl(passThroughColorText, wx.TextCtrl)
+			# Translators: label for an edit field.
+			focusColorText = _("focusColor")
+			self.focusColorTextCtrl = sHelper.addLabeledControl(focusColorText, wx.TextCtrl)
+			# Translators: label for an edit field.
+			navigatorColorText = _("navigatorColor")
+			self.navigatorColorTextCtrl = sHelper.addLabeledControl(navigatorColorText, wx.TextCtrl)
 			restoreDefaultsButton = sHelper.addItem(
 				# Translators: Label of a button.
 				wx.Button(self, label=_("Restore defaults"))
@@ -696,6 +704,8 @@ if NVDASettingsDialog:
 		def onSave(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
 			self.saveColor('passthrough', self.passThroughColorTextCtrl.GetValue())
+			self.saveColor('focus', self.focusColorTextCtrl.GetValue())
+			self.saveColor('navigator', self.navigatorColorTextCtrl.GetValue())
 			# values may be reverted or fixed, so update widgets
 			self.setWidgetValues()
 
