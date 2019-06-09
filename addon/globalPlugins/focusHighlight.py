@@ -653,6 +653,18 @@ if NVDASettingsDialog:
 	class AddonSettingsPanel(SettingsPanel):
 
 		title = ADDON_PANEL_TITLE
+		dashStyleChoices = (
+			# Translators: dash style item
+			_("Solid"),
+			# Translators: dash style item
+			_("Dash"),
+			# Translators: dash style item
+			_("Dot"),
+			# Translators: dash style item
+			_("Dash dot"),
+			# Translators: dash style item
+			_("Dash dot dot"),
+		)
 
 		def setWidgetValues(self):
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
@@ -687,10 +699,18 @@ if NVDASettingsDialog:
 		def saveThickness(self, subGroupName, value):
 			try:
 				thickness = int(value)
-				if 1 <= thickness <= 100:
+				if 1 <= thickness <= 30:
 					config.conf['focusHighlight'][subGroupName]['thickness'] = thickness
 			except ValueError:
 				pass
+
+		def saveDashStyle(self, subGroupName, value):
+			try:
+				value = int(value)
+			except ValueError:
+				return
+			if 0 <= value <= 5:
+				config.conf['focusHighlight'][subGroupName]['dashStyle'] = value
 
 		def makeSettings(self, settingsSizer):
 			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
@@ -712,21 +732,9 @@ if NVDASettingsDialog:
 			# Translators: label for an edit field.
 			thicknessText = _("Thickness")
 			self.passThroughThicknessTextCtrl = ptGroup.addLabeledControl(thicknessText, wx.TextCtrl)
-			dashStyleChoices = [
-				# Translators: dash style item
-				_("Solid"),
-				# Translators: dash style item
-				_("Dash"),
-				# Translators: dash style item
-				_("Dot"),
-				# Translators: dash style item
-				_("Dash dot"),
-				# Translators: dash style item
-				_("Dash dot dot"),
-			]
 			# Translators: label for an choice field.
-			dashStyleText = _("Dash style")
-			self.passThroughDashStyleChoice = ptGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
+			dashStyleText = _("Style")
+			self.passThroughDashStyleChoice = ptGroup.addLabeledControl(dashStyleText, wx.Choice, choices=self.dashStyleChoices)
 
 			# Translators: focus (in browse mode) panel
 			focusGroupText = _("Focus in browse mode")
@@ -738,7 +746,7 @@ if NVDASettingsDialog:
 
 			self.focusColorTextCtrl = focusGroup.addLabeledControl(colorText, wx.TextCtrl)
 			self.focusThicknessTextCtrl = focusGroup.addLabeledControl(thicknessText, wx.TextCtrl)
-			self.focusDashStyleChoice = focusGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
+			self.focusDashStyleChoice = focusGroup.addLabeledControl(dashStyleText, wx.Choice, choices=self.dashStyleChoices)
 
 			# Translators: navigator panel
 			navGroupText = _("Navigator object")
@@ -750,7 +758,7 @@ if NVDASettingsDialog:
 
 			self.navigatorColorTextCtrl = navGroup.addLabeledControl(colorText, wx.TextCtrl)
 			self.navigatorThicknessTextCtrl = navGroup.addLabeledControl(thicknessText, wx.TextCtrl)
-			self.navigatorDashStyleChoice = navGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
+			self.navigatorDashStyleChoice = navGroup.addLabeledControl(dashStyleText, wx.Choice, choices=self.dashStyleChoices)
 
 			restoreDefaultsButton = sHelper.addItem(
 				# Translators: Label of a button.
@@ -766,6 +774,7 @@ if NVDASettingsDialog:
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
 			self.saveColor('passthrough', self.passThroughColorTextCtrl.GetValue())
 			self.saveThickness('passthrough', self.passThroughThicknessTextCtrl.GetValue())
+			self.saveDashStyle('passthrough', self.passThroughDashStyleChoice.GetSelection())
 			self.saveColor('focus', self.focusColorTextCtrl.GetValue())
 			self.saveThickness('focus', self.focusThicknessTextCtrl.GetValue())
 			self.saveColor('navigator', self.navigatorColorTextCtrl.GetValue())
