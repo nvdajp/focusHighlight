@@ -657,8 +657,11 @@ if NVDASettingsDialog:
 		def setWidgetValues(self):
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
 			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
+			self.passThroughThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['thickness']))
 			self.focusColorTextCtrl.SetValue(str(config.conf['focusHighlight']['focus']['color']))
+			self.focusThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['focus']['thickness']))
 			self.navigatorColorTextCtrl.SetValue(str(config.conf['focusHighlight']['navigator']['color']))
+			self.navigatorThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['navigator']['thickness']))
 
 		def saveColor(self, subGroupName, value):
 			color = str(value) if sys.version_info.major >= 3 else unicode(value)
@@ -678,19 +681,65 @@ if NVDASettingsDialog:
 			if valid:
 				config.conf['focusHighlight'][subGroupName]['color'] = color
 
+		def saveThickness(self, subGroupName, value):
+			try:
+				thickness = int(value)
+				if 1 <= thickness <= 100:
+					config.conf['focusHighlight'][subGroupName]['thickness'] = thickness
+			except ValueError:
+				pass
+
 		def makeSettings(self, settingsSizer):
 			sHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
 			# Translators: label of a checkbox.
-			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=_("passThroughDefaultMode")))
+			ptModeText = _("Make focus mode the default")
+			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=ptModeText))
+
+			# Translators: passthrough panel
+			ptGroupText = _("Focus in focus mode")
+			ptGroup = guiHelper.BoxSizerHelper(
+				parent=self,
+				sizer=wx.StaticBoxSizer(parent=self, label=ptGroupText, orient=wx.VERTICAL)
+			)
+			sHelper.addItem(ptGroup)
+
 			# Translators: label for an edit field.
-			passThroughColorText = _("passThroughColor")
-			self.passThroughColorTextCtrl = sHelper.addLabeledControl(passThroughColorText, wx.TextCtrl)
+			passThroughColorText = _("Color")
+			self.passThroughColorTextCtrl = ptGroup.addLabeledControl(passThroughColorText, wx.TextCtrl)
 			# Translators: label for an edit field.
-			focusColorText = _("focusColor")
-			self.focusColorTextCtrl = sHelper.addLabeledControl(focusColorText, wx.TextCtrl)
+			passThroughThicknessText = _("Thickness")
+			self.passThroughThicknessTextCtrl = ptGroup.addLabeledControl(passThroughThicknessText, wx.TextCtrl)
+
+			# Translators: focus panel
+			focusGroupText = _("Focus in browse mode")
+			focusGroup = guiHelper.BoxSizerHelper(
+				parent=self,
+				sizer=wx.StaticBoxSizer(parent=self, label=focusGroupText, orient=wx.VERTICAL)
+			)
+			sHelper.addItem(focusGroup)
+
 			# Translators: label for an edit field.
-			navigatorColorText = _("navigatorColor")
-			self.navigatorColorTextCtrl = sHelper.addLabeledControl(navigatorColorText, wx.TextCtrl)
+			focusColorText = _("Color")
+			self.focusColorTextCtrl = focusGroup.addLabeledControl(focusColorText, wx.TextCtrl)
+			# Translators: label for an edit field.
+			focusThicknessText = _("Thickness")
+			self.focusThicknessTextCtrl = focusGroup.addLabeledControl(focusThicknessText, wx.TextCtrl)
+
+			# Translators: navigator panel
+			navGroupText = _("Navigator object")
+			navGroup = guiHelper.BoxSizerHelper(
+				parent=self,
+				sizer=wx.StaticBoxSizer(parent=self, label=navGroupText, orient=wx.VERTICAL)
+			)
+			sHelper.addItem(navGroup)
+
+			# Translators: label for an edit field.
+			navigatorColorText = _("Color")
+			self.navigatorColorTextCtrl = navGroup.addLabeledControl(navigatorColorText, wx.TextCtrl)
+			# Translators: label for an edit field.
+			navigatorThicknessText = _("Thickness")
+			self.navigatorThicknessTextCtrl = navGroup.addLabeledControl(navigatorThicknessText, wx.TextCtrl)
+
 			restoreDefaultsButton = sHelper.addItem(
 				# Translators: Label of a button.
 				wx.Button(self, label=_("Restore defaults"))
@@ -704,8 +753,11 @@ if NVDASettingsDialog:
 		def onSave(self):
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = self.passThroughDefaultModeCheckbox.GetValue()
 			self.saveColor('passthrough', self.passThroughColorTextCtrl.GetValue())
+			self.saveThickness('passthrough', self.passThroughThicknessTextCtrl.GetValue())
 			self.saveColor('focus', self.focusColorTextCtrl.GetValue())
+			self.saveThickness('focus', self.focusThicknessTextCtrl.GetValue())
 			self.saveColor('navigator', self.navigatorColorTextCtrl.GetValue())
+			self.saveThickness('navigator', self.navigatorThicknessTextCtrl.GetValue())
 			# values may be reverted or fixed, so update widgets
 			self.setWidgetValues()
 
