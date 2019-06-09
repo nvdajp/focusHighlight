@@ -27,6 +27,7 @@ When Focus Highlight category of NVDA Settings dialog is available, following it
 ## Changes for 6.1 ##
 
 * New and updated translations.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14) with the latest development versions of NVDA.
 * Focus Highlight category of NVDA Settings dialog is now available. Note that it works only with NVDA 2018.3 or later.
 * [Discussions regarding customizing colors](https://github.com/nvdajp/focusHighlight/issues/3)
 * [Discussions regarding 'Make focus mode the default'](https://github.com/nvdajp/focusHighlight/issues/13)
