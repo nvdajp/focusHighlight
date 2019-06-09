@@ -695,7 +695,7 @@ if NVDASettingsDialog:
 			ptModeText = _("Make focus mode the default")
 			self.passThroughDefaultModeCheckbox = sHelper.addItem(wx.CheckBox(self, wx.ID_ANY, label=ptModeText))
 
-			# Translators: passthrough panel
+			# Translators: focus (in focus mode) panel
 			ptGroupText = _("Focus in focus mode")
 			ptGroup = guiHelper.BoxSizerHelper(
 				parent=self,
@@ -710,7 +710,7 @@ if NVDASettingsDialog:
 			passThroughThicknessText = _("Thickness")
 			self.passThroughThicknessTextCtrl = ptGroup.addLabeledControl(passThroughThicknessText, wx.TextCtrl)
 
-			# Translators: focus panel
+			# Translators: focus (in browse mode) panel
 			focusGroupText = _("Focus in browse mode")
 			focusGroup = guiHelper.BoxSizerHelper(
 				parent=self,
