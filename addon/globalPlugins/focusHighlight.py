@@ -658,10 +658,13 @@ if NVDASettingsDialog:
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
 			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
 			self.passThroughThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['thickness']))
+			self.passThroughDashStyleChoice.SetSelection(int(config.conf['focusHighlight']['passthrough']['dashStyle']))
 			self.focusColorTextCtrl.SetValue(str(config.conf['focusHighlight']['focus']['color']))
 			self.focusThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['focus']['thickness']))
+			self.focusDashStyleChoice.SetSelection(int(config.conf['focusHighlight']['focus']['dashStyle']))
 			self.navigatorColorTextCtrl.SetValue(str(config.conf['focusHighlight']['navigator']['color']))
 			self.navigatorThicknessTextCtrl.SetValue(str(config.conf['focusHighlight']['navigator']['thickness']))
+			self.navigatorDashStyleChoice.SetSelection(int(config.conf['focusHighlight']['navigator']['dashStyle']))
 
 		def saveColor(self, subGroupName, value):
 			color = str(value) if sys.version_info.major >= 3 else unicode(value)
@@ -704,11 +707,26 @@ if NVDASettingsDialog:
 			sHelper.addItem(ptGroup)
 
 			# Translators: label for an edit field.
-			passThroughColorText = _("Color")
-			self.passThroughColorTextCtrl = ptGroup.addLabeledControl(passThroughColorText, wx.TextCtrl)
+			colorText = _("Color")
+			self.passThroughColorTextCtrl = ptGroup.addLabeledControl(colorText, wx.TextCtrl)
 			# Translators: label for an edit field.
-			passThroughThicknessText = _("Thickness")
-			self.passThroughThicknessTextCtrl = ptGroup.addLabeledControl(passThroughThicknessText, wx.TextCtrl)
+			thicknessText = _("Thickness")
+			self.passThroughThicknessTextCtrl = ptGroup.addLabeledControl(thicknessText, wx.TextCtrl)
+			dashStyleChoices = [
+				# Translators: dash style item
+				_("Solid"),
+				# Translators: dash style item
+				_("Dash"),
+				# Translators: dash style item
+				_("Dot"),
+				# Translators: dash style item
+				_("Dash dot"),
+				# Translators: dash style item
+				_("Dash dot dot"),
+			]
+			# Translators: label for an choice field.
+			dashStyleText = _("Dash style")
+			self.passThroughDashStyleChoice = ptGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
 
 			# Translators: focus (in browse mode) panel
 			focusGroupText = _("Focus in browse mode")
@@ -718,12 +736,9 @@ if NVDASettingsDialog:
 			)
 			sHelper.addItem(focusGroup)
 
-			# Translators: label for an edit field.
-			focusColorText = _("Color")
-			self.focusColorTextCtrl = focusGroup.addLabeledControl(focusColorText, wx.TextCtrl)
-			# Translators: label for an edit field.
-			focusThicknessText = _("Thickness")
-			self.focusThicknessTextCtrl = focusGroup.addLabeledControl(focusThicknessText, wx.TextCtrl)
+			self.focusColorTextCtrl = focusGroup.addLabeledControl(colorText, wx.TextCtrl)
+			self.focusThicknessTextCtrl = focusGroup.addLabeledControl(thicknessText, wx.TextCtrl)
+			self.focusDashStyleChoice = focusGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
 
 			# Translators: navigator panel
 			navGroupText = _("Navigator object")
@@ -733,12 +748,9 @@ if NVDASettingsDialog:
 			)
 			sHelper.addItem(navGroup)
 
-			# Translators: label for an edit field.
-			navigatorColorText = _("Color")
-			self.navigatorColorTextCtrl = navGroup.addLabeledControl(navigatorColorText, wx.TextCtrl)
-			# Translators: label for an edit field.
-			navigatorThicknessText = _("Thickness")
-			self.navigatorThicknessTextCtrl = navGroup.addLabeledControl(navigatorThicknessText, wx.TextCtrl)
+			self.navigatorColorTextCtrl = navGroup.addLabeledControl(colorText, wx.TextCtrl)
+			self.navigatorThicknessTextCtrl = navGroup.addLabeledControl(thicknessText, wx.TextCtrl)
+			self.navigatorDashStyleChoice = navGroup.addLabeledControl(dashStyleText, wx.Choice, choices=dashStyleChoices)
 
 			restoreDefaultsButton = sHelper.addItem(
 				# Translators: Label of a button.
