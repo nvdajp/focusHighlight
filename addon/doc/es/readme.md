@@ -21,7 +21,45 @@ Los siguientes colores se utilizan con este complemento:
 * Un rectángulo de líneas punteadas gruesas azules indica que NVDA está en
   modo foco, es decir, las teclas se pasan al control.
 
-Para deshabilitar el seguimiento de objetos, desinstala el complemento.
+Para deshabilitar el seguimiento de objetos, desactiva o desinstala el
+complemento.
+
+Cuando se encuentre disponible la categoría Focus Highlight del diálogo de
+opciones de NVDA, podrán usarse los siguientes elementos.
+
+* Establecer el modo foco por defecto: esta casilla de verificación se
+  encuentra marcada por defecto. Si está desmarcada, el complemento se
+  comportará igual que en la versión 5.6 o anteriores, es decir: si el modo
+  exploración no está disponible en una aplicación, el foco se representa
+  con un rectángulo rojo y grueso.
+* Foco en modo foco, foco en modo exploración, navegador de objetos: cada
+  uno de estos grupos contiene color, grosor y estilo.
+
+    * Color: este cuadro de edición te permite escribir el código del color
+      HTML, es decir, un número de seis caracteres hexadecimales. Por
+      ejemplo, "ffffff" es blanco, "ff0000" es rojo, y así
+      sucesivamente. Ten en cuenta que "000000" no se puede usar.
+    * Grosor: este cuadro de edición permite escribir el grosor del
+      recuadro. Puedes introducir un valor entre 1 y 30.
+    * Estilo: las opciones son sólido, guión, punto, guión punto, y guión
+      punto punto.
+
+* Restaurar por defecto: este botón te permite restablecer los ajustes a sus
+  valores originales.
+
+## Cambios para 6.1 ##
+
+* Traducciones nuevas y actualizadas.
+* Soluciona [la
+  incidencia](https://github.com/nvdajp/focusHighlight/issues/14) con las
+  versiones de desarrollo de NVDA más recientes.
+* La categoría Focus Highlight ya se encuentra disponible en el diálogo de
+  opciones de NVDA. Ten en cuenta que sólo funciona con NVDA 2018.3 o
+  posterior.
+* [Debates sobre la personalización de
+  colores](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Debates sobre 'Establecer el modo foco por
+  defecto'](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## Cambios para 6.0 ##
 
@@ -102,6 +140,9 @@ Para deshabilitar el seguimiento de objetos, desinstala el complemento.
 * En Internet Explorer 10 y en Skype en Windows 8,se soluciona un problema
   con el navegador de objetos.
 * Versión inicial.
+
+
+[[!tag dev stable]]
 
 [[!tag dev stable]]
 
