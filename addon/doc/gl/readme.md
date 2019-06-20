@@ -19,38 +19,43 @@ As seguintes cores utilízanse por este complemento:
 * Rectángulo groso azul de liñas punteadas indica que NVDA está en modo
   foco, p.ex., as pulsacións de teclas pásanse ao control.
 
-To disable object tracking, disable or uninstall the addon.
+Para deshabilitar o seguemento de obxectos, deshabilita ou desinstala o
+complemento.
 
-When Focus Highlight category of NVDA Settings dialog is available,
-following items can be used.
+Cando a categoría Focus Highlight do diálogo de Opcións de NVDA está
+dispoñible, pódense utilizar os seguintes elementos.
 
-* Make focus mode the default: This checkbox is enabled by default. When it
-  is unchecked, this add-on behaves same as version 5.6 or previous
-  versions, i.e., if browse mode is not available for an app, the focus is
-  shown using the thick red rectangle.
-* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
-  groups contains Color, Thickness, and Style.
+* Make focus mode the default (Predeterminar modo foco): Esta caixa de
+  verificación está habilitada por defecto. Cando se desmarca, este
+  complemento compórtase da mesma maneira que na versión 5.6 ou anteriores,
+  p.ex. se o modo exploración non está dispoñible nunha app, o foco amósase
+  utilizando o rectángulo vermello groso.
+* Focus in focus mode (Foco en modo foco), Focus in browse mode (Foco en
+  modo exploración), Navigator object (Obxecto no navegador): Cada un destes
+  grupos contén Color (Cor), Thickness (Grosor) e Style (Estilo).
 
-    * Color: This edit field allows you to type the HTML color code, i.e.,
-      six-character hexadecimal number. For example, "ffffff" is white,
-      "ff0000" is red, and so on. Note that "000000" can not be used.
-    * Thickness: This edit field allows you to type the thickness of the
-      box. You can enter a value between 1 and 30.
-    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+    * Color (Cor): Esta caixa de edición permíteche escribir o código de cor
+      HTML, p.ex. número hexadecimal de seis caracteres. Por exemplo,
+      "ffffff" é branco, "ff0000" é vermello, e así. Ten en conta que
+      "000000" non se pode utilizar.
+    * Thickness (Grosor): Esta caixa de edición permíteche escribir o grosor
+      da caixa. Podes introducir un valor entre 1 e 30.
+    * Style (Estilo): As alternativas son Solid (Sólido), Dash (Guión), Dot
+      (Punto), Dash dot (Guión punto) e Dash dot-dot (Guión punto-punto).
 
-* Restore defaults: This button allows you to reset your settings to their
-  original defaults.
+* Restore defaults (Restaurar predeterminados): Este botón permíteche
+  restablecer os teus axustes aos seus orixinais por defecto.
 
-## Changes for 6.1 ##
+## Cambios para 6.1 ##
 
 * Traduccións novas e actualizadas.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
-  with the latest development versions of NVDA.
-* Focus Highlight category of NVDA Settings dialog is now available. Note
-  that it works only with NVDA 2018.3 or later.
-* [Discussions regarding customizing
-  colors](https://github.com/nvdajp/focusHighlight/issues/3)
-* [Discussions regarding 'Make focus mode the
+* Soluciona [o problema](https://github.com/nvdajp/focusHighlight/issues/14)
+  coas últimas versións de desenvolvemento do NVDA.
+* A categoría do diálogo de Opcións de NVDA Focus Highlight xa está
+  dispoñible. Ten en conta que só funciona con NVDA 2018.3 ou posterior.
+* [Discusións sobre a persoalización de
+  cores](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Discusións sobre 'Make focus mode the
   default'](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## Cambios para 6.0 ##
