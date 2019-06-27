@@ -20,7 +20,8 @@ Die folgenden Farben werden von dieser Erweiterung verwendet:
 * Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
   key types are passed to the control.
 
-To disable object tracking, disable or uninstall the addon.
+Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
+Erweiterung.
 
 When Focus Highlight category of NVDA Settings dialog is available,
 following items can be used.
@@ -42,23 +43,23 @@ following items can be used.
 * Restore defaults: This button allows you to reset your settings to their
   original defaults.
 
-## Changes for 6.1 ##
+## Änderungen in 6.1 ##
 
 * Neue und aktualisierte Übersetzungen.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
-  with the latest development versions of NVDA.
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/14)
+  mit den letzten Entwicklerversionen von NVDA.
 * Focus Highlight category of NVDA Settings dialog is now available. Note
   that it works only with NVDA 2018.3 or later.
-* [Discussions regarding customizing
-  colors](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Diskussionen bzgl. einstellen von
+  Farben](https://github.com/nvdajp/focusHighlight/issues/3)
 * [Discussions regarding 'Make focus mode the
   default'](https://github.com/nvdajp/focusHighlight/issues/13)
 
-## Changes for 6.0 ##
+## Änderungen in 6.0 ##
 
 * Neue und aktualisierte Übersetzungen.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
-  regarding the browse mode.
+* Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/13)
+  bzgl. des Lesemodus.
 * Since this version, if the browse mode of NVDA is not available for an
   application, it is always shown that NVDA is in focus mode for the
   application, rather than using the red thick rectangle.
