@@ -19,7 +19,44 @@ As seguintes cores utilízanse por este complemento:
 * Rectángulo groso azul de liñas punteadas indica que NVDA está en modo
   foco, p.ex., as pulsacións de teclas pásanse ao control.
 
-Para deshabilitar o seguemento de obxectos, desinstala o complemento.
+Para deshabilitar o seguemento de obxectos, deshabilita ou desinstala o
+complemento.
+
+Cando a categoría Focus Highlight do diálogo de Opcións de NVDA está
+dispoñible, pódense utilizar os seguintes elementos.
+
+* Make focus mode the default (Predeterminar modo foco): Esta caixa de
+  verificación está habilitada por defecto. Cando se desmarca, este
+  complemento compórtase da mesma maneira que na versión 5.6 ou anteriores,
+  p.ex. se o modo exploración non está dispoñible nunha app, o foco amósase
+  utilizando o rectángulo vermello groso.
+* Focus in focus mode (Foco en modo foco), Focus in browse mode (Foco en
+  modo exploración), Navigator object (Obxecto no navegador): Cada un destes
+  grupos contén Color (Cor), Thickness (Grosor) e Style (Estilo).
+
+    * Color (Cor): Esta caixa de edición permíteche escribir o código de cor
+      HTML, p.ex. número hexadecimal de seis caracteres. Por exemplo,
+      "ffffff" é branco, "ff0000" é vermello, e así. Ten en conta que
+      "000000" non se pode utilizar.
+    * Thickness (Grosor): Esta caixa de edición permíteche escribir o grosor
+      da caixa. Podes introducir un valor entre 1 e 30.
+    * Style (Estilo): As alternativas son Solid (Sólido), Dash (Guión), Dot
+      (Punto), Dash dot (Guión punto) e Dash dot-dot (Guión punto-punto).
+
+* Restore defaults (Restaurar predeterminados): Este botón permíteche
+  restablecer os teus axustes aos seus orixinais por defecto.
+
+## Cambios para 6.1 ##
+
+* Traduccións novas e actualizadas.
+* Soluciona [o problema](https://github.com/nvdajp/focusHighlight/issues/14)
+  coas últimas versións de desenvolvemento do NVDA.
+* A categoría do diálogo de Opcións de NVDA Focus Highlight xa está
+  dispoñible. Ten en conta que só funciona con NVDA 2018.3 ou posterior.
+* [Discusións sobre a persoalización de
+  cores](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Discusións sobre 'Make focus mode the
+  default'](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## Cambios para 6.0 ##
 
@@ -96,6 +133,9 @@ Para deshabilitar o seguemento de obxectos, desinstala o complemento.
 * No Internet Explorer 10 e no Skype en Windows 8, arránxase un problema co
   navegador de obxectos.
 * Versión inicial.
+
+
+[[!tag dev stable]]
 
 [[!tag dev stable]]
 

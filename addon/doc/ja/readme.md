@@ -9,56 +9,73 @@
 
 以下の色を使っています：
 
-* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
-  this is the navigator object.
-* Red thin rectangle shows NVDA is in browse mode, and this is the focused
-  object/control.
-* Red thick rectangle shows NVDA is in browse mode, and this is both the
-  navigator object and the focused object which are overlapping.
-* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
-  key types are passed to the control.
+* 緑色細いギザギザの点線の四角形は、NVDAがブラウズモードで、それがナビゲータオブジェクトであることを示します。
+* 赤色の細い四角形は、NVDAがブラウズモードで、それがフォーカスされたオブジェクトまたはコントロールであることを示します。
+* 赤い太い四角形は、NVDAがブラウズモードで、ナビゲータオブジェクトとフォーカスされたオブジェクトが重なっていることを示します。
+* 青色の太い点線の四角形は、NVDAがフォーカスモード、つまり、キー入力がコントロールに渡されることを示します。
 
-オブジェクトのハイライトを無効にするには、このアドオンをアンインストールしてください。
+オブジェクトのハイライトを無効にするには、このアドオンを無効にするか、アンインストールしてください。
 
-## Changes for 6.0 ##
+NVDAの設定ダイアログのFocus Highlightカテゴリが利用可能な場合、次の項目が使用出来ます。
 
-* 新規の翻訳と翻訳の更新。
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
-  regarding the browse mode.
-* Since this version, if the browse mode of NVDA is not available for an
-  application, it is always shown that NVDA is in focus mode for the
-  application, rather than using the red thick rectangle.
-* The thickness of the line representing the focus mode has been reduced to
-  half.
+* フォーカスモードを初期状態にする:このチェックボックスは初期状態でオンになっています。
+  チェックを外すと、このアドオンはバージョン5.6以前と同じように動作します。つまり、もしアプリケーションでブラウズモードが利用可能でない場合、そのフォーカスは太い赤い四角形で表されます。
+* フォーカスモードでのフォーカス、ブラウズモードでのフォーカス、ナビゲータオブジェクト: これらのグループのそれぞれが色、太さ、形状を含みます。
 
-## Changes for 5.6 ##
+    * 色:
+      このエディットフィールドにHTMLカラーコード、つまり6文字の16進数番号、例えば白の"ffffff"、赤の"ff0000"などを入力出来ます。"000000"は使用出来ません。
+    * 太さ: このエディットフィールドに、箱の厚さを入力出来ます。1から30までの値を入力出来ます。
+    * 形状: 直線、破線、点線、一点鎖線、二点鎖線から選択出来ます。
+
+* 初期状態に戻す: このボタンで設定を元の初期状態に戻せます。
+
+## 6.1 での変更点 ##
 
 * 新規の翻訳と翻訳の更新。
-* Addresses the compatibility issue with NVDA snapshot alpha-16682.
+* NVDAの最新の開発版についての [the
+  issue](https://github.com/nvdajp/focusHighlight/issues/14) に対応しました。
+* NVDA設定ダイアログでFocus Highlight カテゴリが利用出来るようになりました。NVDA 2018.3以降のみで動作します。
+* [Discussions regarding customizing
+  colors](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Discussions regarding 'Make focus mode the
+  default'](https://github.com/nvdajp/focusHighlight/issues/13)
 
-## Changes for 5.5 ##
-
-* Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
-
-## Changes for 5.4 ##
-
-* 新規の翻訳と翻訳の更新。
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
-  regarding version compatibility.
-
-## Changes for 5.3 ##
+## 6.0 での変更点 ##
 
 * 新規の翻訳と翻訳の更新。
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
-  regarding Chrome browser and application sleep mode.
+* ブラウズモードについての [the
+  issue](https://github.com/nvdajp/focusHighlight/issues/13) に対応しました。
+* このバージョンから、アプリケーションでNVDAのブラウズモードが利用可能でない場合、NVDAがそのアプリケーションで常にフォーカスモードであることを、赤い太い四角形で示すようになりました。
+* フォーカスモードを表す線の太さが半分になりました。
 
-## Changes for 5.2 ##
+## 5.6 での変更点 ##
+
+* 新規の翻訳と翻訳の更新。
+* NVDAスナップショット アルファ16682との互換性の問題に対応しました。
+
+## 5.5 での変更点 ##
+
+* NVDA 2018.4とFirefox/Chrome Webブラウザについての問題に対応しました。
+
+## 5.4 での変更点 ##
+
+* 新規の翻訳と翻訳の更新。
+* バージョン互換性についての [the
+  issue](https://github.com/nvdajp/focusHighlight/issues/11) に対応しました。
+
+## 5.3 での変更点 ##
+
+* 新規の翻訳と翻訳の更新。
+* Chromeブラウザとアプリケーションのスリープモードについての [the
+  issue](https://github.com/nvdajp/focusHighlight/issues/10) に対応しました。
+
+## 5.2 での変更点 ##
 
 * 新規の翻訳と翻訳の更新。
 
-## Changes for 5.1 ##
+## 5.1 での変更点 ##
 
-* Removed debug log output.
+* デバッグログの出力を除きました。
 
 ## 5.0 での変更点 ##
 
@@ -91,8 +108,11 @@
 
 ## 1.0 での変更点 ##
 
-* Windows 8 における Internet Explorer 10 と Skype のナビゲーターオブジェクトの不具合の修正
+* Windows 8 における Internet Explorer 10 と Skype のナビゲーターオブジェクトの不具合の修正。
 * 最初のバージョンです。
+
+
+[[!tag dev stable]]
 
 [[!tag dev stable]]
 

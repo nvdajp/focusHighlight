@@ -9,18 +9,45 @@
 
 다음의 2 색이 이 추가 기능에 의해 사용됩니다:
 
-* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
-  this is the navigator object.
-* Red thin rectangle shows NVDA is in browse mode, and this is the focused
-  object/control.
-* Red thick rectangle shows NVDA is in browse mode, and this is both the
-  navigator object and the focused object which are overlapping.
-* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
-  key types are passed to the control.
+* NVDA가 브라우즈 모드에 있을 때에는 navigator 객체에 가느다란 녹색 일점쇄선으로 직사각형이 표시됩니다.
+* NVDA가 브라우즈 모드에 있을 때에는 포커스가 위치한 객체에 가느다란 빨간색 직사각형이 표시됩니다.
+* NVDA가 브라우즈 모드에 있을 때에는 navigator 객체에 포커스가 위치했을 때 굵은 빨간색 직사각형이 표시됩니다.
+* NVDA가 포커스 모드에 있을 때, 즉 키 입력이 조작 장치에 전달될 때에는 굵은 파란색 점선으로 직사각형이 표시됩니다.
 
-개체의 하이라이트를 비활성화하려면 이 추가 기능을 제거합니다.
+객체 추적을 중단하려면 애드온을 비활성화하거나 삭제하세요.
 
-## Changes for 6.0 ##
+NVDA 설정 창에 대한 Focus Highlight 분류가 있을 경우, 다음 항목들을 사용할 수 있습니다.
+
+* Make focus mode the default: This checkbox is enabled by default. When it
+  is unchecked, this add-on behaves same as version 5.6 or previous
+  versions, i.e., if browse mode is not available for an app, the focus is
+  shown using the thick red rectangle.
+* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
+  groups contains Color, Thickness, and Style.
+
+    * Color: This edit field allows you to type the HTML color code, i.e.,
+      six-character hexadecimal number. For example, "ffffff" is white,
+      "ff0000" is red, and so on. Note that "000000" can not be used.
+    * Thickness: This edit field allows you to type the thickness of the
+      box. You can enter a value between 1 and 30.
+    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+
+* Restore defaults: This button allows you to reset your settings to their
+  original defaults.
+
+## 6.1에서의 변경사항 ##
+
+* 새 언어 추가 및 번역 업데이트.
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
+  with the latest development versions of NVDA.
+* Focus Highlight category of NVDA Settings dialog is now available. Note
+  that it works only with NVDA 2018.3 or later.
+* [Discussions regarding customizing
+  colors](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Discussions regarding 'Make focus mode the
+  default'](https://github.com/nvdajp/focusHighlight/issues/13)
+
+## 6.0에서의 변경사항 ##
 
 * 새 언어 추가 및 번역 업데이트.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
@@ -31,38 +58,38 @@
 * The thickness of the line representing the focus mode has been reduced to
   half.
 
-## Changes for 5.6 ##
+## 5.6에서의 변경사항 ##
 
 * 새 언어 추가 및 번역 업데이트.
 * Addresses the compatibility issue with NVDA snapshot alpha-16682.
 
-## Changes for 5.5 ##
+## 5.5에서의 변경사항 ##
 
 * Addresses the issue with NVDA 2018.4 and Firefox/Chrome web browsers.
 
-## Changes for 5.4 ##
+## 5.4에서의 변경사항 ##
 
 * 새 언어 추가 및 번역 업데이트.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/11)
   regarding version compatibility.
 
-## Changes for 5.3 ##
+## 5.3에서의 변경사항 ##
 
 * 새 언어 추가 및 번역 업데이트.
 * Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/10)
   regarding Chrome browser and application sleep mode.
 
-## Changes for 5.2 ##
+## 5.2에서의 변경사항 ##
 
 * 새 언어 추가 및 번역 업데이트.
 
-## Changes for 5.1 ##
+## 5.1에서의 변경사항 ##
 
 * Removed debug log output.
 
-## Changes for 5.0 ##
+## 5.0에서의 변경사항 ##
 
-* Indicators of navigator object and focus mode were changed.
+* Navigator 객체와 포커스 모드의 표시 방식이 바뀌었습니다.
 * Multiple monitors are supported.
 * It now uses GDI Plus technology for drawing.
 
@@ -93,6 +120,9 @@
 
 * Windows 8에서 Internet Explorer 10 및 Skype navigator 객체의 버그 수정.
 * 첫 번째 버전.
+
+
+[[!tag dev stable]]
 
 [[!tag dev stable]]
 

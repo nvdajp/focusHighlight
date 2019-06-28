@@ -13,7 +13,39 @@
 * 红色粗线围成的矩形，表示导航器对象和焦点是重叠的。
 * 蓝色粗虚线围成的长方形，表示NVDA处于模式，即按键类型传递给控件。
 
-要禁用对象跟踪，请卸载插件。
+To disable object tracking, disable or uninstall the addon.
+
+When Focus Highlight category of NVDA Settings dialog is available,
+following items can be used.
+
+* Make focus mode the default: This checkbox is enabled by default. When it
+  is unchecked, this add-on behaves same as version 5.6 or previous
+  versions, i.e., if browse mode is not available for an app, the focus is
+  shown using the thick red rectangle.
+* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
+  groups contains Color, Thickness, and Style.
+
+    * Color: This edit field allows you to type the HTML color code, i.e.,
+      six-character hexadecimal number. For example, "ffffff" is white,
+      "ff0000" is red, and so on. Note that "000000" can not be used.
+    * Thickness: This edit field allows you to type the thickness of the
+      box. You can enter a value between 1 and 30.
+    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+
+* Restore defaults: This button allows you to reset your settings to their
+  original defaults.
+
+## Changes for 6.1 ##
+
+* 更新新的翻译。
+* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
+  with the latest development versions of NVDA.
+* Focus Highlight category of NVDA Settings dialog is now available. Note
+  that it works only with NVDA 2018.3 or later.
+* [Discussions regarding customizing
+  colors](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Discussions regarding 'Make focus mode the
+  default'](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## 6.0更新日志 ##
 
@@ -82,6 +114,9 @@
 
 * 在Internet Explorer 10和Windows 8上的Skype中，修复了导航器对象的问题。
 * 发布初始版本。
+
+
+[[!tag dev stable]]
 
 [[!tag dev stable]]
 
