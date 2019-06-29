@@ -8,13 +8,66 @@ msgstr ""
 "Project-Id-Version: focusHighlight 0.0.5\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-08-08 16:14+0200\n"
-"PO-Revision-Date: 2013-08-13 10:20+0100\n"
+"PO-Revision-Date: 2019-06-28 20:59+0200\n"
 "Last-Translator: Ondrej Rosík <ondrej.rosik@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "tuhý"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "Pomlčka"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "Bodka"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "Pomlčka bodka"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "Pomlčka bodka bodka"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "Predvolene nastaví fokus zobrazenia"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "Zvýrazňovanie fokusu  prehliadania"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "Farby"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "Hrúbky"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "Štýl"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "Zvýraznenie v režime prehliadania"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "Navigačný objekt"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "Obnoviť predvolené"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
@@ -24,4 +77,4 @@ msgstr "Zvýrazňovač fokusu"
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
-msgstr "Farebne Zvírazní miesto, ktoré má fokus"
+msgstr "zvýrazný fokus miesta"

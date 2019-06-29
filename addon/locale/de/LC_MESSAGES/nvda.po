@@ -8,14 +8,66 @@ msgstr ""
 "Project-Id-Version: focusHighlight 0.0.5\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-08-05 07:20+0200\n"
-"PO-Revision-Date: 2013-10-09 18:40+0100\n"
+"PO-Revision-Date: 2019-06-28 22:43+0200\n"
 "Last-Translator: René Linke <rene.linke@hamburg.de>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 2.2.3\n"
+"Language-Team: \n"
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "Solide"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "Strich"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "Punkt"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "Strich-Punkt"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "Strich-Punkt-Punkt"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "Fokus-Modus als Standard festlegen"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "Fokus im Fokus-Modus"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "Farbe"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "Dicke"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "Stil"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "Fokus im Lesemodus"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "Navigator-Objekt"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "Standard-Einstellungen wiederherstellen"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
