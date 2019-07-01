@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # focus highlight
-#Copyright (C) 2013-2019 Takuya Nishimoto
+#Copyright (C) 2013-2019 Takuya Nishimoto, Karl-Otto Rosenqvist
 # Released under GPL 2
 
 import os
@@ -28,6 +28,14 @@ import virtualBuffers
 import winUser
 import wx
 from logHandler import log
+try:
+	from scriptHandler import script
+except:
+	def script(**kwargs):
+		def script_decorator(decoratedScript):
+			return decoratedScript
+		return script_decorator
+
 from NVDAObjects import NVDAObject
 
 try:
@@ -271,6 +279,7 @@ preparing = True
 terminating = False
 passThroughMode = config.conf['focusHighlight']['passthrough']['defaultMode']
 currentAppSleepMode = False
+pausePainting = False
 
 
 def rectEquals(r1, r2):
@@ -465,9 +474,11 @@ def invalidateRects():
 
 
 def updateLocations():
-	global passThroughMode, currentAppSleepMode
+	global passThroughMode, currentAppSleepMode, pausePainting
 	passThroughMode = isPassThroughMode()
 	currentAppSleepMode = isCurrentAppSleepMode()
+	if pausePainting:
+		currentAppSleepMode = True
 	updateFocusLocation()
 	updateNavigatorLocation()
 	invalidateRects()
@@ -548,6 +559,26 @@ def startThread():
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+
+	# Translators: Input help mode message
+	TOGGLE_DESC = _('Toggles on and off the highlighting of focus')
+
+	@script(
+		gesture="kb:NVDA+alt+p",
+		description=TOGGLE_DESC,
+		category=ADDON_SUMMARY
+	)
+	def script_togglePainting(self, gesture):
+		global pausePainting
+		if pausePainting:
+			pausePainting = False
+			# Translators: togglePainting message
+			ui.message(_('{} on').format(ADDON_SUMMARY))
+		else:
+			pausePainting = True
+			# Translators: togglePainting message
+			ui.message(_('{} off').format(ADDON_SUMMARY))
+
 
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()

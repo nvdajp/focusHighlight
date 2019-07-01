@@ -1,6 +1,6 @@
 # Focus Highlight #
 
-* Authors: Takuya Nishimoto
+* Authors: Takuya Nishimoto, Karl-Otto Rosenqvist
 * Download [stable version][2]
 * Download [development version][1]
 
@@ -13,7 +13,9 @@ The following colors are used by this addon:
 * Red thick rectangle shows NVDA is in browse mode, and this is both the navigator object and the focused object which are overlapping.
 * Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e., key types are passed to the control.
 
-To disable object tracking, disable or uninstall the addon.
+To toggle object tracking, press NVDA+Alt+P. You can assign other gestures using the Input Gestures dialog.
+Note that it works with NVDA 2018.3 or later.
+Otherwise, you should disable or uninstall the addon itself for disabling object tracking.
 
 When Focus Highlight category of NVDA Settings dialog is available, following items can be used.
 
@@ -27,6 +29,7 @@ When Focus Highlight category of NVDA Settings dialog is available, following it
 ## Changes for 6.2 ##
 
 * New and updated translations.
+* You can now turn object tracking on and off using NVDA+Alt+P. Karl-Otto Rosenqvist contributed for this.
 
 ## Changes for 6.1 ##
 
