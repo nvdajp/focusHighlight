@@ -19,6 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 2.2.3\n"
 
+#. Translators: Input help mode message
+msgid "Toggles on and off the highlighting of focus"
+msgstr ""
+
+#. Translators: togglePainting message
+msgid "{} on"
+msgstr ""
+
+#. Translators: togglePainting message
+msgid "{} off"
+msgstr ""
+
 #. Translators: dash style item
 msgid "Solid"
 msgstr "Плътно"

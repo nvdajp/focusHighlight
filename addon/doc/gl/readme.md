@@ -25,26 +25,25 @@ complemento.
 Cando a categoría Focus Highlight do diálogo de Opcións de NVDA está
 dispoñible, pódense utilizar os seguintes elementos.
 
-* Make focus mode the default (Predeterminar modo foco): Esta caixa de
-  verificación está habilitada por defecto. Cando se desmarca, este
-  complemento compórtase da mesma maneira que na versión 5.6 ou anteriores,
-  p.ex. se o modo exploración non está dispoñible nunha app, o foco amósase
-  utilizando o rectángulo vermello groso.
-* Focus in focus mode (Foco en modo foco), Focus in browse mode (Foco en
-  modo exploración), Navigator object (Obxecto no navegador): Cada un destes
-  grupos contén Color (Cor), Thickness (Grosor) e Style (Estilo).
+* Predeterminar modo foco: Esta caixa de verificación está habilitada por
+  defecto. Cando se desmarca, este complemento compórtase da mesma maneira
+  que na versión 5.6 ou anteriores, p.ex. se o modo exploración non está
+  dispoñible nunha app, o foco amósase utilizando o rectángulo vermello
+  groso.
+* Foco en modo foco, Foco en modo exploración, Obxecto no navegador: Cada un
+  destes grupos contén Cor, Grosor e Estilo.
 
-    * Color (Cor): Esta caixa de edición permíteche escribir o código de cor
-      HTML, p.ex. número hexadecimal de seis caracteres. Por exemplo,
-      "ffffff" é branco, "ff0000" é vermello, e así. Ten en conta que
-      "000000" non se pode utilizar.
-    * Thickness (Grosor): Esta caixa de edición permíteche escribir o grosor
-      da caixa. Podes introducir un valor entre 1 e 30.
-    * Style (Estilo): As alternativas son Solid (Sólido), Dash (Guión), Dot
-      (Punto), Dash dot (Guión punto) e Dash dot-dot (Guión punto-punto).
+    * Cor: Esta caixa de edición permíteche escribir o código de cor HTML,
+      p.ex. número hexadecimal de seis caracteres. Por exemplo, "ffffff" é
+      branco, "ff0000" é vermello, e así. Ten en conta que "000000" non se
+      pode utilizar.
+    * Grosor: Esta caixa de edición permíteche escribir o grosor da
+      caixa. Podes introducir un valor entre 1 e 30.
+    * Estilo: As alternativas son Solid (Sólido), Dash (Guión), Dot (Punto),
+      Dash dot (Guión punto) e Dash dot-dot (Guión punto-punto).
 
-* Restore defaults (Restaurar predeterminados): Este botón permíteche
-  restablecer os teus axustes aos seus orixinais por defecto.
+* Restaurar por defecto: Este botón permíteche restablecer os teus axustes
+  aos seus orixinais por defecto.
 
 ## Cambios para 6.1 ##
 

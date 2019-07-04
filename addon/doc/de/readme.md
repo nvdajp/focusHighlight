@@ -11,60 +11,67 @@ verfolgen.
 
 Die folgenden Farben werden von dieser Erweiterung verwendet:
 
-* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
-  this is the navigator object.
-* Red thin rectangle shows NVDA is in browse mode, and this is the focused
-  object/control.
-* Red thick rectangle shows NVDA is in browse mode, and this is both the
-  navigator object and the focused object which are overlapping.
-* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
-  key types are passed to the control.
+* Das dünne, gestrichelte, grüne Rechteck zeigt an, dass sich NVDA im
+  Lesemodus befindet und dies ist das Navigator-Objekt.
+* Das dünne, rote Rechteck zeigt an, dass sich NVDA im Lesemodus befindet
+  und dies ist das fokussierte Objekt bzw. Steuerelement.
+* Das dicke, rote Rechteck zeigt, dass sich NVDA im Lesemodus befindet und
+  dies ist sowohl das Navigator-Objekt als auch das fokussierte Objekt, die
+  sich überlappen.
+* Das blaue Rechteck mit dicker, gestrichelter Linie zeigt an, dass sich
+  NVDA im Fokusmodus befindet, d. h., Schlüsseltypen werden an die Steuerung
+  übergeben.
 
 Um das hervorheben von Objekten zu deaktivieren, deinstallieren Sie diese
 Erweiterung.
 
-When Focus Highlight category of NVDA Settings dialog is available,
-following items can be used.
+Wenn die Kategorie Fokus-Hervorhebung im Dialogfeld NVDA-Einstellungen
+verfügbar ist, können folgende Elemente verwendet werden.
 
-* Make focus mode the default: This checkbox is enabled by default. When it
-  is unchecked, this add-on behaves same as version 5.6 or previous
-  versions, i.e., if browse mode is not available for an app, the focus is
-  shown using the thick red rectangle.
-* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
-  groups contains Color, Thickness, and Style.
+* Setzen Sie den Fokusmodus auf die Standard-Einstellung: Dieses
+  Kontrollkästchen ist standardmäßig aktiviert. Wenn das Kontrollkästchen
+  deaktiviert ist, verhält sich diese Erweiterung wie die Version 5.6 oder
+  älter, d. h., wenn der Suchmodus für eine App nicht verfügbar ist, wird
+  der Fokus durch das dicke rote Rechteck angezeigt.
+* Fokus im Fokusmodus, Fokus im Lesemodus, Navigator-Objekt: Jede dieser
+  Gruppen enthält Farbe, Dicke und Stil.
 
-    * Color: This edit field allows you to type the HTML color code, i.e.,
-      six-character hexadecimal number. For example, "ffffff" is white,
-      "ff0000" is red, and so on. Note that "000000" can not be used.
-    * Thickness: This edit field allows you to type the thickness of the
-      box. You can enter a value between 1 and 30.
-    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+    * Farbe: In diesem Eingabefeld können Sie den HTML-Farbcode eingeben,
+      d. h. einen sechsstelligen Hexadezimalwert. Zum Beispiel ist "ffffff"
+      weiß, "ff0000" ist rot, und so weiter. Beachten Sie, dass "00000000"
+      nicht verwendet werden kann.
+    * Dicke: In diesem Eingabefeld können Sie die Dicke der Box
+      eingeben. Sie können einen Wert zwischen 1 und 30 eingeben.
+    * Stil: Die Auswahlmöglichkeiten sind Solide, Strich, Punkt,
+      Strich-Punkt und Strich-Punkt-Punkt.
 
-* Restore defaults: This button allows you to reset your settings to their
-  original defaults.
+* Stellt die Standard-Einstellungen wieder her: Mit dieser Schaltfläche
+  können Sie Ihre Einstellungen auf die ursprünglichen Standardwerte
+  zurücksetzen.
 
 ## Änderungen in 6.1 ##
 
 * Neue und aktualisierte Übersetzungen.
 * Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/14)
   mit den letzten Entwicklerversionen von NVDA.
-* Focus Highlight category of NVDA Settings dialog is now available. Note
-  that it works only with NVDA 2018.3 or later.
+* Die Kategorie Fokus-Hervorhebungen im Dialogfeld der NVDA-Einstellungen
+  ist nun verfügbar. Beachten Sie, dass es nur mit NVDA 2018.3 oder neuer
+  funktioniert.
 * [Diskussionen bzgl. einstellen von
   Farben](https://github.com/nvdajp/focusHighlight/issues/3)
-* [Discussions regarding 'Make focus mode the
-  default'](https://github.com/nvdajp/focusHighlight/issues/13)
+* [Englische Diskussionen bezüglich "Fokusmodus als Standard
+  festlegen"](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## Änderungen in 6.0 ##
 
 * Neue und aktualisierte Übersetzungen.
 * Behebt den [Fehler](https://github.com/nvdajp/focusHighlight/issues/13)
   bzgl. des Lesemodus.
-* Since this version, if the browse mode of NVDA is not available for an
-  application, it is always shown that NVDA is in focus mode for the
-  application, rather than using the red thick rectangle.
-* The thickness of the line representing the focus mode has been reduced to
-  half.
+* Seit dieser Version, wenn der Lesemodus von NVDA für eine Anwendung nicht
+  verfügbar ist, wird immer angezeigt, dass sich NVDA im Fokusmodus für die
+  Anwendung befindet, anstatt das rote dicke Rechteck zu verwenden.
+* Die Dicke der Linie, die den Fokusmodus darstellt, wurde auf die Hälfte
+  reduziert.
 
 ## Änderungen für 5.6 ##
 

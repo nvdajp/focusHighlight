@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: focusHighlight 1.1-dev\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-11-23 18:23+0100\n"
-"PO-Revision-Date: 2016-01-29 18:14+0330\n"
+"PO-Revision-Date: 2019-07-01 19:56+0330\n"
 "Last-Translator: Mohammadreza Rashad <mohammadreza5712@gmail.com>\n"
 "Language-Team: NVDA Translation team <nvda-translations@freelists.org>\n"
 "Language: fa\n"
@@ -16,6 +16,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
+
+#. Translators: Input help mode message
+msgid "Toggles on and off the highlighting of focus"
+msgstr ""
+
+#. Translators: togglePainting message
+msgid "{} on"
+msgstr ""
+
+#. Translators: togglePainting message
+msgid "{} off"
+msgstr ""
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "توپر"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "خط"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "نقطه"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "خط نقطه"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "خط نقطه نقطه"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "پیش‌فرض قرار دادَنِ حالتِ فرمان‌پذیری"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "فکوس در حالتِ فرمان‌پذیری"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "رنگ"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "ضخامت"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "سبْک"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "فکوس در حالتِ مرور"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "پیمایشگر"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "بازگرداندن به پیش‌فرض"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
