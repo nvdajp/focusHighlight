@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: focusHighlight 0.0.5\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-08-08 16:14+0200\n"
-"PO-Revision-Date: 2019-06-28 22:09+0300\n"
+"PO-Revision-Date: 2019-07-04 23:35+0300\n"
 "Last-Translator: Kostadin Kolev <k_kolev1985@mail.bg>\n"
 "Language-Team: Български <>\n"
 "Language: bg\n"
@@ -21,15 +21,15 @@ msgstr ""
 
 #. Translators: Input help mode message
 msgid "Toggles on and off the highlighting of focus"
-msgstr ""
+msgstr "Включва или изключва открояването на фокуса"
 
 #. Translators: togglePainting message
 msgid "{} on"
-msgstr ""
+msgstr "{} е включено"
 
 #. Translators: togglePainting message
 msgid "{} off"
-msgstr ""
+msgstr "{} е изключено"
 
 #. Translators: dash style item
 msgid "Solid"

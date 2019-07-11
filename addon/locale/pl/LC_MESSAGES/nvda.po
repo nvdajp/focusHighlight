@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: focusHighlight 0.0.5\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-08-05 07:20+0200\n"
-"PO-Revision-Date: 2018-11-15 22:37+0100\n"
+"PO-Revision-Date: 2019-07-06 22:12+0100\n"
 "Last-Translator: Grzegorz Zlotowicz <grzezlo@wp.pl>\n"
 "Language-Team: pl <killer@tyflonet.com>\n"
 "Language: pl\n"
@@ -16,6 +16,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
+
+#. Translators: Input help mode message
+msgid "Toggles on and off the highlighting of focus"
+msgstr "włącza i wyłącza podświetlanie fokusu"
+
+#. Translators: togglePainting message
+msgid "{} on"
+msgstr "{} włączone"
+
+#. Translators: togglePainting message
+msgid "{} off"
+msgstr "{} wyłączone"
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "solidny"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "kreska"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "kropka"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "kreska i kropka"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "kreska z dwoma kropkami"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "Ustaw tryb fokusu jako domyślny"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "fokus w trybie fokusu"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "Kolor"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "grubość"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "styl"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "Fokus w trybie czytania"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "Obiekt nawigatora"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "Wróć do ustawień domyślnych"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
@@ -25,4 +89,4 @@ msgstr "Focus Highlight"
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
-msgstr "Podświetl miejsce, w którym znajduje się punkt uwagi."
+msgstr "Podświetla miejsce, w którym znajduje się punkt uwagi."

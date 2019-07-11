@@ -8,14 +8,78 @@ msgstr ""
 "Project-Id-Version: focusHighlight 2.2\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2015-10-23 06:00+1000\n"
-"PO-Revision-Date: 2016-03-18 16:31+0200\n"
-"Last-Translator: DanP <dan.punga@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2019-07-09 17:37+0300\n"
+"Last-Translator: Florian Ionașcu <florianionascu@hotmail.com>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.2.3\n"
+"Language-Team: \n"
+
+#. Translators: Input help mode message
+msgid "Toggles on and off the highlighting of focus"
+msgstr "Activează sau dezactivează îmbunătățirea focalizării"
+
+#. Translators: togglePainting message
+msgid "{} on"
+msgstr "{} activat"
+
+#. Translators: togglePainting message
+msgid "{} off"
+msgstr "{} dezactivat"
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "Solid"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "Cratimă"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "Punct"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "Cratimă cu punct"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "Cratimă cu două puncte"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "Fă modul de focalizare implicit"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "Focalizare în modul de focalizare"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "Culoare"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "Grosime"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "Stil"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "Focalizare în modul de navigare"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "Obiect navigator"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "Revenire la setările implicite"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
