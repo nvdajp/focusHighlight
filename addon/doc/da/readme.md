@@ -10,59 +10,63 @@ og objektet/kontrollen, som har fokus.
 
 Følgende farver bliver brugt af dette tilføjelsesprogram:
 
-* Green thin dashed-dotted line rectangle shows NVDA is in browse mode, and
-  this is the navigator object.
-* Red thin rectangle shows NVDA is in browse mode, and this is the focused
-  object/control.
-* Red thick rectangle shows NVDA is in browse mode, and this is both the
-  navigator object and the focused object which are overlapping.
-* Blue thick dotted line rectangle indicates NVDA is in focus mode, i.e.,
-  key types are passed to the control.
+* Grøn og tynd rektangel med tynde skråstreger, indikerer gennemsynstilstand
+  og det indikere navigatorobjektet.
+* Rødt tyndt rektangel for at indikere objektet/kontrolen, som har fokus i
+  gennemsynstilstand.
+* Rødt tykt rektangel for at indikere, at navigatorobjekt og objekt i fokus
+  overlapper i gennemsynstilstand.
+* Blåt rektangel med tyk prikket linje for at indikere, at NVDA er i
+  fokustilstand, d.v.s. at tastetryk bliver videregivet til kontrollen.
 
-To disable object tracking, disable or uninstall the addon.
+Hvis du vil slå sporing af objekter fra, så afinstaller
+tilføjelsesprogrammet.
 
-When Focus Highlight category of NVDA Settings dialog is available,
-following items can be used.
+Når kategorien Fremhævelse af Fokus i NVDA-s indstillingspanel er
+tilgængelig, kan følgende indstillinger tilgås.
 
-* Make focus mode the default: This checkbox is enabled by default. When it
-  is unchecked, this add-on behaves same as version 5.6 or previous
-  versions, i.e., if browse mode is not available for an app, the focus is
-  shown using the thick red rectangle.
-* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
-  groups contains Color, Thickness, and Style.
+* Gør fokustilstand standard: Dette felt er som standard aktiveret. Når den
+  ikke er markeret, fungerer denne tilføjelse lignende version 5.6 eller
+  tidligere versioner, dvs. hvis gennemsynstilstand ikke er tilgængelig for
+  en app, vises fokuset ved hjælp af det tykke røde rektangel.
+* Fokus i fokustilstand, Fokus i gennemsynstilstand, Navigatorobjekt: Hver
+  af disse grupper indeholder farve, tykkelse og stil.
 
-    * Color: This edit field allows you to type the HTML color code, i.e.,
-      six-character hexadecimal number. For example, "ffffff" is white,
-      "ff0000" is red, and so on. Note that "000000" can not be used.
-    * Thickness: This edit field allows you to type the thickness of the
-      box. You can enter a value between 1 and 30.
-    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+    * Farve: Dette redigeringsfelt giver dig mulighed for at skrive
+      HTML-farvekoden, dvs. hexadecimale tal med seks tegn. For eksempel er
+      "ffffff" hvid, "ff0000" er rød og så videre. Bemærk at "000000" ikke
+      kan bruges.
+    * Tykkelse: Dette redigeringsfelt giver dig mulighed for at skrive
+      tykkelsen af boksen. Du kan indtaste en værdi mellem 1 og 30.
+    * Style: Valgene er Solid, streg, prik, streg prik og streg prik prik.
 
-* Restore defaults: This button allows you to reset your settings to their
-  original defaults.
+* Gendan standarder: Denne knap giver dig mulighed for at nulstille dine
+  indstillinger til deres oprindelige standardindstillinger.
 
-## Changes for 6.1 ##
-
-* Nye og opdaterede oversættelser.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
-  with the latest development versions of NVDA.
-* Focus Highlight category of NVDA Settings dialog is now available. Note
-  that it works only with NVDA 2018.3 or later.
-* [Discussions regarding customizing
-  colors](https://github.com/nvdajp/focusHighlight/issues/3)
-* [Discussions regarding 'Make focus mode the
-  default'](https://github.com/nvdajp/focusHighlight/issues/13)
-
-## Changes for 6.0 ##
+## Ændringer for 6.1 ##
 
 * Nye og opdaterede oversættelser.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/13)
-  regarding the browse mode.
-* Since this version, if the browse mode of NVDA is not available for an
-  application, it is always shown that NVDA is in focus mode for the
-  application, rather than using the red thick rectangle.
-* The thickness of the line representing the focus mode has been reduced to
-  half.
+* Løser [problemet](https://github.com/nvdajp/focusHighlight/issues/14) med
+  de seneste udviklingsversioner af NVDA.
+* Indstillingskategorien Fremhævelse af fokus i NVDA-indstillingsdialog er
+  nu tilgængelig. Bemærk, at dette kun er aktuelt med NVDA 2018.3 eller
+  nyere.
+* [Diskussioner vedrørende tilpasning af
+  farver](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Diskussioner vedrørende 'Gør fokustilstand
+  standard'](https://github.com/nvdajp/focusHighlight/issues/13)
+
+## Ændringer i 6.0 ##
+
+* Nye og opdaterede oversættelser.
+* retter [problemet](https://github.com/nvdajp/focusHighlight/issues/13)
+  angående gennemsynstilstand.
+* Siden denne version, hvis gennemsynstilstanden for NVDA ikke er
+  tilgængelig for en applikation, vises det altid, at NVDA er i
+  fokustilstand for applikationen, i stedet for at bruge det røde tykke
+  rektangel.
+* Tykkelsen af linjen, der repræsenterer fokustilstanden, er reduceret til
+  halvdelen.
 
 ## Ændringer for 5.6 ##
 

@@ -7,86 +7,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: focusHighlight 1.1-dev\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
-"POT-Creation-Date: 2013-11-23 18:23+0100\n"
-"PO-Revision-Date: 2019-07-14 13:59+0200\n"
-"Last-Translator: Nicolai Svendsen <chojiro1990@gmail.com>\n"
-"Language-Team: Dansk NVDA <dansk@nvda.dk>\n"
-"Language: da\n"
+"POT-Creation-Date: 2014-04-02 08:27+0100\n"
+"PO-Revision-Date: 2019-07-15 16:12+0530\n"
+"Last-Translator: Noelia Ruiz Martínez <nrm1977@gmail.com>\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
+"Language-Team: \n"
 
 #. Translators: Input help mode message
 msgid "Toggles on and off the highlighting of focus"
-msgstr "Slår fremhævelsen af fokus til og fra"
+msgstr "फोकस के हाइलाइटिंग का टॉगल चालू और बंद करें"
 
 #. Translators: togglePainting message
 msgid "{} on"
-msgstr "{} til"
+msgstr "{} ऑन"
 
 #. Translators: togglePainting message
 msgid "{} off"
-msgstr "{} fra"
+msgstr "{} औफ"
 
 #. Translators: dash style item
 msgid "Solid"
-msgstr "Solid"
+msgstr "ठोस"
 
 #. Translators: dash style item
 msgid "Dash"
-msgstr "Streg"
+msgstr "डैश स्टाइल"
 
 #. Translators: dash style item
 msgid "Dot"
-msgstr "Prik"
+msgstr "बिंदु स्टाइल"
 
 #. Translators: dash style item
 msgid "Dash dot"
-msgstr "Streg prik"
+msgstr "डैश बिंदु स्टाइल"
 
 #. Translators: dash style item
 msgid "Dash dot dot"
-msgstr "Streg prik prik"
+msgstr "डैश बिंदु बिंदु स्टाइल"
 
 #. Translators: label of a checkbox.
 msgid "Make focus mode the default"
-msgstr "Gør fokustilstand standard"
+msgstr "फ़ोकस मोड को डिफ़ॉल्ट बनाएं"
 
 #. Translators: focus (in focus mode) panel
 msgid "Focus in focus mode"
-msgstr "Fokus i fokustilstand"
+msgstr "फोकस मोड में फोकस करें"
 
 #. Translators: label for an edit field.
 msgid "Color"
-msgstr "Farve"
+msgstr "रंग"
 
 #. Translators: label for an edit field.
 msgid "Thickness"
-msgstr "Tykkelse"
+msgstr "मोटाई"
 
 #. Translators: label for an choice field.
 msgid "Style"
-msgstr "Stil"
+msgstr "शैली"
 
 #. Translators: focus (in browse mode) panel
 msgid "Focus in browse mode"
-msgstr "Fokus i gennemsynstilstand"
+msgstr "ब्राउज़ मोड में फ़ोकस करें"
 
 #. Translators: navigator panel
 msgid "Navigator object"
-msgstr "Navigatorobjekt"
+msgstr "नाविक ऑब्जेक्ट"
 
 #. Translators: Label of a button.
 msgid "Restore defaults"
-msgstr "Gendan standarder"
+msgstr "डिफॉल्ट्स का पुनःस्थापन"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
-msgstr "Fremhævelse af fokus"
+msgstr "फोकस हाइलाइट करें"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
-msgstr "Fremhæv stedet med fokus."
+msgstr "फोकस किए गए स्थान को हाइलाइट करें."
