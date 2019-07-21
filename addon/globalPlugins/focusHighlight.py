@@ -697,6 +697,10 @@ if NVDASettingsDialog:
 			_("Dash dot dot"),
 		)
 
+		def __init__(self, parent):
+			self.beforeRestoreToDefaultsValue = None
+			super(AddonSettingsPanel, self).__init__(parent)
+
 		def setWidgetValues(self):
 			self.passThroughDefaultModeCheckbox.SetValue(bool(config.conf['focusHighlight']['passthrough']['defaultMode']))
 			self.passThroughColorTextCtrl.SetValue(str(config.conf['focusHighlight']['passthrough']['color']))
@@ -816,6 +820,18 @@ if NVDASettingsDialog:
 			self.setWidgetValues()
 
 		def restoreToDefaults(self):
+			self.beforeRestoreToDefaultsValue = (
+				config.conf['focusHighlight']['passthrough']['defaultMode'],
+				config.conf['focusHighlight']['passthrough']['color'],
+				config.conf['focusHighlight']['passthrough']['dashStyle'],
+				config.conf['focusHighlight']['passthrough']['thickness'],
+				config.conf['focusHighlight']['focus']['color'],
+				config.conf['focusHighlight']['focus']['dashStyle'],
+				config.conf['focusHighlight']['focus']['thickness'],
+				config.conf['focusHighlight']['navigator']['color'],
+				config.conf['focusHighlight']['navigator']['dashStyle'],
+				config.conf['focusHighlight']['navigator']['thickness']
+			)
 			config.conf['focusHighlight']['passthrough']['defaultMode'] = True
 			config.conf['focusHighlight']['passthrough']['color'] = '2222ff'
 			config.conf['focusHighlight']['passthrough']['dashStyle'] = 2
@@ -828,3 +844,15 @@ if NVDASettingsDialog:
 			config.conf['focusHighlight']['navigator']['thickness'] = 4
 			self.setWidgetValues()
 
+		def onDiscard(self):
+			if self.beforeRestoreToDefaultsValue:
+				config.conf['focusHighlight']['passthrough']['defaultMode'] = self.beforeRestoreToDefaultsValue[0]
+				config.conf['focusHighlight']['passthrough']['color'] = self.beforeRestoreToDefaultsValue[1]
+				config.conf['focusHighlight']['passthrough']['dashStyle'] = self.beforeRestoreToDefaultsValue[2]
+				config.conf['focusHighlight']['passthrough']['thickness'] = self.beforeRestoreToDefaultsValue[3]
+				config.conf['focusHighlight']['focus']['color'] = self.beforeRestoreToDefaultsValue[4]
+				config.conf['focusHighlight']['focus']['dashStyle'] = self.beforeRestoreToDefaultsValue[5]
+				config.conf['focusHighlight']['focus']['thickness'] = self.beforeRestoreToDefaultsValue[6]
+				config.conf['focusHighlight']['navigator']['color'] = self.beforeRestoreToDefaultsValue[7]
+				config.conf['focusHighlight']['navigator']['dashStyle'] = self.beforeRestoreToDefaultsValue[8]
+				config.conf['focusHighlight']['navigator']['thickness'] = self.beforeRestoreToDefaultsValue[9]

@@ -30,6 +30,7 @@ When Focus Highlight category of NVDA Settings dialog is available, following it
 
 * New and updated translations.
 * Fixed the issue that dash styles of focus (in browse mode) and navigator object are not able to change.
+* Fixed the issue that 'Cancel' button of setting panel does not work after 'Restore defaults' button is pressed.
 
 ## Changes for 6.2 ##
 
