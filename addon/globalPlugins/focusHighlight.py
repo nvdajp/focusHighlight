@@ -808,8 +808,10 @@ if NVDASettingsDialog:
 			self.saveDashStyle('passthrough', self.passThroughDashStyleChoice.GetSelection())
 			self.saveColor('focus', self.focusColorTextCtrl.GetValue())
 			self.saveThickness('focus', self.focusThicknessTextCtrl.GetValue())
+			self.saveDashStyle('focus', self.focusDashStyleChoice.GetSelection())
 			self.saveColor('navigator', self.navigatorColorTextCtrl.GetValue())
 			self.saveThickness('navigator', self.navigatorThicknessTextCtrl.GetValue())
+			self.saveDashStyle('navigator', self.navigatorDashStyleChoice.GetSelection())
 			# values may be reverted or fixed, so update widgets
 			self.setWidgetValues()
 
