@@ -1,4 +1,4 @@
-# Aktiivisen kohdan korostus #
+# Kohdistuksen korostus #
 
 * Tekijä: Takuya Nishimoto
 * Lataa [vakaa versio][2]
@@ -22,39 +22,43 @@ Seuraavia värejä käytetään:
   vuorovaikutustilassa, ts. näppäinpainallukset välitetään nykyiselle
   säätimelle.
 
-To disable object tracking, disable or uninstall the addon.
+Poista objektin seuranta käytöstä poistamalla käytöstä tai poistamalla tämä
+lisäosa.
 
-When Focus Highlight category of NVDA Settings dialog is available,
-following items can be used.
+Seuraavia asetuksia voidaan muuttaa, kun NVDA:n asetusvalintaikkunan
+Kohdistuksen korostus -kategoria on käytettävissä.
 
-* Make focus mode the default: This checkbox is enabled by default. When it
-  is unchecked, this add-on behaves same as version 5.6 or previous
-  versions, i.e., if browse mode is not available for an app, the focus is
-  shown using the thick red rectangle.
-* Focus in focus mode, Focus in browse mode, Navigator object: Each of these
-  groups contains Color, Thickness, and Style.
+* Käytä oletusarvoisesti vuorovaikutustilaa: Tämä valintaruutu on
+  oletusarvoisesti valittuna. Kun sitä ei ole valittu, tämä lisäosa toimii
+  kuten versio 5.6 tai sitä aiemmat, ts. jos selaustila ei ole käytettävissä
+  sovelluksessa, kohdistuksen näyttämiseen käytetään paksua punaista
+  suorakulmiota.
+* Kohdistus vuorovaikutustilassa, Kohdistus selaustilassa,
+  Navigointiobjekti: Näissä ryhmissä on seuraavat asetukset: Väri, Paksuus,
+  ja Tyyli.
 
-    * Color: This edit field allows you to type the HTML color code, i.e.,
-      six-character hexadecimal number. For example, "ffffff" is white,
-      "ff0000" is red, and so on. Note that "000000" can not be used.
-    * Thickness: This edit field allows you to type the thickness of the
-      box. You can enter a value between 1 and 30.
-    * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
+    * Väri: Tähän muokkauskenttään voidaan syöttää värin HTML-koodi,
+      ts. 6-merkkinen heksadesimalinumero. Esim. "ffffff" on valkoinen,
+      "ff0000" on punainen jne. Huom: Arvoa "000000" ei voi käyttää.
+    * Paksuus: Tähän muokkauskenttään voidaan kirjoittaa laatikon
+      paksuus. Arvot väliltä 1-30 ovat mahdollisia.
+    * Tyyli: Valittavissa ovat vaihtoehdot Kiinteä, Viiva, Piste, Viiva ja
+      piste sekä Viiva ja kaksi pistettä.
 
-* Restore defaults: This button allows you to reset your settings to their
-  original defaults.
+* Palauta oletukset: Tällä painikkeella voi palauttaa asetukset
+  alkuperäisiin oletusarvoihinsa.
 
-## Changes for 6.1 ##
+## Muutokset versiossa 6.1 ##
 
 * Käännöksiä päivitetty ja lisätty.
-* Addresses [the issue](https://github.com/nvdajp/focusHighlight/issues/14)
-  with the latest development versions of NVDA.
-* Focus Highlight category of NVDA Settings dialog is now available. Note
-  that it works only with NVDA 2018.3 or later.
-* [Discussions regarding customizing
-  colors](https://github.com/nvdajp/focusHighlight/issues/3)
-* [Discussions regarding 'Make focus mode the
-  default'](https://github.com/nvdajp/focusHighlight/issues/13)
+* Korjaa [ongelman](https://github.com/nvdajp/focusHighlight/issues/14)
+  viimeisimpien NVDA:n kehitysversioissa.
+* NVDA:n asetusvalintaikkunan Kohdistuksen korostus -kategoria on nyt
+  käytettävissä  NVDA 2018.3:ssa ja sitä uudemmissa versioissa.
+* [Värien mukauttamiseen liittyvät
+  keskustelut](https://github.com/nvdajp/focusHighlight/issues/3)
+* [Vuorovaikutustilan oletusarvoiseen käyttämiseen liittyvät
+  keskustelut](https://github.com/nvdajp/focusHighlight/issues/13)
 
 ## Muutokset versiossa 6.0 ##
 
