@@ -8,22 +8,86 @@ msgstr ""
 "Project-Id-Version: focusHighlight\n"
 "Report-Msgid-Bugs-To: nvda-translations@freelists.org\n"
 "POT-Creation-Date: 2013-08-05 07:20+0200\n"
-"PO-Revision-Date: 2014-10-10 07:42+0200\n"
+"PO-Revision-Date: 2019-07-14 16:06+0200\n"
 "Last-Translator: Jani Kinnunen <jani.kinnunen@wippies.fi>\n"
 "Language-Team: Finnish <jani.kinnunen@wippies.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Translators: Input help mode message
+msgid "Toggles on and off the highlighting of focus"
+msgstr "Ottaa käyttöön kohdistuksen korostuksen tai poistaa sen käytöstä."
+
+#. Translators: togglePainting message
+msgid "{} on"
+msgstr "{} käytössä"
+
+#. Translators: togglePainting message
+msgid "{} off"
+msgstr "{} ei käytössä"
+
+#. Translators: dash style item
+msgid "Solid"
+msgstr "Kiinteä"
+
+#. Translators: dash style item
+msgid "Dash"
+msgstr "Viiva"
+
+#. Translators: dash style item
+msgid "Dot"
+msgstr "Piste"
+
+#. Translators: dash style item
+msgid "Dash dot"
+msgstr "Viiva ja piste"
+
+#. Translators: dash style item
+msgid "Dash dot dot"
+msgstr "Viiva ja kaksi pistettä"
+
+#. Translators: label of a checkbox.
+msgid "Make focus mode the default"
+msgstr "Käytä oletusarvoisesti vuorovaikutustilaa"
+
+#. Translators: focus (in focus mode) panel
+msgid "Focus in focus mode"
+msgstr "Kohdistus vuorovaikutustilassa"
+
+#. Translators: label for an edit field.
+msgid "Color"
+msgstr "Väri"
+
+#. Translators: label for an edit field.
+msgid "Thickness"
+msgstr "Paksuus"
+
+#. Translators: label for an choice field.
+msgid "Style"
+msgstr "Tyyli"
+
+#. Translators: focus (in browse mode) panel
+msgid "Focus in browse mode"
+msgstr "Kohdistus selaustilassa"
+
+#. Translators: navigator panel
+msgid "Navigator object"
+msgstr "Navigointiobjekti"
+
+#. Translators: Label of a button.
+msgid "Restore defaults"
+msgstr "Palauta oletukset"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "Focus Highlight"
-msgstr "Aktiivisen kohdan korostus"
+msgstr "Kohdistuksen korostus"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 msgid "Highlight the focused location."
-msgstr "Korostaa aktiivisen kohdan."
+msgstr "Korosta kohdistettu sijainti."
