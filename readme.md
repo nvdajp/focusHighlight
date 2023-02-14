@@ -26,6 +26,10 @@ When Focus Highlight category of NVDA Settings dialog is available, following it
   * Style: The choices are Solid, Dash, Dot, Dash dot, and Dash dot-dot.
 * Restore defaults: This button allows you to reset your settings to their original defaults.
 
+## Changes for 6.6 ##
+
+* Addresses the issue with NVDA 2023.1.
+
 ## Changes for 6.5 ##
 
 * Addresses the issue with NVDA 2022.1.
