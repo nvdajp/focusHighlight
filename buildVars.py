@@ -26,11 +26,13 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("Highlight the focused location."),
 	# version
-	"addon_version" : "6.6",
+	"addon_version" : "7.0",
 	# Author(s)
 	"addon_author" : "Takuya Nishimoto <nishimotz@gmail.com>",
 	# URL for the add-on documentation support
 	"addon_url" : "https://github.com/nvdajp/focushighlight",
+	# URL for the add-on repository where the source code can be found
+	"addon_sourceURL": None,
 	# Documentation file name
 	"addon_docFileName" : "readme.html",
 	# Minimum NVDA version supported *e.g. "2018.3")
